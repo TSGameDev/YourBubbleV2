@@ -17,7 +17,7 @@ public class InputManager : MonoBehaviour
         playerInputs = new PlayerActions();
         player = GetComponent<Player>();
 
-        playerInputs.Game.WASD.performed += ctx => player.Movement(ctx.ReadValue<Vector2>());
+        playerInputs.Game.WASD.performed += ctx => player.InputMovement = ctx.ReadValue<Vector2>();
     }
 
     private void OnDisable()

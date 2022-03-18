@@ -20,6 +20,13 @@ public class Player : MonoBehaviour
 
     #endregion
 
+    #region Get-Set
+
+    Vector2 inputMovement;
+    public Vector2 InputMovement { set => inputMovement = value; }
+
+    #endregion
+
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
@@ -27,21 +34,24 @@ public class Player : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+    private void Update()
+    {
+        Movement();
+    }
+
     private void FixedUpdate()
     {
         Gravity();
     }
 
-    public void Movement(Vector2 inputMovement)
+    public void Movement()
     {
         float x = inputMovement.x;
         float z = inputMovement.y;
 
-        Debug.Log($"Forward Movement: {z} Sideway Movement: {x}");
-
         Vector3 movement = cameraa.transform.right * x + cameraa.transform.forward * z;
 
-        while (movement.magnitude >= 0.1f)
+        if (movement.magnitude >= 0.1f)
         {
             characterController.Move(movement * speed * Time.deltaTime);
         }
