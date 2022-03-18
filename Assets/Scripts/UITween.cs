@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using DG.Tweening;
+using System.Threading.Tasks;
 
 public class UITween : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class UITween : MonoBehaviour
 
     [SerializeField] GameObject startPos;
     [SerializeField] Quaternion startRot = new Quaternion(0,0,0,0);
-    [SerializeField] Vector3 startScale = new Vector3(0,0,0);
+    [SerializeField] Vector3 startScale = new Vector3(1,1,1);
 
     [Header("Tween Values")]
     [Space(10)]
@@ -40,49 +41,46 @@ public class UITween : MonoBehaviour
 
     #endregion
 
-
-    public void ReturnTween()
+    private void Awake()
     {
-        Sequence BeginTween = DOTween.Sequence();
-        Vector3 tweenPos = tweenLocation.transform.position;
-
-        BeginTween.Join(transform.DOMove(tweenPos, 0))
-            .Join(transform.DORotateQuaternion(tweenRotation, 0))
-            .Join(transform.DOScale(tweenScale, 0));
-
-        BeginTween.Play();
-
-        Sequence ReturnTween = DOTween.Sequence();
-        Vector3 returnPos = startPos.transform.position;
-
-        ReturnTween.Join(transform.DOMove(returnPos, moveTweenTime))
-            .Join(transform.DORotateQuaternion(startRot, rotationTweenTime))
-            .Join(transform.DOScale(startScale, scaleTweenTime))
-            .OnComplete(() => OnTweenReturn.Invoke());
-
-        ReturnTween.Play();
+        gameObject.SetActive(false);
     }
 
-    public void BeginTween()
+    public async void BeginTween()
     {
-        Sequence ReturnTween = DOTween.Sequence();
-        Vector3 returnPos = startPos.transform.position;
+        Sequence tweenSeq = DOTween.Sequence();
+        Sequence ReadyingSeq = DOTween.Sequence();
 
-        ReturnTween.Join(transform.DOMove(returnPos, 0))
+        if (tweenLocation != null)
+        {
+            ReadyingSeq.Join(transform.DOMove(startPos.transform.position, 0))
             .Join(transform.DORotateQuaternion(startRot, 0))
             .Join(transform.DOScale(startScale, 0));
 
-        ReturnTween.Play();
+            await ReadyingSeq.AsyncWaitForCompletion();
+            gameObject.SetActive(true);
 
-        Sequence BeginTween = DOTween.Sequence();
-        Vector3 tweenPos = tweenLocation.transform.position;
-
-        BeginTween.Join(transform.DOMove(tweenPos, moveTweenTime))
+            tweenSeq.Join(transform.DOMove(tweenLocation.transform.position, moveTweenTime))
             .Join(transform.DORotateQuaternion(tweenRotation, rotationTweenTime))
             .Join(transform.DOScale(tweenScale, scaleTweenTime))
             .OnComplete(() => OnTweenComplete.Invoke());
 
-        BeginTween.Play();
+            await Task.Yield();
+        }
+        else
+        {
+            ReadyingSeq.Join(transform.DORotateQuaternion(startRot, 0))
+            .Join(transform.DOScale(startScale, 0));
 
+            await ReadyingSeq.AsyncWaitForCompletion();
+            gameObject.SetActive(true);
+
+            tweenSeq.Join(transform.DORotateQuaternion(tweenRotation, rotationTweenTime))
+            .Join(transform.DOScale(tweenScale, scaleTweenTime))
+            .OnComplete(() => OnTweenComplete.Invoke());
+
+            await Task.Yield();
+        }
     }
+
 }
