@@ -271,7 +271,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1736657899}
         m_TargetAssemblyTypeName: UITween, Assembly-CSharp
-        m_MethodName: BeginTweenIE
+        m_MethodName: BeginTween
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2130,9 +2130,9 @@ MonoBehaviour:
   OnTweenComplete:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 138414353}
+      - m_Target: {fileID: 138414358}
         m_TargetAssemblyTypeName: UITween, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: BeginTween
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
