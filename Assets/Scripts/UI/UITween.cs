@@ -85,7 +85,6 @@ public class UITween : MonoBehaviour
             tweenSeq.Join(transform.DORotateQuaternion(tweenRotation, rotationTweenTime))
             .Join(transform.DOScale(tweenScale, scaleTweenTime))
             .OnComplete(() => OnTweenComplete.Invoke());
-            tweenSeq.Play();
 
             await Task.Yield();
         }
@@ -107,8 +106,11 @@ public class UITween : MonoBehaviour
             tweenSeq.Join(transform.DOMove(startPos.transform.position, moveTweenTime))
             .Join(transform.DORotateQuaternion(startRot, rotationTweenTime))
             .Join(transform.DOScale(startScale, scaleTweenTime))
-            .OnComplete(() => OnTweenReturn.Invoke())
-            .OnComplete(() => gameObject.SetActive(false));
+            .OnComplete(() => OnTweenReturn.Invoke());
+
+            await tweenSeq.AsyncWaitForCompletion();
+
+            gameObject.SetActive(false);
 
             await Task.Yield();
         }
@@ -124,9 +126,11 @@ public class UITween : MonoBehaviour
             Sequence tweenSeq = DOTween.Sequence();
             tweenSeq.Join(transform.DORotateQuaternion(startRot, rotationTweenTime))
             .Join(transform.DOScale(startScale, scaleTweenTime))
-            .OnComplete(() => OnTweenReturn.Invoke())
-            .OnComplete(() => gameObject.SetActive(false));
-            tweenSeq.Play();
+            .OnComplete(() => OnTweenReturn.Invoke());
+
+            await tweenSeq.AsyncWaitForCompletion();
+
+            gameObject.SetActive(false);
 
             await Task.Yield();
         }
