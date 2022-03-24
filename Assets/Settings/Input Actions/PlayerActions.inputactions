@@ -14,6 +14,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "Running ",
+                    "type": "Button",
+                    "id": "7883cd3c-376b-42f3-bb9e-3cc11bcac978",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Interaction",
                     "type": "Button",
                     "id": "6a0aef7e-a0b5-401c-bc3d-4e84c636aeba",
@@ -30,9 +38,33 @@
                     "interactions": ""
                 },
                 {
+                    "name": "Quick Exit",
+                    "type": "Button",
+                    "id": "29cf1f39-b952-4a6b-8533-8aca44111286",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Asset Menu",
                     "type": "Button",
                     "id": "397c37fc-6fec-4936-adef-346d7e769365",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Terraforming",
+                    "type": "Button",
+                    "id": "0a4cac1a-cdd1-4e86-892f-1dc08a23361a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Camera Rail",
+                    "type": "Button",
+                    "id": "fd208364-c759-42c7-a492-4d75dcbae5f4",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -137,6 +169,50 @@
                 },
                 {
                     "name": "",
+                    "id": "70fef6c0-894d-425e-bb98-ab794dedf4dd",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Terraforming",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6597841e-1454-4ec7-b4e9-8c6d97be545f",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Camera Rail",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c381e1b9-85a6-4b0d-8ee1-b4208b7039ed",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Running ",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "13458963-ba43-4776-8ae4-2b42572b9af8",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Quick Exit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "12539b3e-564d-4823-aa19-438baa654d4b",
                     "path": "<Mouse>/delta",
                     "interactions": "",
@@ -153,9 +229,17 @@
             "id": "0c27e13e-e6ef-45a2-a5e0-eef5939edc6e",
             "actions": [
                 {
-                    "name": "New action",
-                    "type": "Button",
+                    "name": "Mouse Position",
+                    "type": "Value",
                     "id": "ab2029f8-98fb-4da0-8fe7-f153f4c4f3e9",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Mouse Click",
+                    "type": "Button",
+                    "id": "2735ea6d-8a61-43eb-b4e3-c29ea271ba2a",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -165,11 +249,22 @@
                 {
                     "name": "",
                     "id": "ea579572-1fb2-4bb4-9c79-75fd55af5ada",
-                    "path": "",
+                    "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Mouse Position",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bd3ee16f-d954-4f91-be8a-16c625917919",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Mouse Click",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

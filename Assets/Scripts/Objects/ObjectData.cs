@@ -2,34 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct ObjectData
+namespace TSGameDev.Object
 {
-    #region General Data
-
-    int id;
-    public int ID { get => id; }
-
-    #endregion
-
-    #region Sound Data
-
-    #endregion
-
-    #region Model Data
-
-    #endregion
-
-    #region Effect Data
-
-    #endregion
-
-    public void Serialize()
+    public struct ObjectData
     {
+        #region General Data
 
-    }
+        int id;
+        public int ID { get => id; }
 
-    public void Deserialize()
-    {
+        #endregion
 
+        #region Sound Data
+
+        #endregion
+
+        #region Model Data
+
+        #endregion
+
+        #region Effect Data
+
+        #endregion
+
+        public void Serialize()
+        {
+
+        }
+
+        public void Deserialize()
+        {
+
+        }
     }
 }
