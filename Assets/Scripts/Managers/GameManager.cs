@@ -10,21 +10,21 @@ namespace TSGameDev.Managers
     {
         #region Getter-Setter
 
-        UIManager uiManager;
+        [SerializeField] UIManager uiManager;
         public UIManager UIManager
         {
             private set { value = uiManager;}
             get { return uiManager; }
         }
-        
-        Player player;
+
+        [SerializeField] Player player;
         public Player Player
         {
             private set { value = player; }
             get { return player; }
         }
-        
-        InputManager inputManager;
+
+        [SerializeField] InputManager inputManager;
         public InputManager InputManager
         {
             private set { value = inputManager; }
@@ -50,6 +50,9 @@ namespace TSGameDev.Managers
                 Destroy(this);
 
             DontDestroyOnLoad(instance);
+
+            gameState = GameState.Application;
+            gameStateActions = new ApplicationStateAction(this);
         }
     
     }

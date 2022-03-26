@@ -83,7 +83,7 @@ namespace TSGameDev.Managers
 
         public void CloseMainMenu()
         {
-            mainMenuReturnTween.BeginTween();
+            mainMenuReturnTween.ReturnTween();
         }
     }
 

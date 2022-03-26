@@ -10,23 +10,23 @@ public abstract class GameStateAction
     protected Player player;
     protected UIManager uiManager;
     protected InputManager inputManager;
-    
+
     public GameStateAction (GameManager gameManager)
     {
         this.gameManager = gameManager;
+
         player = gameManager.Player;
         uiManager = gameManager.UIManager;
         inputManager = gameManager.InputManager;
-}
+    }
 
     public virtual void ChangeToState(GameState state) { }
 }
 
 public class ApplicationStateAction : GameStateAction
 {
-    public ApplicationStateAction(GameManager gameManager) : base(gameManager)
-    {
-    }
+
+    public ApplicationStateAction(GameManager gameManager) : base(gameManager) { }
 
     public override void ChangeToState(GameState state)
     {
@@ -54,9 +54,8 @@ public class ApplicationStateAction : GameStateAction
 
 public class UIStateAction : GameStateAction
 {
-    public UIStateAction(GameManager gameManager) : base(gameManager)
-    {
-    }
+    
+    public UIStateAction(GameManager gameManager) : base(gameManager) { }
 
     public override void ChangeToState(GameState state)
     {
@@ -133,7 +132,6 @@ public class TerraformStateAction : GameStateAction
         }
     }
 }
-
 
 public enum GameState
 {

@@ -253,6 +253,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d884238937b9edf418224903db363859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &879554246
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 879554248}
+  - component: {fileID: 879554247}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &879554247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879554246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ef6e4f5d57b0b746947a40095839b3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiManager: {fileID: 1999485201}
+  player: {fileID: 1605462929}
+  inputManager: {fileID: 1605462928}
+  gameState: 0
+--- !u!4 &879554248
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879554246}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.555346, y: -3.0625155, z: 14.989111}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &931594689
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,7 +383,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &931594693
 MonoBehaviour:
@@ -476,8 +523,30 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1605462928 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1226037698195064741, guid: 6504b727dccc9154f888a741f4bb200a, type: 3}
+  m_PrefabInstance: {fileID: 2422780175821310944}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2e3d0ff0d2e85c42a945534a577fbc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1605462929 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1226037698195064740, guid: 6504b727dccc9154f888a741f4bb200a, type: 3}
+  m_PrefabInstance: {fileID: 2422780175821310944}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6ac4e56767ae7248be057d0d86d8dc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1673143818
 GameObject:
   m_ObjectHideFlags: 0
@@ -758,7 +827,7 @@ PrefabInstance:
       objectReference: {fileID: 1736369876}
     - target: {fileID: 1226037698195064745, guid: 6504b727dccc9154f888a741f4bb200a, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1226037698195064745, guid: 6504b727dccc9154f888a741f4bb200a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -920,7 +989,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4738055624485120366, guid: ac36f824208aea84ebafdf5893624e9a, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4738055624485120366, guid: ac36f824208aea84ebafdf5893624e9a, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1093,7 +1162,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 269829591229870048, guid: 2821e9dce8f55a142bad8241bd7f377a, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 269829591229870048, guid: 2821e9dce8f55a142bad8241bd7f377a, type: 3}
       propertyPath: m_LocalPosition.x
