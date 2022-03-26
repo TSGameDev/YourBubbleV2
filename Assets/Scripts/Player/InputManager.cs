@@ -30,6 +30,7 @@ namespace TSGameDev.Interactions
             playerInputs.Game.WASD.performed += ctx => player.inputMovement = ctx.ReadValue<Vector2>();
             playerInputs.Game.Interaction.performed += ctx => player.Interaction();
             playerInputs.Game.MainMenu.performed += ctx => gameManager.gameStateActions.ChangeToState(GameState.UI);
+            playerInputs.Game.AssetMenu.performed += ctx => gameManager.gameStateActions.ChangeToState(GameState.AssetMenu);
 
     
             player.running = playerInputs.Game.Running;

@@ -36,9 +36,9 @@ public class ApplicationStateAction : GameStateAction
                 player.LockUnlockCursor(false);
                 inputManager.ActiveUIInputs(true);
                 player.LockUnlockCamera(true);
+                uiManager.OpenCloseMainMenu(true);
                 gameManager.gameState = GameState.UI;
                 gameManager.gameStateActions = new UIStateAction(gameManager);
-                uiManager.OpenMainMenu();
                 break;
             case GameState.Terraform:
                 gameManager.gameState = GameState.Terraform;
@@ -48,7 +48,42 @@ public class ApplicationStateAction : GameStateAction
                 gameManager.gameState = GameState.CameraRail;
                 gameManager.gameStateActions = new CameraRailStateAction(gameManager);
                 break;
+            case GameState.AssetMenu:
+                player.LockUnlockCursor(false);
+                inputManager.ActiveUIInputs(true);
+                player.LockUnlockCamera(true);
+                uiManager.OpenCloseAssetMenu(true);
+                gameManager.gameState = GameState.AssetMenu;
+                gameManager.gameStateActions = new AssetMenuStateAction(gameManager);
+                break;
+            case GameState.AssetSettings:
+
+                break;
         }
+    }
+}
+
+public class AssetMenuStateAction : GameStateAction
+{
+    public AssetMenuStateAction(GameManager gameManager) : base(gameManager) { }
+
+    public override void ChangeToState(GameState state)
+    {
+        switch (state)
+        {
+            case GameState.Application:
+                player.LockUnlockCursor(true);
+                inputManager.ActiveUIInputs(false);
+                player.LockUnlockCamera(false);
+                uiManager.OpenCloseAssetMenu(false);
+                gameManager.gameState = GameState.Application;
+                gameManager.gameStateActions = new ApplicationStateAction(gameManager);
+                break;
+            default:
+
+                break;
+        }
+
     }
 }
 
@@ -67,7 +102,7 @@ public class UIStateAction : GameStateAction
                 player.LockUnlockCamera(false);
                 gameManager.gameState = GameState.Application;
                 gameManager.gameStateActions = new ApplicationStateAction(gameManager);
-                uiManager.CloseMainMenu();
+                uiManager.OpenCloseMainMenu(false);
                 break;
             case GameState.Terraform:
                 gameManager.gameState = GameState.Terraform;
@@ -136,8 +171,11 @@ public class TerraformStateAction : GameStateAction
 public enum GameState
 {
     Application,
+    AssetMenu,
+    AssetSettings,
     UI,
     CameraRail,
     Terraform,
+
 }
 

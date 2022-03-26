@@ -6,33 +6,66 @@ namespace TSGameDev.Object
 {
     public struct ObjectData
     {
-        #region General Data
+        public int ID { private set; get; }
 
-        int id;
-        public int ID { get => id; }
+        #region Sound
 
-        #endregion
-
-        #region Sound Data
-
-        #endregion
-
-        #region Model Data
+        public AudioClip soundClip;
+        public AudioType audioType;
+        public float relativeVolume;
+        public float uniformRadius;
+        public List<AudioClip> indoorVariants;
 
         #endregion
 
-        #region Effect Data
+        #region Model
+
+        public bool changeWithEffects;
 
         #endregion
 
-        public void Serialize()
+        #region Effect
+
+        public ParticleSystem effect;
+        public List<ParticleSystem> effectVariants;
+        public float speed;
+        public Color colour;
+
+        #endregion
+
+        public ObjectData(AudioClip soundClip, List<AudioClip> indoorVariants, ParticleSystem effect, List<ParticleSystem> effectVariants)
+        {
+            ID = 1;
+
+            this.soundClip = soundClip;
+            audioType = AudioType.Uniform;
+            relativeVolume = 1f;
+            uniformRadius = 10f;
+            this.indoorVariants = indoorVariants;
+
+            changeWithEffects = false;
+
+            this.effect = effect;
+            this.effectVariants = effectVariants;
+            speed = 1f;
+            colour = Color.white;
+        }
+
+        public void Serilisation()
         {
 
         }
 
-        public void Deserialize()
+        public void Deserilisation()
         {
 
         }
     }
+
+    public enum AudioType
+    {
+        Uniform,
+        Relative
+    }
+
 }

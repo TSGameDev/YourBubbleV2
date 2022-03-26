@@ -55,5 +55,9 @@ namespace TSGameDev.Managers
             gameStateActions = new ApplicationStateAction(this);
         }
     
+        public void CloseAssetMenu()
+        {
+            gameStateActions.ChangeToState(GameState.Application);
+        }
     }
 }

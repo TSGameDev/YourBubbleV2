@@ -76,14 +76,32 @@ namespace TSGameDev.Managers
             }
         }
 
-        public void OpenMainMenu()
+        public void OpenCloseMainMenu(bool Open)
         {
-            mainMenuBeginTween.BeginTween();
+            if(Open)
+                mainMenuBeginTween.BeginTween();
+            else
+            {
+                uiState = UIState.Mainmenu;
+                mainMenuReturnTween.ReturnTween();
+            }
+
         }
 
-        public void CloseMainMenu()
+        public void OpenCloseAssetMenu(bool Open)
         {
-            mainMenuReturnTween.ReturnTween();
+            if (Open)
+                assetMenuTween.BeginTween();
+            else
+                assetMenuTween.ReturnTween();
+        }
+
+        public void OpenCloseAssetSettingsMenu(bool Open)
+        {
+            if (Open)
+                assetSettingsTween.BeginTween();
+            else
+                assetSettingsTween.ReturnTween();
         }
     }
 
