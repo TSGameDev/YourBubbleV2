@@ -243,6 +243,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "ExitMenu",
+                    "type": "Button",
+                    "id": "e50369a6-6e0b-4ac4-b310-b3f0209c7c65",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -265,6 +273,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Mouse Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "60102bf3-c16b-4b16-a1e0-708a660fd57c",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ExitMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

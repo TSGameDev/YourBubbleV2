@@ -1,121 +1,56 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TSGameDev.Managers;
 using TSGameDev.Interactions;
-using TSGameDev.UI;
 
 namespace TSGameDev.Managers
 {
-    public class GameManager
+    public class GameManager : MonoBehaviour
     {
-        public GameState gameState = GameState.Game;
-        public GameManager gameManager = gameStateActions;
-        public static GameStateActions gameStateActions = new GameStateActions();
-        public static UIStateActions uiStateActions = new UIStateActions();
-        public static TerraformStateActions terraformStateActions = new TerraformStateActions();
-        public static CameraRailStateActions cameraRailStateActions = new CameraRailStateActions();
+        #region Getter-Setter
 
-        static GameManager instance;
-        public static GameManager Instance 
-        { 
-            get 
-            {
-                if(instance == null)
-                    instance = new GameManager();
-
-                return instance;
-            }
+        UIManager uiManager;
+        public UIManager UIManager
+        {
+            private set { value = uiManager;}
+            get { return uiManager; }
+        }
+        
+        Player player;
+        public Player Player
+        {
+            private set { value = player; }
+            get { return player; }
+        }
+        
+        InputManager inputManager;
+        public InputManager InputManager
+        {
+            private set { value = inputManager; }
+            get { return inputManager; }
         }
 
-        virtual public void ChangeToState(GameState state) { }
-    }
+        #endregion
 
-    public class GameStateActions : GameManager
-    {
-        UIManager uiManager;
-        Player player;
-        InputManager inputManager;
+        #region Public Variables
 
+        public GameStateAction gameStateActions;
+        
+        public GameState gameState;
+
+        #endregion
+
+        GameManager instance;
         private void Awake()
         {
-            //player = FindObjectOfType<Player>();
-            //uiManager = FindObjectOfType<UIManager>();
-            //inputManager = player.gameObject.GetComponent<InputManager>();
-        }
+            if(instance == null)
+                instance = this;
+            else
+                Destroy(this);
 
-        public override void ChangeToState(GameState state)
-        {
-            switch (state)
-            {
-                case GameState.UI:
-                    player.LockUnlockCursor(false);
-                    inputManager.ActiveUIInputs(true);
-                    player.LockUnlockCamera(true);
-                    gameState = GameState.UI;
-                    gameManager = uiStateActions;
-                    uiManager.OpenMainMenu();
-                    break;
-                case GameState.Terraforming:
-                    gameState = GameState.Terraforming;
-                    break;
-                case GameState.CameraRail:
-                    gameState = GameState.CameraRail;
-                    break;
-            }
+            DontDestroyOnLoad(instance);
         }
-    }
-
-    public class UIStateActions : GameManager
-    {
-        public override void ChangeToState(GameState state)
-        {
-            base.ChangeToState(state);
-        }
-    }
-
-    public class TerraformStateActions : GameManager
-    {
-        public override void ChangeToState(GameState state)
-        {
-            switch (state)
-            {
-                case GameState.UI:
-                    gameState = GameState.UI;
-                    break;
-                case GameState.Game:
-                    gameState = GameState.Game;
-                    break;
-                case GameState.CameraRail:
-                    gameState = GameState.CameraRail;
-                    break;
-            }
-        }
-    }
-
-    public class CameraRailStateActions : GameManager
-    {
-        public override void ChangeToState(GameState state)
-        {
-            switch (state)
-            {
-                case GameState.UI:
-                    gameState = GameState.UI;
-                    break;
-                case GameState.Terraforming:
-                    gameState = GameState.Terraforming;
-                    break;
-                case GameState.Game:
-                    gameState = GameState.Game;
-                    break;
-            }
-        }
-    }
-
-    public enum GameState
-    {
-        Game,
-        UI,
-        Terraforming,
-        CameraRail
+    
     }
 }

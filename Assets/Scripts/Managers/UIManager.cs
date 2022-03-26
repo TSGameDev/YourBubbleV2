@@ -80,6 +80,11 @@ namespace TSGameDev.Managers
         {
             mainMenuBeginTween.BeginTween();
         }
+
+        public void CloseMainMenu()
+        {
+            mainMenuReturnTween.BeginTween();
+        }
     }
 
     public enum UIState

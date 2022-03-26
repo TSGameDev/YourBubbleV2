@@ -9,8 +9,9 @@ namespace TSGameDev.Interactions
     public class InputManager : MonoBehaviour
     {
         PlayerActions playerInputs;
-        ColourPicker colourPicker;
         Player player;
+        GameManager gameManager;
+        ColourPicker colourPicker;
 
         private void OnEnable()
         {
@@ -23,16 +24,19 @@ namespace TSGameDev.Interactions
         {
             playerInputs = new PlayerActions();
             player = GetComponent<Player>();
+            gameManager = FindObjectOfType<GameManager>();
             colourPicker = FindObjectOfType<ColourPicker>();
 
             playerInputs.Game.WASD.performed += ctx => player.inputMovement = ctx.ReadValue<Vector2>();
             playerInputs.Game.Interaction.performed += ctx => player.Interaction();
-            playerInputs.Game.MainMenu.performed += ctx => GameManager.Instance.gameManager.ChangeToState(GameState.UI);
+            playerInputs.Game.MainMenu.performed += ctx => gameManager.gameStateActions.ChangeToState(GameState.UI);
+
     
             player.running = playerInputs.Game.Running;
 
             playerInputs.UI.MousePosition.performed += ctx => colourPicker.mousePos = ctx.ReadValue<Vector2>();
             playerInputs.UI.MouseClick.performed += ctx => colourPicker.CallbackContext = ctx;
+            playerInputs.UI.ExitMenu.performed += ctx => gameManager.gameStateActions.ChangeToState(GameState.Application);
         }
 
         private void OnDisable()
