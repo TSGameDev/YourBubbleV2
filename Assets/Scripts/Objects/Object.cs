@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TSGameDev.Managers;
+using TSGameDev.Interactables;
 
 namespace TSGameDev.Object
 {
@@ -9,23 +10,29 @@ namespace TSGameDev.Object
     {
         [SerializeField] ObjectData data = new ObjectData();
 
-        GameManager gameManager;
         UIManager uiManager;
+        Player player;
 
         private void Awake()
         {
-            gameManager = FindObjectOfType<GameManager>();
             uiManager = FindObjectOfType<UIManager>();
+            player = FindObjectOfType<Player>();
         }
 
-        public void OpenAssetSettings()
+        public void OpenCloseAssetSettings(bool Open)
         {
-
-        }
-
-        public void CloseAssetSettings()
-        {
-
+            if(Open)
+            {
+                uiManager.OpenCloseAssetSettingsMenu(true);
+                player.LockUnlockCamera(true);
+                player.LockUnlockCursor(false);
+            }
+            else
+            {
+                uiManager.OpenCloseAssetSettingsMenu(false);
+                player.LockUnlockCamera(false);
+                player.LockUnlockCursor(true);
+            }
         }
     }
 }

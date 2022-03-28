@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using TSGameDev.Managers;
 using Cinemachine;
 
-namespace TSGameDev.Interactions
+namespace TSGameDev.Interactables
 {
     public class Player : MonoBehaviour
     {
@@ -94,6 +94,8 @@ namespace TSGameDev.Interactions
         {
             virtualcam.enabled = !isLocked;
         }
+    
+
     }
 
 }

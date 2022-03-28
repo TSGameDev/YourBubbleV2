@@ -4,7 +4,7 @@ using UnityEngine;
 using TSGameDev.UI;
 using TSGameDev.Managers;
 
-namespace TSGameDev.Interactions
+namespace TSGameDev.Interactables
 {
     public class InputManager : MonoBehaviour
     {
@@ -12,6 +12,7 @@ namespace TSGameDev.Interactions
         Player player;
         GameManager gameManager;
         ColourPicker colourPicker;
+        UIManager uiManager;
 
         private void OnEnable()
         {
@@ -26,13 +27,14 @@ namespace TSGameDev.Interactions
             player = GetComponent<Player>();
             gameManager = FindObjectOfType<GameManager>();
             colourPicker = FindObjectOfType<ColourPicker>();
+            uiManager = FindObjectOfType<UIManager>();
 
             playerInputs.Game.WASD.performed += ctx => player.inputMovement = ctx.ReadValue<Vector2>();
             playerInputs.Game.Interaction.performed += ctx => player.Interaction();
             playerInputs.Game.MainMenu.performed += ctx => gameManager.gameStateActions.ChangeToState(GameState.UI);
             playerInputs.Game.AssetMenu.performed += ctx => gameManager.gameStateActions.ChangeToState(GameState.AssetMenu);
+            playerInputs.Game.QuickExit.performed += ctx => uiManager.QuitApplication();
 
-    
             player.running = playerInputs.Game.Running;
 
             playerInputs.UI.MousePosition.performed += ctx => colourPicker.mousePos = ctx.ReadValue<Vector2>();

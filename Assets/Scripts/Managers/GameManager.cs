@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TSGameDev.Managers;
-using TSGameDev.Interactions;
+using TSGameDev.Interactables;
 
 namespace TSGameDev.Managers
 {
@@ -41,7 +41,7 @@ namespace TSGameDev.Managers
 
         #endregion
 
-        GameManager instance;
+        public static GameManager instance;
         private void Awake()
         {
             if(instance == null)

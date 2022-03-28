@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TSGameDev.Managers;
-using TSGameDev.Interactions;
+using TSGameDev.Interactables;
 
 public abstract class GameStateAction
 {

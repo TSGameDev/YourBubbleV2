@@ -20,7 +20,19 @@ namespace TSGameDev.Managers
         [SerializeField] UITween assetSettingsTween;
 
         UIState uiState = UIState.Mainmenu;
+
+        public static UIManager instance;
         #endregion
+
+        private void Awake()
+        {
+            if (instance == null)
+                instance = this;
+            else
+                Destroy(this);
+
+            DontDestroyOnLoad(this);
+        }
 
         public void QuitApplication()
         {
