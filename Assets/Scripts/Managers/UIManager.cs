@@ -32,6 +32,8 @@ namespace TSGameDev.Managers
                 Destroy(this);
 
             DontDestroyOnLoad(this);
+
+            mainMenuBeginTween.BeginTween();
         }
 
         public void QuitApplication()

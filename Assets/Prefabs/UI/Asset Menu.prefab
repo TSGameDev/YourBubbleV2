@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 519575318159116587}
   - component: {fileID: 3606580106723988409}
   m_Layer: 0
-  m_Name: Settings Container
+  m_Name: Asset Menu Containers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

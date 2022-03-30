@@ -5411,7 +5411,7 @@ GameObject:
   - component: {fileID: 1961115985002634245}
   - component: {fileID: 752046327045044566}
   m_Layer: 0
-  m_Name: Settings Container
+  m_Name: Player Settings Container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

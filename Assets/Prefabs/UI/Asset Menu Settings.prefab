@@ -5310,7 +5310,7 @@ GameObject:
   - component: {fileID: 8642559426322722371}
   - component: {fileID: 4215113583214296754}
   m_Layer: 0
-  m_Name: Settings Container
+  m_Name: Asset Menu Settings Container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ef6e4f5d57b0b746947a40095839b3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiManager: {fileID: 0}
-  player: {fileID: 0}
-  inputManager: {fileID: 0}
+  uiManager: {fileID: 468556474636501405, guid: 60679f0970b039540b41f6c782221a89, type: 3}
+  player: {fileID: 1226037698195064740, guid: 6504b727dccc9154f888a741f4bb200a, type: 3}
+  inputManager: {fileID: 1226037698195064741, guid: 6504b727dccc9154f888a741f4bb200a, type: 3}
   gameState: 0
