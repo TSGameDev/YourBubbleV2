@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TSGameDev.Managers;
 using TSGameDev.Interactables;
+using UnityEngine.Rendering;
 
 namespace TSGameDev.Managers
 {
@@ -49,7 +50,9 @@ namespace TSGameDev.Managers
             private set {}
             get { return terrainTextures; }
         }
-
+        
+        [SerializeField] VolumeProfile volumeProfile;
+        ScenePostProcessingData scenePostProcessingData;
         #endregion
 
         #region Public Variables
@@ -57,9 +60,9 @@ namespace TSGameDev.Managers
         public GameStateAction gameStateActions;
         public GameState gameState;
 
+        public static GameManager instance;
         #endregion
 
-        public static GameManager instance;
         private void Awake()
         {
             if(instance == null)
@@ -71,6 +74,7 @@ namespace TSGameDev.Managers
 
             gameState = GameState.Application;
             gameStateActions = new ApplicationStateAction(this);
+            scenePostProcessingData = new ScenePostProcessingData(volumeProfile);
         }
     
         public void CloseAssetMenu()
