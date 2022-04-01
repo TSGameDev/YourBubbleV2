@@ -7,10 +7,15 @@ using UnityEngine.Rendering;
 public struct ScenePostProcessingData
 {
     public DepthOfField depthOfField;
+
     public Bloom bloom;
+
     public ColorAdjustments colorAdjustments;
+
     public Tonemapping toneMapping;
+
     public Vignette vignette;
+
     public WhiteBalance whiteBalance;
 
     public ScenePostProcessingData(VolumeProfile volumeProfile)
