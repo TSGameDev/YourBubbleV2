@@ -78,7 +78,7 @@ public class CreateBubble : MonoBehaviour
                 break;
             case "DoF Focus Distance":
                 postProcessingData.depthOfField.focusDistance.value++;
-                DOFFocusDistanceTxt.text = postProcessingData.depthOfField.focusDistance.value.ToString();
+                DOFFocusDistanceTxt.text = Mathf.RoundToInt(postProcessingData.depthOfField.focusDistance.value).ToString();
                 break;
             case "DoF Focal Length":
                 postProcessingData.depthOfField.focalLength.value++;
@@ -109,11 +109,11 @@ public class CreateBubble : MonoBehaviour
                 SelectToneMappingMode(postProcessingData);
                 break;
             case "Vig Intensity":
-                postProcessingData.vignette.intensity.value++;
+                postProcessingData.vignette.intensity.value += 0.1f;
                 vignetteIntensityTxt.text = postProcessingData.vignette.intensity.value.ToString();
                 break;
             case "Vig Smoothness":
-                postProcessingData.vignette.smoothness.value++;
+                postProcessingData.vignette.smoothness.value += 0.1f;
                 vignetteSmoothnessTxt.text = postProcessingData.vignette.smoothness.value.ToString();
                 break;
             case "Vig Rounded":
@@ -148,7 +148,7 @@ public class CreateBubble : MonoBehaviour
                 break;
             case "DoF Focus Distance":
                 postProcessingData.depthOfField.focusDistance.value--;
-                DOFFocusDistanceTxt.text = postProcessingData.depthOfField.focusDistance.value.ToString();
+                DOFFocusDistanceTxt.text = Mathf.RoundToInt(postProcessingData.depthOfField.focusDistance.value).ToString();
                 break;
             case "DoF Focal Length":
                 postProcessingData.depthOfField.focalLength.value--;
@@ -179,11 +179,11 @@ public class CreateBubble : MonoBehaviour
                 SelectToneMappingMode(postProcessingData);
                 break;
             case "Vig Intensity":
-                postProcessingData.vignette.intensity.value--;
+                postProcessingData.vignette.intensity.value -= 0.1f;
                 vignetteIntensityTxt.text = postProcessingData.vignette.intensity.value.ToString();
                 break;
             case "Vig Smoothness":
-                postProcessingData.vignette.smoothness.value--;
+                postProcessingData.vignette.smoothness.value -= 0.1f;
                 vignetteSmoothnessTxt.text = postProcessingData.vignette.smoothness.value.ToString();
                 break;
             case "Vig Rounded":
@@ -218,7 +218,7 @@ public class CreateBubble : MonoBehaviour
 
     void SelectToneMappingMode(ScenePostProcessingData postProcessingData)
     {
-        if (posInToneMappingArray >= TonemappingModes.Length) 
+        if (posInToneMappingArray >= TonemappingModes.Length - 1) 
         { 
             postProcessingData.toneMapping.mode.value = TonemappingModes[TonemappingModes.Length - 1]; 
             posInToneMappingArray = TonemappingModes.Length - 1;
