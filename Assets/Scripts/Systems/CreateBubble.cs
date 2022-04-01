@@ -57,11 +57,112 @@ public class CreateBubble : MonoBehaviour
         SelectTerrainTexture();
     }
 
-    public void ForwardSkybox() { posInSkyboxArray++; SelectSkyBox(); }
+    public void IncreaseField(string FieldToIncrease)
+    {
+        switch (FieldToIncrease)
+        {
+            case "Skybox":
+                posInSkyboxArray++; 
+                SelectSkyBox();
+                break;
+            case "Texture":
+                posInTerrainArray++; 
+                SelectTerrainTexture();
+                break;
+            case "DoF Focus Distance":
+                GM.scenePostProcessingData.depthOfField.focusDistance.value++;
+                break;
+            case "DoF Focal Length":
+                GM.scenePostProcessingData.depthOfField.focalLength.value++;
+                break;
+            case "DoF Aperture":
+                GM.scenePostProcessingData.depthOfField.aperture.value++;
+                break;
+            case "Bloom Intensity":
+                GM.scenePostProcessingData.bloom.intensity.value++;
+                break;
+            case "CA Post Exposure":
+                GM.scenePostProcessingData.colorAdjustments.postExposure.value++;
+                break;
+            case "CA Contrast":
+                GM.scenePostProcessingData.colorAdjustments.contrast.value++;
+                break;
+            case "CA Saturation":
+                GM.scenePostProcessingData.colorAdjustments.saturation.value++;
+                break;
+            case "Tone Mapping Mode":
+                break;
+            case "Vig Intensity":
+                GM.scenePostProcessingData.vignette.intensity.value++;
+                break;
+            case "Vig Smoothness":
+                GM.scenePostProcessingData.vignette.smoothness.value++;
+                break;
+            case "Vig Rounded":
+                break;
+            case "WB Temperture":
+                GM.scenePostProcessingData.whiteBalance.temperature.value++;
+                break;
+            case "WB Tint":
+                GM.scenePostProcessingData.whiteBalance.tint.value++;
+                break;
+        }
+    }
 
-    public void BackwardSkybox() { posInSkyboxArray--; SelectSkyBox(); }
+    public void DecreaseField(string FieldToDecrease)
+    {
+        switch(FieldToDecrease)
+        {
+            case "Skybox":
+                posInSkyboxArray++;
+                SelectSkyBox();
+                break;
+            case "Texture":
+                posInTerrainArray++;
+                SelectTerrainTexture();
+                break;
+            case "DoF Focus Distance":
+                GM.scenePostProcessingData.depthOfField.focusDistance.value--;
+                break;
+            case "DoF Focal Length":
+                GM.scenePostProcessingData.depthOfField.focalLength.value--;
+                break;
+            case "DoF Aperture":
+                GM.scenePostProcessingData.depthOfField.aperture.value--;
+                break;
+            case "Bloom Intensity":
+                GM.scenePostProcessingData.bloom.intensity.value--;
+                break;
+            case "CA Post Exposure":
+                GM.scenePostProcessingData.colorAdjustments.postExposure.value--;
+                break;
+            case "CA Contrast":
+                GM.scenePostProcessingData.colorAdjustments.contrast.value--;
+                break;
+            case "CA Saturation":
+                GM.scenePostProcessingData.colorAdjustments.saturation.value--;
+                break;
+            case "Tone Mapping Mode":
+                break;
+            case "Vig Intensity":
+                GM.scenePostProcessingData.vignette.intensity.value--;
+                break;
+            case "Vig Smoothness":
+                GM.scenePostProcessingData.vignette.smoothness.value--;
+                break;
+            case "Vig Rounded":
+                break;
+            case "WB Temperture":
+                GM.scenePostProcessingData.whiteBalance.temperature.value--;
+                break;
+            case "WB Tint":
+                GM.scenePostProcessingData.whiteBalance.tint.value--;
+                break;
+        }
+    }
 
-    void SelectSkyBox() 
+
+    void SelectSkyBox()
     {
         if (posInSkyboxArray >= GM.Skyboxes.Length) { currentSkybox = GM.Skyboxes[GM.Skyboxes.Length - 1]; }
         else if (posInSkyboxArray < 0) { currentSkybox = GM.Skyboxes[0]; }
@@ -70,11 +171,7 @@ public class CreateBubble : MonoBehaviour
         skyboxTxt.text = currentSkybox.name;
     }
 
-    public void ForwardTerrainTexture() { posInTerrainArray++; SelectTerrainTexture(); }
-
-    public void BackwardTerrainTexture() { posInTerrainArray--; SelectTerrainTexture(); }
-
-    public void SelectTerrainTexture() 
+    void SelectTerrainTexture()
     {
         if (posInTerrainArray >= GM.TerrainTextures.Length) { currentTerrainTexture = GM.TerrainTextures[GM.TerrainTextures.Length - 1]; }
         else if (posInTerrainArray < 0) { currentTerrainTexture = GM.TerrainTextures[0]; }
@@ -82,6 +179,4 @@ public class CreateBubble : MonoBehaviour
 
         terrainTxt.text = currentTerrainTexture.name;
     }
-
-    
 }
