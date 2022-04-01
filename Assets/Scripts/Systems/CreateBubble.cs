@@ -20,8 +20,6 @@ public class CreateBubble : MonoBehaviour
     [Space(5)]
 
     [SerializeField] TextMeshProUGUI bloomIntensityTxt;
-    [SerializeField] TextMeshProUGUI bloomScatterTxt;
-    [SerializeField] TextMeshProUGUI bloomTintTxt;
     [Space(5)]
 
     [SerializeField] TextMeshProUGUI colourPostExposureTxt;
@@ -48,6 +46,12 @@ public class CreateBubble : MonoBehaviour
     Material currentTerrainTexture;
     int posInTerrainArray = 0;
 
+    int posInToneMappingArray = 0;
+    UnityEngine.Rendering.Universal.TonemappingMode[] TonemappingModes = 
+        { UnityEngine.Rendering.Universal.TonemappingMode.None, 
+        UnityEngine.Rendering.Universal.TonemappingMode.Neutral, 
+        UnityEngine.Rendering.Universal.TonemappingMode.ACES };
+
     #endregion
 
     private void Awake()
@@ -59,104 +63,140 @@ public class CreateBubble : MonoBehaviour
 
     public void IncreaseField(string FieldToIncrease)
     {
+        ScenePostProcessingData postProcessingData = GM.scenePostProcessingData;
         switch (FieldToIncrease)
         {
             case "Skybox":
                 posInSkyboxArray++; 
                 SelectSkyBox();
+                skyboxTxt.text = currentSkybox.name;
                 break;
             case "Texture":
                 posInTerrainArray++; 
                 SelectTerrainTexture();
+                terrainTxt.text = currentTerrainTexture.name;
                 break;
             case "DoF Focus Distance":
-                GM.scenePostProcessingData.depthOfField.focusDistance.value++;
+                postProcessingData.depthOfField.focusDistance.value++;
+                DOFFocusDistanceTxt.text = postProcessingData.depthOfField.focusDistance.value.ToString();
                 break;
             case "DoF Focal Length":
-                GM.scenePostProcessingData.depthOfField.focalLength.value++;
+                postProcessingData.depthOfField.focalLength.value++;
+                DOFFocalLengthTxt.text = postProcessingData.depthOfField.focalLength.value.ToString();
                 break;
             case "DoF Aperture":
-                GM.scenePostProcessingData.depthOfField.aperture.value++;
+                postProcessingData.depthOfField.aperture.value++;
+                DOFAppertureTxt.text = postProcessingData.depthOfField.aperture.value.ToString();
                 break;
             case "Bloom Intensity":
-                GM.scenePostProcessingData.bloom.intensity.value++;
+                postProcessingData.bloom.intensity.value++;
+                bloomIntensityTxt.text = postProcessingData.bloom.intensity.value.ToString();
                 break;
             case "CA Post Exposure":
-                GM.scenePostProcessingData.colorAdjustments.postExposure.value++;
+                postProcessingData.colorAdjustments.postExposure.value++;
+                colourPostExposureTxt.text = postProcessingData.colorAdjustments.postExposure.value.ToString();
                 break;
             case "CA Contrast":
-                GM.scenePostProcessingData.colorAdjustments.contrast.value++;
+                postProcessingData.colorAdjustments.contrast.value++;
+                colourContrastTxt.text = postProcessingData.colorAdjustments.contrast.value.ToString();
                 break;
             case "CA Saturation":
-                GM.scenePostProcessingData.colorAdjustments.saturation.value++;
+                postProcessingData.colorAdjustments.saturation.value++;
+                colourSaturationTxt.text = postProcessingData.colorAdjustments.saturation.value.ToString();
                 break;
             case "Tone Mapping Mode":
+                posInToneMappingArray++;
+                SelectToneMappingMode(postProcessingData);
                 break;
             case "Vig Intensity":
-                GM.scenePostProcessingData.vignette.intensity.value++;
+                postProcessingData.vignette.intensity.value++;
+                vignetteIntensityTxt.text = postProcessingData.vignette.intensity.value.ToString();
                 break;
             case "Vig Smoothness":
-                GM.scenePostProcessingData.vignette.smoothness.value++;
+                postProcessingData.vignette.smoothness.value++;
+                vignetteSmoothnessTxt.text = postProcessingData.vignette.smoothness.value.ToString();
                 break;
             case "Vig Rounded":
+                postProcessingData.vignette.rounded.value = true;
+                vignetteRoundedTxt.text = postProcessingData.vignette.rounded.value.ToString();
                 break;
             case "WB Temperture":
-                GM.scenePostProcessingData.whiteBalance.temperature.value++;
+                postProcessingData.whiteBalance.temperature.value++;
+                whiteBalanceTemperatureTxt.text = postProcessingData.whiteBalance.temperature.value.ToString();
                 break;
             case "WB Tint":
-                GM.scenePostProcessingData.whiteBalance.tint.value++;
+                postProcessingData.whiteBalance.tint.value++;
+                whiteBalanceTintTxt.text = postProcessingData.whiteBalance.tint.value.ToString();
                 break;
         }
     }
 
     public void DecreaseField(string FieldToDecrease)
     {
-        switch(FieldToDecrease)
+        ScenePostProcessingData postProcessingData = GM.scenePostProcessingData;
+        switch (FieldToDecrease)
         {
             case "Skybox":
-                posInSkyboxArray++;
+                posInSkyboxArray--;
                 SelectSkyBox();
+                skyboxTxt.text = currentSkybox.name;
                 break;
             case "Texture":
-                posInTerrainArray++;
+                posInTerrainArray--;
                 SelectTerrainTexture();
+                terrainTxt.text = currentTerrainTexture.name;
                 break;
             case "DoF Focus Distance":
-                GM.scenePostProcessingData.depthOfField.focusDistance.value--;
+                postProcessingData.depthOfField.focusDistance.value--;
+                DOFFocusDistanceTxt.text = postProcessingData.depthOfField.focusDistance.value.ToString();
                 break;
             case "DoF Focal Length":
-                GM.scenePostProcessingData.depthOfField.focalLength.value--;
+                postProcessingData.depthOfField.focalLength.value--;
+                DOFFocalLengthTxt.text = postProcessingData.depthOfField.focalLength.value.ToString();
                 break;
             case "DoF Aperture":
-                GM.scenePostProcessingData.depthOfField.aperture.value--;
+                postProcessingData.depthOfField.aperture.value--;
+                DOFAppertureTxt.text = postProcessingData.depthOfField.aperture.value.ToString();
                 break;
             case "Bloom Intensity":
-                GM.scenePostProcessingData.bloom.intensity.value--;
+                postProcessingData.bloom.intensity.value--;
+                bloomIntensityTxt.text = postProcessingData.bloom.intensity.value.ToString();
                 break;
             case "CA Post Exposure":
-                GM.scenePostProcessingData.colorAdjustments.postExposure.value--;
+                postProcessingData.colorAdjustments.postExposure.value--;
+                colourPostExposureTxt.text = postProcessingData.colorAdjustments.postExposure.value.ToString();
                 break;
             case "CA Contrast":
-                GM.scenePostProcessingData.colorAdjustments.contrast.value--;
+                postProcessingData.colorAdjustments.contrast.value--;
+                colourContrastTxt.text = postProcessingData.colorAdjustments.contrast.value.ToString();
                 break;
             case "CA Saturation":
-                GM.scenePostProcessingData.colorAdjustments.saturation.value--;
+                postProcessingData.colorAdjustments.saturation.value--;
+                colourSaturationTxt.text = postProcessingData.colorAdjustments.saturation.value.ToString();
                 break;
             case "Tone Mapping Mode":
+                posInToneMappingArray--;
+                SelectToneMappingMode(postProcessingData);
                 break;
             case "Vig Intensity":
-                GM.scenePostProcessingData.vignette.intensity.value--;
+                postProcessingData.vignette.intensity.value--;
+                vignetteIntensityTxt.text = postProcessingData.vignette.intensity.value.ToString();
                 break;
             case "Vig Smoothness":
-                GM.scenePostProcessingData.vignette.smoothness.value--;
+                postProcessingData.vignette.smoothness.value--;
+                vignetteSmoothnessTxt.text = postProcessingData.vignette.smoothness.value.ToString();
                 break;
             case "Vig Rounded":
+                postProcessingData.vignette.rounded.value = false;
+                vignetteRoundedTxt.text = postProcessingData.vignette.rounded.value.ToString();
                 break;
             case "WB Temperture":
-                GM.scenePostProcessingData.whiteBalance.temperature.value--;
+                postProcessingData.whiteBalance.temperature.value--;
+                whiteBalanceTemperatureTxt.text = postProcessingData.whiteBalance.temperature.value.ToString();
                 break;
             case "WB Tint":
-                GM.scenePostProcessingData.whiteBalance.tint.value--;
+                postProcessingData.whiteBalance.tint.value--;
+                whiteBalanceTintTxt.text = postProcessingData.whiteBalance.tint.value.ToString();
                 break;
         }
     }
@@ -164,19 +204,41 @@ public class CreateBubble : MonoBehaviour
 
     void SelectSkyBox()
     {
-        if (posInSkyboxArray >= GM.Skyboxes.Length) { currentSkybox = GM.Skyboxes[GM.Skyboxes.Length - 1]; }
-        else if (posInSkyboxArray < 0) { currentSkybox = GM.Skyboxes[0]; }
+        if (posInSkyboxArray >= GM.Skyboxes.Length) { currentSkybox = GM.Skyboxes[GM.Skyboxes.Length - 1]; posInSkyboxArray = GM.Skyboxes.Length - 1; }
+        else if (posInSkyboxArray < 0) { currentSkybox = GM.Skyboxes[0]; posInSkyboxArray = 0; }
         else { currentSkybox = GM.Skyboxes[posInSkyboxArray]; }
-
-        skyboxTxt.text = currentSkybox.name;
     }
 
     void SelectTerrainTexture()
     {
-        if (posInTerrainArray >= GM.TerrainTextures.Length) { currentTerrainTexture = GM.TerrainTextures[GM.TerrainTextures.Length - 1]; }
-        else if (posInTerrainArray < 0) { currentTerrainTexture = GM.TerrainTextures[0]; }
+        if (posInTerrainArray >= GM.TerrainTextures.Length) { currentTerrainTexture = GM.TerrainTextures[GM.TerrainTextures.Length - 1]; posInTerrainArray = GM.TerrainTextures.Length - 1; }
+        else if (posInTerrainArray < 0) { currentTerrainTexture = GM.TerrainTextures[0]; posInTerrainArray = 0; }
         else { currentTerrainTexture = GM.TerrainTextures[posInTerrainArray]; }
+    }
 
-        terrainTxt.text = currentTerrainTexture.name;
+    void SelectToneMappingMode(ScenePostProcessingData postProcessingData)
+    {
+        if (posInToneMappingArray >= TonemappingModes.Length) 
+        { 
+            postProcessingData.toneMapping.mode.value = TonemappingModes[TonemappingModes.Length - 1]; 
+            posInToneMappingArray = TonemappingModes.Length - 1;
+            toneMappingModeTxt.text = "ACES";
+        }
+        else if (posInToneMappingArray <= 0) 
+        { 
+            postProcessingData.toneMapping.mode.value = TonemappingModes[0]; 
+            posInToneMappingArray = 0;
+            toneMappingModeTxt.text = "None";
+        }
+        else 
+        { 
+            postProcessingData.toneMapping.mode.value = TonemappingModes[posInToneMappingArray];
+            toneMappingModeTxt.text = "Neutral";
+        }
+    }
+
+    void ConfirmPostProcessingData(ScenePostProcessingData postProcessingData)
+    {
+        GM.scenePostProcessingData = postProcessingData;
     }
 }

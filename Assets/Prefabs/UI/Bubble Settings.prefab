@@ -3593,6 +3593,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5648425753738525182}
   - component: {fileID: 774828329215817035}
+  - component: {fileID: 8486087716052590298}
   m_Layer: 0
   m_Name: Bubble Settings Container
   m_TagString: Untagged
@@ -3662,6 +3663,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8486087716052590298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164806949451604061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c6f12c960673c44af9554f406a7cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skyboxTxt: {fileID: 0}
+  terrainTxt: {fileID: 0}
+  DOFFocusDistanceTxt: {fileID: 0}
+  DOFFocalLengthTxt: {fileID: 0}
+  DOFAppertureTxt: {fileID: 0}
+  bloomIntensityTxt: {fileID: 0}
+  colourPostExposureTxt: {fileID: 0}
+  colourContrastTxt: {fileID: 0}
+  colourSaturationTxt: {fileID: 0}
+  toneMappingModeTxt: {fileID: 0}
+  vignetteIntensityTxt: {fileID: 0}
+  vignetteSmoothnessTxt: {fileID: 0}
+  vignetteRoundedTxt: {fileID: 0}
+  whiteBalanceTemperatureTxt: {fileID: 0}
+  whiteBalanceTintTxt: {fileID: 0}
 --- !u!1 &1312307395315184239
 GameObject:
   m_ObjectHideFlags: 0

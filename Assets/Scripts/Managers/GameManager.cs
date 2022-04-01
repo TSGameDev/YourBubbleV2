@@ -52,12 +52,7 @@ namespace TSGameDev.Managers
         }
         
         [SerializeField] VolumeProfile volumeProfile;
-        public ScenePostProcessingData scenePostProcessingData
-        {
-            private set { scenePostProcessingData = value; }
-
-            get { return scenePostProcessingData; }
-        }
+        public ScenePostProcessingData scenePostProcessingData;
         
         #endregion
 
