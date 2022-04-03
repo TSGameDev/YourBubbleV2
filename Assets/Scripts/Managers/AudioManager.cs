@@ -1,15 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 
 namespace TSGameDev.Managers
 {
     public class AudioManager : MonoBehaviour
     {
+        [Header("Audio Call Settings")]
         [SerializeField] float volumeMin = 0.8f;
         [SerializeField] float volumeMax = 1f;
         [SerializeField] float pitchMin = 0.8f;
         [SerializeField] float pitchMax = 1f;
+        [Space(10)]
+
+        [Header("Audio Group Settings")]
+        [SerializeField] AudioMixer audioMixer;
+        [SerializeField] string masterAudioGroundRef;
+        [SerializeField] string environmentAudioGroundRef;
+        [SerializeField] string weatherAudioGroundRef;
+        [SerializeField] string effectAudioGroundRef;
+        [Space(10)]
+
+        [Header("Audio Sliders")]
+        [SerializeField] Slider masterAudioSlider;
+        [SerializeField] Slider environmentAudioSlider;
+        [SerializeField] Slider weatherAudioSlider;
+        [SerializeField] Slider effectAudioSlider;
+
+        PlayerSettingsData playerSettingsData;
+        public PlayerSettingsData PlayerSettingsData
+        {
+            private set { playerSettingsData = value; }
+
+            get { return playerSettingsData; }
+        }
 
         public static AudioManager instance;
 
@@ -21,6 +47,8 @@ namespace TSGameDev.Managers
                 Destroy(this);
 
             DontDestroyOnLoad(this);
+
+            playerSettingsData = new PlayerSettingsData();
         }
 
         public void PlayOneShot(AudioSource source, AudioClip clip)
@@ -48,6 +76,48 @@ namespace TSGameDev.Managers
                 PlayOneShotVariation(source, clip);
             else
                 PlayOneShot(source, clip);
+        }
+    
+        public void PlayerVolumeChange(string audioGroup)
+        {
+            switch (audioGroup)
+            {
+                case "Master":
+                    audioMixer.SetFloat(masterAudioGroundRef, masterAudioSlider.value);
+                    playerSettingsData.masterVol = masterAudioSlider.value;
+                    break;
+                case "Environment":
+                    audioMixer.SetFloat(environmentAudioGroundRef, environmentAudioSlider.value);
+                    playerSettingsData.environmentVol = environmentAudioSlider.value;
+                    break;
+                case "Weather":
+                    audioMixer.SetFloat(weatherAudioGroundRef, weatherAudioSlider.value);
+                    playerSettingsData.weatherVol = weatherAudioSlider.value;
+                    break;
+                case "Effect":
+                    audioMixer.SetFloat(effectAudioGroundRef, effectAudioSlider.value);
+                    playerSettingsData.effectVol = effectAudioSlider.value;
+                    break;
+            }
+        }
+
+        public void PlayerMuteAudioGroup(string audioGroup)
+        {
+            switch (audioGroup)
+            {
+                case "Master":
+                    audioMixer.SetFloat(masterAudioGroundRef, 0f);
+                    break;
+                case "Environment":
+                    audioMixer.SetFloat(environmentAudioGroundRef, 0f);
+                    break;
+                case "Weather":
+                    audioMixer.SetFloat(weatherAudioGroundRef, 0f);
+                    break;
+                case "Effect":
+                    audioMixer.SetFloat(effectAudioGroundRef, 0f);
+                    break;
+            }
         }
     }
 }
