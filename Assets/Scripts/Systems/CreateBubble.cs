@@ -113,11 +113,11 @@ public class CreateBubble : MonoBehaviour
                 SelectToneMappingMode(GM.scenePostProcessingData);
                 break;
             case "Vig Intensity":
-                GM.scenePostProcessingData.vignette.intensity.value += 0.1f;
+                GM.scenePostProcessingData.vignette.intensity.value = (float)System.Math.Round(GM.scenePostProcessingData.vignette.intensity.value += 0.1f, 2);
                 vignetteIntensityTxt.text = GM.scenePostProcessingData.vignette.intensity.value.ToString();
                 break;
             case "Vig Smoothness":
-                GM.scenePostProcessingData.vignette.smoothness.value += 0.1f;
+                GM.scenePostProcessingData.vignette.smoothness.value = (float)System.Math.Round(GM.scenePostProcessingData.vignette.smoothness.value += 0.1f, 2);
                 vignetteSmoothnessTxt.text = GM.scenePostProcessingData.vignette.smoothness.value.ToString();
                 break;
             case "Vig Rounded":
@@ -183,11 +183,12 @@ public class CreateBubble : MonoBehaviour
                 SelectToneMappingMode(GM.scenePostProcessingData);
                 break;
             case "Vig Intensity":
-                GM.scenePostProcessingData.vignette.intensity.value -= 0.1f;
+                GM.scenePostProcessingData.vignette.intensity.value = (float)System.Math.Round(GM.scenePostProcessingData.vignette.intensity.value -= 0.1f, 2);
                 vignetteIntensityTxt.text = GM.scenePostProcessingData.vignette.intensity.value.ToString();
                 break;
             case "Vig Smoothness":
-                GM.scenePostProcessingData.vignette.smoothness.value -= 0.1f;
+                if(GM.scenePostProcessingData.vignette.smoothness.value > 0.1f)
+                    GM.scenePostProcessingData.vignette.smoothness.value = (float)System.Math.Round(GM.scenePostProcessingData.vignette.smoothness.value -= 0.1f, 2);
                 vignetteSmoothnessTxt.text = GM.scenePostProcessingData.vignette.smoothness.value.ToString();
                 break;
             case "Vig Rounded":
