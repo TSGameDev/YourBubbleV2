@@ -8,7 +8,7 @@ namespace TSGameDev.Object
 {
     public class Object : MonoBehaviour
     {
-        [SerializeField] ObjectData data = new ObjectData();
+        //[SerializeField] ObjectData data = new ObjectData();
 
         UIManager uiManager;
         Player player;

@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using TSGameDev.UI;
+using TMPro;
 
 namespace TSGameDev.Managers
 {
     public class UIManager : MonoBehaviour
     {
-        #region Private Variables
+        #region Tween Objects
 
         [Header("Tween Objects")]
-        [Space(10)]
         [SerializeField] UITween mainMenuBeginTween;
         [SerializeField] UITween mainMenuReturnTween;
         [SerializeField] UITween playerSettingsTween;
@@ -18,11 +19,12 @@ namespace TSGameDev.Managers
         [SerializeField] UITween bubbleSettingsTween;
         [SerializeField] UITween assetMenuTween;
         [SerializeField] UITween assetSettingsTween;
+        [Space(10)]
 
-        UIState uiState = UIState.Mainmenu;
+        #endregion
 
         public static UIManager instance;
-        #endregion
+        UIState uiState = UIState.Mainmenu;
 
         private void Awake()
         {
@@ -117,6 +119,7 @@ namespace TSGameDev.Managers
             else
                 assetSettingsTween.ReturnTween();
         }
+    
     }
 
     public enum UIState

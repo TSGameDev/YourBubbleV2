@@ -14,21 +14,21 @@ public struct PlayerSettingsData
     public bool weatherMuted;
     public bool effectMuted;
 
-    public void SetMuted(string audioGroup)
+    public void SetMuted(string audioGroup, bool toggleValue)
     {
         switch (audioGroup)
         {
             case "Master":
-                masterMuted = true;
+                masterMuted = toggleValue;
                 break;
             case "Environment":
-                environmentMuted = true;
+                environmentMuted = toggleValue;
                 break;
             case "Weather":
-                weatherMuted = true;
+                weatherMuted = toggleValue;
                 break;
             case "Effect":
-                effectMuted = true;
+                effectMuted = toggleValue;
                 break;
         }
     }

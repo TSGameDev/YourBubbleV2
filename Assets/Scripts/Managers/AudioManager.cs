@@ -29,13 +29,7 @@ namespace TSGameDev.Managers
         [SerializeField] Slider weatherAudioSlider;
         [SerializeField] Slider effectAudioSlider;
 
-        PlayerSettingsData playerSettingsData;
-        public PlayerSettingsData PlayerSettingsData
-        {
-            private set { playerSettingsData = value; }
-
-            get { return playerSettingsData; }
-        }
+        public PlayerSettingsData playerSettingsData;
 
         public static AudioManager instance;
 
@@ -103,19 +97,28 @@ namespace TSGameDev.Managers
 
         public void PlayerMuteAudioGroup(string audioGroup)
         {
+            float volumeValue;
             switch (audioGroup)
             {
                 case "Master":
                     audioMixer.SetFloat(masterAudioGroundRef, 0f);
+                    audioMixer.GetFloat(masterAudioGroundRef, out volumeValue);
+                    masterAudioSlider.value = volumeValue;
                     break;
                 case "Environment":
                     audioMixer.SetFloat(environmentAudioGroundRef, 0f);
+                    audioMixer.GetFloat(environmentAudioGroundRef, out volumeValue);
+                    environmentAudioSlider.value = volumeValue;
                     break;
                 case "Weather":
                     audioMixer.SetFloat(weatherAudioGroundRef, 0f);
+                    audioMixer.GetFloat(weatherAudioGroundRef, out volumeValue);
+                    weatherAudioSlider.value = volumeValue;
                     break;
                 case "Effect":
                     audioMixer.SetFloat(effectAudioGroundRef, 0f);
+                    audioMixer.GetFloat(effectAudioGroundRef, out volumeValue);
+                    effectAudioSlider.value = volumeValue;
                     break;
             }
         }
