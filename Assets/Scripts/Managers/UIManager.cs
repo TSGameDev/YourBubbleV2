@@ -23,13 +23,51 @@ namespace TSGameDev.Managers
 
         #endregion
 
-        #region Action References
+        #region Input Action References
 
-
+        [Header("Input Action References")]
+        [SerializeField] InputActionReference mainMenu;
+        [SerializeField] InputActionReference assetMenu;
+        [SerializeField] InputActionReference run;
+        [SerializeField] InputActionReference quickExit;
+        [SerializeField] InputActionReference terraforming;
+        [SerializeField] InputActionReference interaction;
+        [SerializeField] InputActionReference cameraRail;
+        [Space(10)]
 
         #endregion
 
+        #region Input Action Binding Texts
+
+        [Header("Input Action Binding Texts")]
+        [SerializeField] TextMeshProUGUI mainMenuBindingTxt;
+        [SerializeField] TextMeshProUGUI assetMenuBindingTxt;
+        [SerializeField] TextMeshProUGUI runBindingTxt;
+        [SerializeField] TextMeshProUGUI quickExitBindingTxt;
+        [SerializeField] TextMeshProUGUI terraformingBindingTxt;
+        [SerializeField] TextMeshProUGUI interactionBindingTxt;
+        [SerializeField] TextMeshProUGUI cameraRailBindingTxt;
+        [Space(5)]
+
+        [SerializeField] GameObject waitingForBindTxt;
+
+        #endregion
+
+        #region Input Action String Constants
+
+        const string mainMenuBindingKey = "Main Menu";
+        const string assetMenuBindingKey = "Asset Menu";
+        const string runBindingKey = "Run";
+        const string quickExitBindingKey = "Quick Exit";
+        const string terraformingBindingKey = "Terraforming";
+        const string interactionBindingKey = "Interaction";
+        const string cameraRailBindingKey = "Camera Rail";
+
+        #endregion 
+
         public static UIManager instance;
+
+        InputActionRebindingExtensions.RebindingOperation rebindingOperation;
         UIState uiState = UIState.Mainmenu;
 
         private void Awake()
@@ -100,7 +138,7 @@ namespace TSGameDev.Managers
 
         public void OpenCloseMainMenu(bool Open)
         {
-            if(Open)
+            if (Open)
                 mainMenuBeginTween.BeginTween();
             else
             {
@@ -125,7 +163,53 @@ namespace TSGameDev.Managers
             else
                 assetSettingsTween.ReturnTween();
         }
-    
+
+        public void StartRebinding(string actionToRebind)
+        {
+            waitingForBindTxt.SetActive(true);
+            switch (actionToRebind)
+            {
+                case mainMenuBindingKey:
+                    Rebinding(mainMenu, mainMenuBindingTxt);
+                    break;
+                case assetMenuBindingKey:
+                    Rebinding(assetMenu, assetMenuBindingTxt);
+                    break;
+                case runBindingKey:
+                    Rebinding(run, runBindingTxt);
+                    break;
+                case quickExitBindingKey:
+                    Rebinding(quickExit, quickExitBindingTxt);
+                    break;
+                case terraformingBindingKey:
+                    Rebinding(terraforming, terraformingBindingTxt);
+                    break;
+                case interactionBindingKey:
+                    Rebinding(interaction, interactionBindingTxt);
+                    break;
+                case cameraRailBindingKey:
+                    Rebinding(cameraRail, cameraRailBindingTxt);
+                    break;
+            }
+        }
+
+        void Rebinding(InputActionReference actionToRebind, TextMeshProUGUI actionRebindingTxt)
+        {
+            rebindingOperation = actionToRebind.action.PerformInteractiveRebinding()
+                .WithControlsExcluding("Mouse")
+                .OnMatchWaitForAnother(0.1f)
+                .OnComplete(operation => EndRebinding(actionToRebind, actionRebindingTxt))
+                .Start();
+        }
+
+        void EndRebinding(InputActionReference actionToRebind, TextMeshProUGUI actionRebindingTxt)
+        {
+            waitingForBindTxt.SetActive(false);
+            rebindingOperation.Dispose();
+
+            actionRebindingTxt.text = InputControlPath.ToHumanReadableString(actionToRebind.action.bindings[0].effectivePath, InputControlPath.HumanReadableStringOptions.OmitDevice);
+
+        }
     }
 
     public enum UIState
