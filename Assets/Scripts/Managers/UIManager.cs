@@ -23,6 +23,12 @@ namespace TSGameDev.Managers
 
         #endregion
 
+        #region Action References
+
+
+
+        #endregion
+
         public static UIManager instance;
         UIState uiState = UIState.Mainmenu;
 
