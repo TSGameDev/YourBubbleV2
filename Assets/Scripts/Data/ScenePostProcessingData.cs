@@ -1,31 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Rendering;
 
-public struct ScenePostProcessingData
+namespace TSGameDev.Data
 {
-    public DepthOfField depthOfField;
-
-    public Bloom bloom;
-
-    public ColorAdjustments colorAdjustments;
-
-    public Tonemapping toneMapping;
-
-    public Vignette vignette;
-
-    public WhiteBalance whiteBalance;
-
-    public ScenePostProcessingData(VolumeProfile volumeProfile)
+    //A struct to hold post processing data for a scene for the purpose of saving, loading and manipulating the data easily.
+    public struct ScenePostProcessingData
     {
-        volumeProfile.TryGet(out depthOfField);
-        volumeProfile.TryGet(out bloom);
-        volumeProfile.TryGet(out colorAdjustments);
-        volumeProfile.TryGet(out toneMapping);
-        volumeProfile.TryGet(out vignette);
-        volumeProfile.TryGet(out whiteBalance);
-    }
+        public DepthOfField depthOfField;
 
+        public Bloom bloom;
+
+        public ColorAdjustments colorAdjustments;
+
+        public Tonemapping toneMapping;
+
+        public Vignette vignette;
+
+        public WhiteBalance whiteBalance;
+
+        /// <summary>
+        /// Struct for player post processing settings to be carried into the scene, saved and loaded
+        /// </summary>
+        /// <param name="volumeProfile">The volume profile asset for value changing</param>
+        public ScenePostProcessingData(VolumeProfile volumeProfile)
+        {
+            volumeProfile.TryGet(out depthOfField);
+            volumeProfile.TryGet(out bloom);
+            volumeProfile.TryGet(out colorAdjustments);
+            volumeProfile.TryGet(out toneMapping);
+            volumeProfile.TryGet(out vignette);
+            volumeProfile.TryGet(out whiteBalance);
+        }
+
+    }
 }

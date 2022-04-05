@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TSGameDev.Managers;
 using TSGameDev.Interactables;
 using UnityEngine.Rendering;
+using TSGameDev.Data;
 
 namespace TSGameDev.Managers
 {
