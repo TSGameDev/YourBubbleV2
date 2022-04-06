@@ -29,6 +29,9 @@ namespace TSGameDev.Interactables
             colourPicker = FindObjectOfType<ColourPicker>();
             uiManager = FindObjectOfType<UIManager>();
 
+            gameManager.inputManager = this;
+            gameManager.player = player;
+
             playerInputs.Game.WASD.performed += ctx => player.inputMovement = ctx.ReadValue<Vector2>();
             playerInputs.Game.Interaction.performed += ctx => player.Interaction();
             playerInputs.Game.MainMenu.performed += ctx => gameManager.gameStateActions.ChangeToState(GameState.UI);

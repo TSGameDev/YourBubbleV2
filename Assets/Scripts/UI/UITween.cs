@@ -53,7 +53,7 @@ namespace TSGameDev.UI
             gameObject.SetActive(false);
         }
 
-        public async void BeginTween()
+        public async void BeginTween(bool InvokeReturns = true)
         {
             if (tweenLocation != null)
             {
@@ -69,7 +69,7 @@ namespace TSGameDev.UI
                 tweenSeq.Join(transform.DOMove(tweenLocation.transform.position, moveTweenTime))
                 .Join(transform.DORotateQuaternion(tweenRotation, rotationTweenTime))
                 .Join(transform.DOScale(tweenScale, scaleTweenTime))
-                .OnComplete(() => OnTweenComplete.Invoke());
+                .OnComplete(() => { if (InvokeReturns) OnTweenComplete.Invoke(); });
 
                 await Task.Yield();
             }
@@ -86,13 +86,13 @@ namespace TSGameDev.UI
                 Sequence tweenSeq = DOTween.Sequence();
                 tweenSeq.Join(transform.DORotateQuaternion(tweenRotation, rotationTweenTime))
                 .Join(transform.DOScale(tweenScale, scaleTweenTime))
-                .OnComplete(() => OnTweenComplete.Invoke());
+                .OnComplete(() => { if (InvokeReturns) OnTweenComplete.Invoke(); });
 
                 await Task.Yield();
             }
         }
 
-        public async void ReturnTween()
+        public async void ReturnTween(bool InvokeReturns = true)
         {
 
             if (startPos != null)
@@ -108,7 +108,7 @@ namespace TSGameDev.UI
                 tweenSeq.Join(transform.DOMove(startPos.transform.position, moveTweenTime))
                 .Join(transform.DORotateQuaternion(startRot, rotationTweenTime))
                 .Join(transform.DOScale(startScale, scaleTweenTime))
-                .OnComplete(() => OnTweenReturn.Invoke());
+                .OnComplete(() => { if (InvokeReturns) OnTweenReturn.Invoke(); });
 
                 await tweenSeq.AsyncWaitForCompletion();
 
@@ -128,7 +128,7 @@ namespace TSGameDev.UI
                 Sequence tweenSeq = DOTween.Sequence();
                 tweenSeq.Join(transform.DORotateQuaternion(startRot, rotationTweenTime))
                 .Join(transform.DOScale(startScale, scaleTweenTime))
-                .OnComplete(() => OnTweenReturn.Invoke());
+                .OnComplete(() => { if(InvokeReturns) OnTweenReturn.Invoke(); } );
 
                 await tweenSeq.AsyncWaitForCompletion();
 

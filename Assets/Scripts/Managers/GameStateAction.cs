@@ -15,9 +15,9 @@ public abstract class GameStateAction
     {
         this.gameManager = gameManager;
 
-        player = gameManager.Player;
+        player = gameManager.player;
         uiManager = gameManager.UIManager;
-        inputManager = gameManager.InputManager;
+        inputManager = gameManager.inputManager;
     }
 
     public virtual void ChangeToState(GameState state) { }

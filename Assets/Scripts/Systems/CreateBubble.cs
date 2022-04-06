@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 using TSGameDev.Managers;
 using TSGameDev.Data;
@@ -37,7 +38,11 @@ public class CreateBubble : MonoBehaviour
     [SerializeField] TextMeshProUGUI whiteBalanceTemperatureTxt;
     [SerializeField] TextMeshProUGUI whiteBalanceTintTxt;
 
+    [Header("Scene Creation Prefabs")]
+    [SerializeField] GameObject playerSetup;
+
     GameManager GM;
+    UIManager uiManager;
 
     Material currentSkybox;
     int posInSkyboxArray = 0;
@@ -56,6 +61,7 @@ public class CreateBubble : MonoBehaviour
     private void Awake()
     {
         GM = FindObjectOfType<GameManager>();
+        uiManager = FindObjectOfType<UIManager>();
         SelectSkyBox();
         SelectTerrainTexture();
         AwakeText();
@@ -263,6 +269,21 @@ public class CreateBubble : MonoBehaviour
 
         whiteBalanceTemperatureTxt.text = GM.scenePostProcessingData.whiteBalance.temperature.value.ToString();
         whiteBalanceTintTxt.text = GM.scenePostProcessingData.whiteBalance.tint.value.ToString();
+    }
+
+    public void CreateScene()
+    {
+        SceneManager.CreateScene("TestSceneCreation");
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("TestSceneCreation"));
+
+        uiManager.OpenCloseBubbleSettingsMenu(false, false);
+        uiManager.uiState = UIState.Mainmenu;
+        GM.gameState = GameState.Application;
+
+
+        Terrain.CreateTerrainGameObject(new TerrainData());
+        Instantiate(playerSetup);
+
     }
 
 }

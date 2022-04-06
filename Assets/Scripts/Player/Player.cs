@@ -40,6 +40,7 @@ namespace TSGameDev.Interactables
             characterController = GetComponent<CharacterController>();
             audioManager = GetComponent<AudioManager>();
             audioSource = GetComponent<AudioSource>();
+            cameraa = FindObjectOfType<Camera>();
 
             LockUnlockCursor();
         }

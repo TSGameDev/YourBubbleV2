@@ -73,7 +73,7 @@ namespace TSGameDev.Managers
         InputActionRebindingExtensions.RebindingOperation rebindingOperation;
 
         //The global cached UIState
-        UIState uiState = UIState.Mainmenu;
+        public UIState uiState = UIState.Mainmenu;
 
         //The singleton instance fo this script
         public static UIManager instance;
@@ -194,6 +194,20 @@ namespace TSGameDev.Managers
                 assetSettingsTween.BeginTween();
             else
                 assetSettingsTween.ReturnTween();
+        }
+
+        /// <summary>
+        /// Function called when the user opens the bubble settings menu during play
+        /// </summary>
+        /// <param name="Open">Should the menu open. True means yes, False means no.</param>
+        public void OpenCloseBubbleSettingsMenu(bool Open, bool InvokeReturns = true)
+        {
+            if (Open)
+                bubbleSettingsTween.BeginTween();
+            else if (!InvokeReturns)
+                bubbleSettingsTween.ReturnTween(false);
+            else
+                bubbleSettingsTween.ReturnTween();
         }
 
         /// <summary>

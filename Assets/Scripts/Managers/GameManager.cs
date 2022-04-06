@@ -17,19 +17,9 @@ namespace TSGameDev.Managers
             get { return uiManager; }
         }
 
-        [SerializeField] Player player;
-        public Player Player
-        {
-            private set {}
-            get { return player; }
-        }
+        public Player player;
 
-        [SerializeField] InputManager inputManager;
-        public InputManager InputManager
-        {
-            private set {}
-            get { return inputManager; }
-        }
+        public InputManager inputManager;
         [Space(10)]
 
         [Header("Scene Creation")]
@@ -71,7 +61,7 @@ namespace TSGameDev.Managers
 
             DontDestroyOnLoad(instance);
 
-            gameState = GameState.Application;
+            gameState = GameState.UI;
             gameStateActions = new ApplicationStateAction(this);
             scenePostProcessingData = new ScenePostProcessingData(volumeProfile);
         }
