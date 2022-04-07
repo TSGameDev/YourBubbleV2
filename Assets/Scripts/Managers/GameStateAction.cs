@@ -23,6 +23,12 @@ public abstract class GameStateAction
     public virtual void ChangeToState(GameState state) { }
 }
 
+public class MainMenuStateAction : GameStateAction
+{
+    public MainMenuStateAction(GameManager gameManager) : base(gameManager) {}
+
+}
+
 public class ApplicationStateAction : GameStateAction
 {
 
@@ -34,7 +40,7 @@ public class ApplicationStateAction : GameStateAction
         {
             case GameState.UI:
                 player.LockUnlockCursor(false);
-                inputManager.ActiveUIInputs(true);
+                inputManager.ActiveUIInputs();
                 player.LockUnlockCamera(true);
                 uiManager.OpenCloseMainMenu(true);
                 gameManager.gameState = GameState.UI;
@@ -50,7 +56,7 @@ public class ApplicationStateAction : GameStateAction
                 break;
             case GameState.AssetMenu:
                 player.LockUnlockCursor(false);
-                inputManager.ActiveUIInputs(true);
+                inputManager.ActiveUIInputs();
                 player.LockUnlockCamera(true);
                 uiManager.OpenCloseAssetMenu(true);
                 gameManager.gameState = GameState.AssetMenu;
@@ -73,7 +79,7 @@ public class AssetMenuStateAction : GameStateAction
         {
             case GameState.Application:
                 player.LockUnlockCursor(true);
-                inputManager.ActiveUIInputs(false);
+                inputManager.ActiveGameInputs();
                 player.LockUnlockCamera(false);
                 uiManager.OpenCloseAssetMenu(false);
                 gameManager.gameState = GameState.Application;
@@ -98,7 +104,7 @@ public class UIStateAction : GameStateAction
         {
             case GameState.Application:
                 player.LockUnlockCursor(true);
-                inputManager.ActiveUIInputs(false);
+                inputManager.ActiveGameInputs();
                 player.LockUnlockCamera(false);
                 gameManager.gameState = GameState.Application;
                 gameManager.gameStateActions = new ApplicationStateAction(gameManager);
@@ -170,6 +176,7 @@ public class TerraformStateAction : GameStateAction
 
 public enum GameState
 {
+    Mainmenu,
     Application,
     AssetMenu,
     AssetSettings,

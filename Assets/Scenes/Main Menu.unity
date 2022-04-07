@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &42940467 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4048313495099129694, guid: ac36f824208aea84ebafdf5893624e9a, type: 3}
+  m_PrefabInstance: {fileID: 852182096}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d284d2b57c1dab64f8a8db1c28005fce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &87712259 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5404401183327719336, guid: ac36f824208aea84ebafdf5893624e9a, type: 3}
@@ -146,9 +157,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 24100000, guid: 93f722d42ebe73c46a28a538a7d530a1, type: 2}
     - target: {fileID: 1130818947235158766, guid: 75e0554bc5781fc48b5b8004ec4f4dc5, type: 3}
+      propertyPath: effectToggle
+      value: 
+      objectReference: {fileID: 393224115}
+    - target: {fileID: 1130818947235158766, guid: 75e0554bc5781fc48b5b8004ec4f4dc5, type: 3}
+      propertyPath: masterToggle
+      value: 
+      objectReference: {fileID: 1949746675}
+    - target: {fileID: 1130818947235158766, guid: 75e0554bc5781fc48b5b8004ec4f4dc5, type: 3}
+      propertyPath: weatherToggle
+      value: 
+      objectReference: {fileID: 42940467}
+    - target: {fileID: 1130818947235158766, guid: 75e0554bc5781fc48b5b8004ec4f4dc5, type: 3}
       propertyPath: effectAudioSlider
       value: 
       objectReference: {fileID: 1270726538}
+    - target: {fileID: 1130818947235158766, guid: 75e0554bc5781fc48b5b8004ec4f4dc5, type: 3}
+      propertyPath: environmentToggle
+      value: 
+      objectReference: {fileID: 1163734004}
     - target: {fileID: 1130818947235158766, guid: 75e0554bc5781fc48b5b8004ec4f4dc5, type: 3}
       propertyPath: masterAudioSlider
       value: 
@@ -302,6 +329,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d884238937b9edf418224903db363859, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &393224115 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1408764229528652577, guid: ac36f824208aea84ebafdf5893624e9a, type: 3}
+  m_PrefabInstance: {fileID: 852182096}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d284d2b57c1dab64f8a8db1c28005fce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &438143024 stripped
@@ -1136,6 +1174,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d884238937b9edf418224903db363859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1163734004 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3557240957377565435, guid: ac36f824208aea84ebafdf5893624e9a, type: 3}
+  m_PrefabInstance: {fileID: 852182096}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d284d2b57c1dab64f8a8db1c28005fce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1270726538 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5414705445510877156, guid: ac36f824208aea84ebafdf5893624e9a, type: 3}
@@ -1627,5 +1676,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d884238937b9edf418224903db363859, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1949746675 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7310060877561483157, guid: ac36f824208aea84ebafdf5893624e9a, type: 3}
+  m_PrefabInstance: {fileID: 852182096}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d284d2b57c1dab64f8a8db1c28005fce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

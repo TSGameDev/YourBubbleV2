@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using TSGameDev.Managers;
 using TSGameDev.Data;
+using TSGameDev.Interactables;
 
 public class CreateBubble : MonoBehaviour
 {
@@ -277,13 +278,13 @@ public class CreateBubble : MonoBehaviour
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("TestSceneCreation"));
 
         uiManager.OpenCloseBubbleSettingsMenu(false, false);
-        uiManager.uiState = UIState.Mainmenu;
-        GM.gameState = GameState.Application;
 
 
         Terrain.CreateTerrainGameObject(new TerrainData());
         Instantiate(playerSetup);
 
-    }
+        GM.gameState = GameState.Application;
+        GM.gameStateActions = new ApplicationStateAction(GM);
 
+    }
 }

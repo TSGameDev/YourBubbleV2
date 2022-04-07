@@ -62,7 +62,7 @@ namespace TSGameDev.Managers
             DontDestroyOnLoad(instance);
 
             gameState = GameState.UI;
-            gameStateActions = new ApplicationStateAction(this);
+            gameStateActions = new MainMenuStateAction(this);
             scenePostProcessingData = new ScenePostProcessingData(volumeProfile);
         }
     

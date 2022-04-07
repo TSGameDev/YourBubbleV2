@@ -43,6 +43,7 @@ namespace TSGameDev.Interactables
             cameraa = FindObjectOfType<Camera>();
 
             LockUnlockCursor();
+            Interaction = AvoidNullInteractionFunction;
         }
 
         private void Update()
@@ -96,7 +97,10 @@ namespace TSGameDev.Interactables
             virtualcam.enabled = !isLocked;
         }
     
-
+        void AvoidNullInteractionFunction()
+        {
+            Debug.Log("Interaction Works");
+        }
     }
 
 }

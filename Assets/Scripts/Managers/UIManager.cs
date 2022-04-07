@@ -163,8 +163,8 @@ namespace TSGameDev.Managers
         /// <param name="Open">Should the menu open. True means yes, False means no.</param>
         public void OpenCloseMainMenu(bool Open)
         {
-            if (Open) 
-                mainMenuReturnTween.BeginTween();
+            if (Open)
+                mainMenuBeginTween.BeginTween();
             else
                 mainMenuReturnTween.ReturnTween();
 
