@@ -1,16 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TSGameDev.Managers;
 using TSGameDev.Interactables;
 
+//Base template for the game state machine
 public abstract class GameStateAction
 {
+    #region Variables
+
     protected GameManager gameManager;
     protected Player player;
     protected UIManager uiManager;
     protected InputManager inputManager;
 
+    #endregion
+
+    /// <summary>
+    /// Constructor for the creation of a game state. Takes in the global game manager
+    /// </summary>
+    /// <param name="gameManager">Reference to the global game manager</param>
     public GameStateAction (GameManager gameManager)
     {
         this.gameManager = gameManager;
@@ -20,6 +26,10 @@ public abstract class GameStateAction
         inputManager = gameManager.inputManager;
     }
 
+    /// <summary>
+    /// Overrideable function for all game states used to change from current state to others.
+    /// </summary>
+    /// <param name="state">The Game State to change to.</param>
     public virtual void ChangeToState(GameState state) { }
 }
 
