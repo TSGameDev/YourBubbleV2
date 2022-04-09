@@ -11,15 +11,23 @@ namespace TSGameDev.UI
 {
     public class ColourPicker : MonoBehaviour
     {
-        RectTransform Rect;
-        Texture2D Colourtexture;
-        Color colour;
+        #region Private Variables
 
         [SerializeField] UnityEvent<Color> OnColourSelect;
         [SerializeField] UnityEvent<Color> OnColourPreview;
 
+        RectTransform Rect;
+        Texture2D Colourtexture;
+        Color colour;
+
+        #endregion
+
+        #region Get-Setters
+
         public Vector2 mousePos { set; private get; }
         public InputAction.CallbackContext CallbackContext { private get; set; }
+
+        #endregion
 
         // Start is called before the first frame update
         void Awake()

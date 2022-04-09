@@ -69,6 +69,7 @@ public class CreateBubble : MonoBehaviour
 
     }
 
+    //Function used to increase the value of a bubble setting field I.E. increasing position in list of skyboxes
     public void IncreaseField(string FieldToIncrease)
     {
         switch (FieldToIncrease)
@@ -141,6 +142,7 @@ public class CreateBubble : MonoBehaviour
         }
     }
 
+    //Function use to decrease tge value of a bubble setting field
     public void DecreaseField(string FieldToDecrease)
     {
         switch (FieldToDecrease)
@@ -212,6 +214,7 @@ public class CreateBubble : MonoBehaviour
         }
     }
 
+    //function to select a skybox
     void SelectSkyBox()
     {
         if (posInSkyboxArray >= GM.Skyboxes.Length) { currentSkybox = GM.Skyboxes[GM.Skyboxes.Length - 1]; posInSkyboxArray = GM.Skyboxes.Length - 1; }
@@ -219,6 +222,7 @@ public class CreateBubble : MonoBehaviour
         else { currentSkybox = GM.Skyboxes[posInSkyboxArray]; }
     }
 
+    //function to select a terrain texture
     void SelectTerrainTexture()
     {
         if (posInTerrainArray >= GM.TerrainTextures.Length) { currentTerrainTexture = GM.TerrainTextures[GM.TerrainTextures.Length - 1]; posInTerrainArray = GM.TerrainTextures.Length - 1; }
@@ -226,6 +230,7 @@ public class CreateBubble : MonoBehaviour
         else { currentTerrainTexture = GM.TerrainTextures[posInTerrainArray]; }
     }
 
+    //function to select a tone mapping mode
     void SelectToneMappingMode(ScenePostProcessingData postProcessingData)
     {
         if (posInToneMappingArray >= TonemappingModes.Length - 1) 
@@ -247,6 +252,7 @@ public class CreateBubble : MonoBehaviour
         }
     }
 
+    //function called within the awake function to setup the text elements
     void AwakeText()
     {
         skyboxTxt.text = currentSkybox.name;
@@ -272,6 +278,7 @@ public class CreateBubble : MonoBehaviour
         whiteBalanceTintTxt.text = GM.scenePostProcessingData.whiteBalance.tint.value.ToString();
     }
 
+    //function to the create a new scene
     public void CreateScene()
     {
         SceneManager.CreateScene("TestSceneCreation");

@@ -56,6 +56,7 @@ namespace TSGameDev.Interactables
             Gravity();
         }
 
+        //function controling playing movement using the unity componants character controller and the composite vector2 from Input Actions
         void Movement()
         {
             float x = inputMovement.x;
@@ -69,6 +70,7 @@ namespace TSGameDev.Interactables
                 characterController.Move(movement * speed * Time.deltaTime);
         }
 
+        //Function that impliments Gravity to the character controller as the componant doesn't get effected by it naturally.
         void Gravity()
         {
             if (!characterController.isGrounded)
@@ -77,6 +79,7 @@ namespace TSGameDev.Interactables
             }
         }
 
+        //function to lock and unlock the cursor I.E. making the cursor visible and unlocked from centre of teh screen
         public void LockUnlockCursor(bool isLocked = true)
         {
             if (isLocked)
@@ -92,11 +95,13 @@ namespace TSGameDev.Interactables
 
         }
 
+        //function to lock and unlock the camera I.E. stop the camera from responding to mouse movements
         public void LockUnlockCamera(bool isLocked)
         {
             virtualcam.enabled = !isLocked;
         }
     
+        //function that is assigned to the interaction delegate at the beginning to avoid a null interaction delegate reference
         void AvoidNullInteractionFunction()
         {
             Debug.Log("Interaction Works");

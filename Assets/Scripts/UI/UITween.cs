@@ -48,11 +48,16 @@ namespace TSGameDev.UI
 
         #endregion
 
+        //awake function to make all UI elements with tween to start invisible and disabled
         private void Awake()
         {
             gameObject.SetActive(false);
         }
 
+        /// <summary>
+        /// Function to begin to set tween within the inspector taking in a bool for if the assigned events are invoked
+        /// </summary>
+        /// <param name="InvokeReturns">Bool saying if the assigned events should be invoked or not</param>
         public async void BeginTween(bool InvokeReturns = true)
         {
             if (tweenLocation != null)
@@ -92,6 +97,10 @@ namespace TSGameDev.UI
             }
         }
 
+        /// <summary>
+        /// Function to begin the set return tween within the inspector taking in a bool for if the assigned events are invoked or not.
+        /// </summary>
+        /// <param name="InvokeReturns">Bool saying if the assigned events should be invoked or not</param>
         public async void ReturnTween(bool InvokeReturns = true)
         {
 

@@ -33,17 +33,20 @@ public abstract class GameStateAction
     public virtual void ChangeToState(GameState state) { }
 }
 
+//Main menu game state. State to create bubbles and other game actions done within UI/Main Menu
 public class MainMenuStateAction : GameStateAction
 {
     public MainMenuStateAction(GameManager gameManager) : base(gameManager) {}
 
 }
 
+//Application or main game stater for when the user is walking around placing objects.
 public class ApplicationStateAction : GameStateAction
 {
 
     public ApplicationStateAction(GameManager gameManager) : base(gameManager) { }
 
+    //Function containing all transitions from the application
     public override void ChangeToState(GameState state)
     {
         switch (state)
@@ -79,10 +82,12 @@ public class ApplicationStateAction : GameStateAction
     }
 }
 
+//Asset Menu state for when the user enters the asset menu.
 public class AssetMenuStateAction : GameStateAction
 {
     public AssetMenuStateAction(GameManager gameManager) : base(gameManager) { }
 
+    //function containing all transitions from the Asset menu
     public override void ChangeToState(GameState state)
     {
         switch (state)
@@ -103,11 +108,12 @@ public class AssetMenuStateAction : GameStateAction
     }
 }
 
+//Ui state for when the user is in the Main menu or other ui menus
 public class UIStateAction : GameStateAction
 {
-    
     public UIStateAction(GameManager gameManager) : base(gameManager) { }
 
+    //function containing all transitions from the UI main menu
     public override void ChangeToState(GameState state)
     {
         switch (state)
@@ -132,12 +138,14 @@ public class UIStateAction : GameStateAction
     }
 }
 
+//camera rail state for when the user is creating a camera rail within the bubble
 public class CameraRailStateAction : GameStateAction
 {
     public CameraRailStateAction(GameManager gameManager) : base(gameManager)
     {
     }
 
+    //Function containing all transitions from the camera rail state
     public override void ChangeToState(GameState state)
     {
         switch (state)
@@ -158,12 +166,14 @@ public class CameraRailStateAction : GameStateAction
     }
 }
 
+//terraforming state for when the user is altering the terrain
 public class TerraformStateAction : GameStateAction
 {
     public TerraformStateAction(GameManager gameManager) : base(gameManager)
     {
     }
 
+    //function containing all transitions from the terraforming state
     public override void ChangeToState(GameState state)
     {
         switch (state)
@@ -184,6 +194,7 @@ public class TerraformStateAction : GameStateAction
     }
 }
 
+//gamestate enum making it easier for manipulation of states
 public enum GameState
 {
     Mainmenu,

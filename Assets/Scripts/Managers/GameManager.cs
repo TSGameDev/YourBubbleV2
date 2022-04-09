@@ -8,18 +8,15 @@ namespace TSGameDev.Managers
     public class GameManager : MonoBehaviour
     {
         #region Getter-Setter
-
         [Header("Managers")]
+        
         [SerializeField] UIManager uiManager;
         public UIManager UIManager
         {
             private set {}
             get { return uiManager; }
         }
-
-        public Player player;
-
-        public InputManager inputManager;
+        
         [Space(10)]
 
         [Header("Scene Creation")]
@@ -48,10 +45,13 @@ namespace TSGameDev.Managers
  
         public GameStateAction gameStateActions;
         public GameState gameState;
+        public Player player;
+        public InputManager inputManager;
 
         public static GameManager instance;
         #endregion
 
+        //Awake called just before start and after variable inisilisation. Sets up the game manager as a singleton instance
         private void Awake()
         {
             if(instance == null)
@@ -66,6 +66,7 @@ namespace TSGameDev.Managers
             scenePostProcessingData = new ScenePostProcessingData(volumeProfile);
         }
     
+        //Function to close the asset menu
         public void CloseAssetMenu()
         {
             gameStateActions.ChangeToState(GameState.Application);
