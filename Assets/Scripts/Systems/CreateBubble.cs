@@ -283,15 +283,18 @@ public class CreateBubble : MonoBehaviour
     {
         SceneManager.CreateScene("TestSceneCreation");
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("TestSceneCreation"));
+        RenderSettings.skybox = currentSkybox;
 
         uiManager.OpenCloseBubbleSettingsMenu(false, false);
 
-
-        Terrain.CreateTerrainGameObject(new TerrainData());
+        TerrainData newTerrainData = new TerrainData();
+        Terrain newTerrain = Terrain.CreateTerrainGameObject(newTerrainData).GetComponent<Terrain>();
+        newTerrain.materialTemplate = currentTerrainTexture;
+        newTerrain.terrainData = newTerrainData;
+        
         Instantiate(playerSetup);
 
         GM.gameState = GameState.Application;
         GM.gameStateActions = new ApplicationStateAction(GM);
-
     }
 }
