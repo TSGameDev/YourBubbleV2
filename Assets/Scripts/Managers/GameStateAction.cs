@@ -1,3 +1,4 @@
+using UnityEngine.SceneManagement;
 using TSGameDev.Managers;
 using TSGameDev.Interactables;
 
@@ -8,7 +9,6 @@ public abstract class GameStateAction
 
     protected GameManager gameManager;
     protected Player player;
-    protected UIManager uiManager;
     protected InputManager inputManager;
 
     #endregion
@@ -22,7 +22,6 @@ public abstract class GameStateAction
         this.gameManager = gameManager;
 
         player = gameManager.player;
-        uiManager = gameManager.UIManager;
         inputManager = gameManager.inputManager;
     }
 
@@ -55,7 +54,7 @@ public class ApplicationStateAction : GameStateAction
                 player.LockUnlockCursor(false);
                 inputManager.ActiveUIInputs();
                 player.LockUnlockCamera(true);
-                uiManager.OpenCloseMainMenu(true);
+                UIManager.instance.OpenCloseMainMenu(true);
                 gameManager.gameState = GameState.UI;
                 gameManager.gameStateActions = new UIStateAction(gameManager);
                 break;
@@ -71,7 +70,7 @@ public class ApplicationStateAction : GameStateAction
                 player.LockUnlockCursor(false);
                 inputManager.ActiveUIInputs();
                 player.LockUnlockCamera(true);
-                uiManager.OpenCloseAssetMenu(true);
+                UIManager.instance.OpenCloseAssetMenu(true);
                 gameManager.gameState = GameState.AssetMenu;
                 gameManager.gameStateActions = new AssetMenuStateAction(gameManager);
                 break;
@@ -96,7 +95,7 @@ public class AssetMenuStateAction : GameStateAction
                 player.LockUnlockCursor(true);
                 inputManager.ActiveGameInputs();
                 player.LockUnlockCamera(false);
-                uiManager.OpenCloseAssetMenu(false);
+                UIManager.instance.OpenCloseAssetMenu(false);
                 gameManager.gameState = GameState.Application;
                 gameManager.gameStateActions = new ApplicationStateAction(gameManager);
                 break;
@@ -124,7 +123,7 @@ public class UIStateAction : GameStateAction
                 player.LockUnlockCamera(false);
                 gameManager.gameState = GameState.Application;
                 gameManager.gameStateActions = new ApplicationStateAction(gameManager);
-                uiManager.OpenCloseMainMenu(false);
+                UIManager.instance.OpenCloseMainMenu(false);
                 break;
             case GameState.Terraform:
                 gameManager.gameState = GameState.Terraform;

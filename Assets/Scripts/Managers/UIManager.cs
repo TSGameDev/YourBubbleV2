@@ -93,7 +93,7 @@ namespace TSGameDev.Managers
         private void Start()
         {
             //Tweens the main menu in to begin the application
-            mainMenuBeginTween.BeginTween();
+            OpenCloseMainMenu(true);
         }
 
         /// <summary>
