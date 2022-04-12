@@ -26,9 +26,5 @@ public class ToggleTextChange : MonoBehaviour
         toggleTxt.color = toggle.isOn ? Color.black : Color.white;
         audioManager.playerSettingsData.SetMuted(audioGroup, toggle.isOn);
         audioManager.PlayerMuteAudioGroup(audioGroup, toggle.isOn);
-        Debug.Log($"Master Mute: {audioManager.playerSettingsData.masterMuted} " +
-            $"Environment Mute: {audioManager.playerSettingsData.environmentMuted} " +
-            $"Weather Mute: {audioManager.playerSettingsData.weatherMuted} " +
-            $"Effect Mute: {audioManager.playerSettingsData.effectMuted}");
     }
 }

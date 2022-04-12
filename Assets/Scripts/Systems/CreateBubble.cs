@@ -3,7 +3,6 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using TSGameDev.Managers;
 using TSGameDev.Data;
-using TSGameDev.Interactables;
 
 public class CreateBubble : MonoBehaviour
 {
@@ -12,6 +11,8 @@ public class CreateBubble : MonoBehaviour
     [Header("Environment Texts")]
     [SerializeField] TextMeshProUGUI skyboxTxt;
     [SerializeField] TextMeshProUGUI terrainTxt;
+    [SerializeField] TextMeshProUGUI terrainLengthTxt;
+    [SerializeField] TextMeshProUGUI terrainWidthTxt;
     [Space(10)]
 
     [Header("Post Processing Texts")]
@@ -56,6 +57,9 @@ public class CreateBubble : MonoBehaviour
         { UnityEngine.Rendering.Universal.TonemappingMode.None, 
         UnityEngine.Rendering.Universal.TonemappingMode.Neutral, 
         UnityEngine.Rendering.Universal.TonemappingMode.ACES };
+
+    int currentTerrainWidth = 100;
+    int currentTerrainLength = 100;
 
     #endregion
 
@@ -139,6 +143,14 @@ public class CreateBubble : MonoBehaviour
                 GM.scenePostProcessingData.whiteBalance.tint.value++;
                 whiteBalanceTintTxt.text = GM.scenePostProcessingData.whiteBalance.tint.value.ToString();
                 break;
+            case "Terrain Length":
+                currentTerrainLength += 100;
+                terrainLengthTxt.text = $"{currentTerrainLength}m";
+                break;
+            case "Terrain Width":
+                currentTerrainWidth += 100;
+                terrainWidthTxt.text = $"{currentTerrainWidth}m";
+                break;
         }
     }
 
@@ -211,6 +223,14 @@ public class CreateBubble : MonoBehaviour
                 GM.scenePostProcessingData.whiteBalance.tint.value--;
                 whiteBalanceTintTxt.text = GM.scenePostProcessingData.whiteBalance.tint.value.ToString();
                 break;
+            case "Terrain Length":
+                if(currentTerrainLength > 100) currentTerrainLength -= 100;
+                terrainLengthTxt.text = $"{currentTerrainLength}m";
+                break;
+            case "Terrain Width":
+                if(currentTerrainWidth > 100) currentTerrainWidth -= 100;
+                terrainWidthTxt.text = $"{currentTerrainWidth}m";
+                break;
         }
     }
 
@@ -257,6 +277,8 @@ public class CreateBubble : MonoBehaviour
     {
         skyboxTxt.text = currentSkybox.name;
         terrainTxt.text = currentTerrainTexture.name;
+        terrainLengthTxt.text = $"{currentTerrainLength}m";
+        terrainWidthTxt.text = $"{currentTerrainWidth}m";
 
         DOFFocusDistanceTxt.text = GM.scenePostProcessingData.depthOfField.focusDistance.value.ToString();
         DOFFocalLengthTxt.text = GM.scenePostProcessingData.depthOfField.focalLength.value.ToString();
@@ -288,11 +310,12 @@ public class CreateBubble : MonoBehaviour
         uiManager.OpenCloseBubbleSettingsMenu(false, false);
 
         TerrainData newTerrainData = new TerrainData();
+        newTerrainData.size = new Vector3(currentTerrainWidth, 0, currentTerrainLength);
         Terrain newTerrain = Terrain.CreateTerrainGameObject(newTerrainData).GetComponent<Terrain>();
         newTerrain.materialTemplate = currentTerrainTexture;
         newTerrain.terrainData = newTerrainData;
         
-        Instantiate(playerSetup);
+        Instantiate(playerSetup, new Vector3(currentTerrainWidth / 2, 0, currentTerrainLength / 2), Quaternion.identity);
 
         GM.gameState = GameState.Application;
         GM.gameStateActions = new ApplicationStateAction(GM);
