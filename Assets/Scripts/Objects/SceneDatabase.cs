@@ -26,6 +26,7 @@ namespace TSGameDev.Object
                 asset.GetComponentInChildren<TextMeshProUGUI>().text = sound.objectName;
                 asset.GetComponent<Button>().onClick.AddListener(() =>
                 {
+                    Debug.Log("On Click Event Called");
                     GameObject newAsset = null;
 
                     if(sound.objectData.model != null)

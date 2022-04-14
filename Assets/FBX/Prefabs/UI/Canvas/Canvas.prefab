@@ -3166,6 +3166,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6480217962888249106, guid: c82c5f3560e3fa14da1eb002d5d14b4e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 8.092773
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480217962888249106, guid: c82c5f3560e3fa14da1eb002d5d14b4e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 12.26059
+      objectReference: {fileID: 0}
     - target: {fileID: 8616981496707641562, guid: c82c5f3560e3fa14da1eb002d5d14b4e, type: 3}
       propertyPath: m_Name
       value: Asset Menu

@@ -35,6 +35,7 @@ namespace TSGameDev.Object
             {
                 audioSource = gameObject.AddComponent<AudioSource>();
                 audioSource.clip = data.soundClip;
+                audioSource.Play();
             }
 
             if (data.effect != null)
