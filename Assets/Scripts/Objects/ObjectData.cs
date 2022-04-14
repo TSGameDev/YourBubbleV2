@@ -9,13 +9,12 @@ namespace TSGameDev.Object
     [Serializable]
     public struct ObjectData
     {
-        //id to identify the object for saving and loading purpose
-        public int ID { private set; get; }
 
         #region Sound
         //series of sound data variables
         [Header("Sound Data")]
         public AudioClip soundClip;
+        public List<AudioClip> soundVariants;
         public AudioType audioType;
         public float relativeVolume;
         public float uniformRadius;
@@ -27,7 +26,7 @@ namespace TSGameDev.Object
         #region Model
         //series of model data variables
         [Header("Model Data")]
-        public bool changeWithEffects;
+        public GameObject model;
         [Space(10)]
 
         #endregion
@@ -43,17 +42,17 @@ namespace TSGameDev.Object
         #endregion
 
         //contructor for the struct
-        public ObjectData(AudioClip soundClip, List<AudioClip> indoorVariants, ParticleSystem effect, List<ParticleSystem> effectVariants)
+        public ObjectData(AudioClip soundClip, List<AudioClip> soundVariants, List<AudioClip> indoorVariants, ParticleSystem effect, List<ParticleSystem> effectVariants)
         {
-            ID = 1;
 
             this.soundClip = soundClip;
+            this.soundVariants = soundVariants;
             audioType = AudioType.Uniform;
             relativeVolume = 1f;
             uniformRadius = 10f;
             this.indoorVariants = indoorVariants;
 
-            changeWithEffects = false;
+            model = null;
 
             this.effect = effect;
             this.effectVariants = effectVariants;
@@ -61,17 +60,6 @@ namespace TSGameDev.Object
             colour = Color.white;
         }
 
-        //serialisation function for the perpose of saving
-        public void Serialisation()
-        {
-
-        }
-
-        //deserialisation function for the perpose of loading
-        public void Deserialisation()
-        {
-
-        }
     }
 
     //enum contining auido style types to better tracking of audio style

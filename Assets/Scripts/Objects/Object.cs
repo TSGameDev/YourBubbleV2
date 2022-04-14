@@ -9,11 +9,17 @@ namespace TSGameDev.Object
     public class Object : MonoBehaviour
     {
         #region Private Variables
-        
-        //[SerializeField] ObjectData data = new ObjectData();
+
+        public ObjectData data
+        {
+            set;
+            private get;
+        }
 
         UIManager uiManager;
         Player player;
+        AudioSource audioSource;
+        ParticleSystem currentParticleSystem;
 
         #endregion 
        
@@ -21,6 +27,20 @@ namespace TSGameDev.Object
         {
             uiManager = FindObjectOfType<UIManager>();
             player = FindObjectOfType<Player>();
+        }
+
+        private void Start()
+        {
+            if (data.soundClip != null)
+            {
+                audioSource = gameObject.AddComponent<AudioSource>();
+                audioSource.clip = data.soundClip;
+            }
+
+            if (data.effect != null)
+            {
+                currentParticleSystem = Instantiate(data.effect, gameObject.transform);
+            }
         }
 
         //Function to Open and Close the asset settings UI menu
