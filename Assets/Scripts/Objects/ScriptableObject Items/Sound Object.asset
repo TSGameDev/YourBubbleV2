@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96ac597c151570345b1b6465e55a168e, type: 3}
   m_Name: Sound Object
   m_EditorClassIdentifier: 
-  ID: 
+  ID: SFX001
   objectData:
-    soundClip: {fileID: 0}
+    soundClip: {fileID: 8300000, guid: b660811bae3b6644fa84b5c8d9e0e782, type: 3}
     soundVariants: []
     audioType: 0
     relativeVolume: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96ac597c151570345b1b6465e55a168e, type: 3}
   m_Name: Effect Object
   m_EditorClassIdentifier: 
-  ID: 
+  ID: VFX001
   objectData:
     soundClip: {fileID: 0}
     soundVariants: []

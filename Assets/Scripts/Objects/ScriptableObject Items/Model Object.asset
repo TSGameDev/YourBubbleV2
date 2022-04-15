@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96ac597c151570345b1b6465e55a168e, type: 3}
   m_Name: Model Object
   m_EditorClassIdentifier: 
-  ID: 
+  ID: FBX001
   objectData:
     soundClip: {fileID: 0}
     soundVariants: []
@@ -20,7 +20,7 @@ MonoBehaviour:
     relativeVolume: 0
     uniformRadius: 0
     indoorVariants: []
-    model: {fileID: 0}
+    model: {fileID: 348824314927045215, guid: 5571b4c59fa66664ca874457311c64b1, type: 3}
     effect: {fileID: 0}
     effectVariants: []
     speed: 0
