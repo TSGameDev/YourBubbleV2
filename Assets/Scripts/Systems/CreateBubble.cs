@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using TSGameDev.Managers;
 using TSGameDev.Data;
+using TSGameDev.Object;
 
 public class CreateBubble : MonoBehaviour
 {
@@ -42,6 +43,7 @@ public class CreateBubble : MonoBehaviour
 
     [Header("Scene Creation Prefabs")]
     [SerializeField] GameObject playerSetup;
+    [SerializeField] SceneDatabase sceneObjectDatabase;
 
     GameManager GM;
     UIManager uiManager;
@@ -316,6 +318,7 @@ public class CreateBubble : MonoBehaviour
         newTerrain.terrainData = newTerrainData;
         
         Instantiate(playerSetup, new Vector3(currentTerrainWidth / 2, 0, currentTerrainLength / 2), Quaternion.identity);
+        sceneObjectDatabase.PopulateAssetMenu();
 
         GM.gameState = GameState.Application;
         GM.gameStateActions = new ApplicationStateAction(GM);

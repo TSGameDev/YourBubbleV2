@@ -9,6 +9,13 @@ namespace TSGameDev.Object
     [Serializable]
     public struct ObjectData
     {
+        #region General Settings
+
+        [Header("User benefit settings")]
+        public float spawnDisFromPlayer;
+        [Space(10)]
+
+        #endregion
 
         #region Sound
         //series of sound data variables
@@ -16,8 +23,9 @@ namespace TSGameDev.Object
         public AudioClip soundClip;
         public List<AudioClip> soundVariants;
         public AudioType audioType;
-        public float relativeVolume;
-        public float uniformRadius;
+        public float volume;
+        public float minDistance;
+        public float maxDistance;
         public List<AudioClip> indoorVariants;
         [Space(10)]
 
@@ -44,12 +52,14 @@ namespace TSGameDev.Object
         //contructor for the struct
         public ObjectData(AudioClip soundClip, List<AudioClip> soundVariants, List<AudioClip> indoorVariants, ParticleSystem effect, List<ParticleSystem> effectVariants)
         {
+            spawnDisFromPlayer = 5f;
 
             this.soundClip = soundClip;
             this.soundVariants = soundVariants;
-            audioType = AudioType.Uniform;
-            relativeVolume = 1f;
-            uniformRadius = 10f;
+            audioType = AudioType.Mode2D;
+            volume = 1f;
+            minDistance = 1f;
+            maxDistance = 10f;
             this.indoorVariants = indoorVariants;
 
             model = null;
@@ -65,8 +75,8 @@ namespace TSGameDev.Object
     //enum contining auido style types to better tracking of audio style
     public enum AudioType
     {
-        Uniform,
-        Relative
+        Mode2D,
+        Mode3D
     }
 
 }

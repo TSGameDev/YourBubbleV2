@@ -22,6 +22,11 @@ namespace TSGameDev.Interactables
         [SerializeField] CinemachineVirtualCamera virtualcam;
         [SerializeField] float speed = 10f;
 
+        [SerializeField] float stepInterval;
+        private AudioClip footstepSFX;
+        private float stepTime;
+
+
         CharacterController characterController;
         AudioManager audioManager;
         AudioSource audioSource;
@@ -68,6 +73,8 @@ namespace TSGameDev.Interactables
                 characterController.Move(movement * (speed * 2) * Time.deltaTime);
             else if (movement.magnitude >= Mathf.Epsilon)
                 characterController.Move(movement * speed * Time.deltaTime);
+
+            FootstepSFX();
         }
 
         //Function that impliments Gravity to the character controller as the componant doesn't get effected by it naturally.
@@ -101,11 +108,32 @@ namespace TSGameDev.Interactables
             virtualcam.enabled = !isLocked;
         }
     
+        public Vector3 GetObjectSpawnPosition(float spawnDisFromPlayer)
+        {
+            Vector3 spawnPos = gameObject.transform.position + (gameObject.transform.forward * spawnDisFromPlayer);
+            Debug.Log(spawnPos);
+            return spawnPos;
+        }
+
+        public void FootstepSFX()
+        {
+            if (stepTime >= stepInterval)
+            {
+                audioManager.PlayOneShotVariation(audioSource, footstepSFX);
+                stepTime = 0;
+            }
+            else
+            {
+                stepTime += 1 * Time.deltaTime;
+            }
+        }
+
         //function that is assigned to the interaction delegate at the beginning to avoid a null interaction delegate reference
         void AvoidNullInteractionFunction()
         {
             Debug.Log("Interaction Works");
         }
+    
     }
 
 }
