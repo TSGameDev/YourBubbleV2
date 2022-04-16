@@ -1,7 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using TMPro;
 using TSGameDev.UI;
+using TSGameDev.Object;
 
 namespace TSGameDev.Managers
 {
@@ -73,7 +75,47 @@ namespace TSGameDev.Managers
         const string interactionBindingKey = "Interaction";
         const string cameraRailBindingKey = "Camera Rail";
 
-        #endregion 
+        #endregion
+
+        #region Asset Settings Menu Variables
+
+        [Header("Sound Section Variables")]
+        [SerializeField] TextMeshProUGUI soundTypeTxt;
+        [SerializeField] Button soundTypeButtonLeft;
+        [SerializeField] Button soundTypeButtonRight;
+
+        [SerializeField] TextMeshProUGUI soundVolumeTxt;
+        [SerializeField] Button soundVolumeRight;
+        [SerializeField] Button soundVolumeLeft;
+
+        [SerializeField] TextMeshProUGUI soundMinDisTxt;
+        [SerializeField] Button soundMinDisButtonLeft;
+        [SerializeField] Button soundMinDisButtonRight;
+
+        [SerializeField] TextMeshProUGUI soundMaxDisTxt;
+        [SerializeField] Button soundMaxDisButtonRight;
+        [SerializeField] Button soundMaxDisButtonLeft;
+
+        [SerializeField] TextMeshProUGUI soundIndoorTxt;
+        [SerializeField] Button soundIndoorButtonRight;
+        [SerializeField] Button soundIndoorButtonLeft;
+        [Space(10)]
+
+        [Header("Effect Section Variables")]
+        [SerializeField] TextMeshProUGUI effectVariantTxt;
+        [SerializeField] Button effectVariantButtonRight;
+        [SerializeField] Button effectVariantButtonLeft;
+
+        [SerializeField] TextMeshProUGUI effectSpeedTxt;
+        [SerializeField] Button effectSpeedButtonRight;
+        [SerializeField] Button effectSpeedButtonLeft;
+
+        [SerializeField] TextMeshProUGUI effectColourTxt;
+        [SerializeField] Button effectColourButtonRight;
+        [SerializeField] Button effectColourButtonLeft;
+        [Space(10)]
+
+        #endregion
 
         //A cache of the rebinding controler operation to discard the memory used to prevent memory leakage
         InputActionRebindingExtensions.RebindingOperation rebindingOperation;
@@ -278,6 +320,92 @@ namespace TSGameDev.Managers
 
             //set the relivant text element to the new control
             actionRebindingTxt.text = InputControlPath.ToHumanReadableString(actionToRebind.action.bindings[0].effectivePath, InputControlPath.HumanReadableStringOptions.OmitDevice);
+
+        }
+
+        public void UpdateAssetMenuSettings(ObjectData objectdata, AudioSource audioSource = null, ParticleSystem particleSystem = null)
+        {
+            RemoveAllAssetSettingsListeners();
+
+            if (audioSource != null)
+            {
+                AssetSettingsUpdateSoundType(objectdata, audioSource);
+                AssetSettingsUpdateSoundVolume(objectdata, audioSource);
+                AssetSettingsUpdateSoundIndoorVariant(objectdata, audioSource);
+            }
+
+            if (particleSystem != null)
+            {
+                AssetSettingsUpdateEffectVariant(objectdata, particleSystem);
+                AssetSettingsUpdateEffectSpeed(objectdata, particleSystem);
+                AssetSettingsUpdateEffectColour(objectdata, particleSystem);
+            }
+        }
+
+        void RemoveAllAssetSettingsListeners()
+        {
+            soundTypeButtonLeft.onClick.RemoveAllListeners();
+            soundTypeButtonRight.onClick.RemoveAllListeners();
+            soundVolumeLeft.onClick.RemoveAllListeners();
+            soundVolumeRight.onClick.RemoveAllListeners();
+            soundIndoorButtonLeft.onClick.RemoveAllListeners();
+            soundIndoorButtonRight.onClick.RemoveAllListeners();
+
+            effectVariantButtonLeft.onClick.RemoveAllListeners();
+            effectVariantButtonRight.onClick.RemoveAllListeners();
+            effectSpeedButtonLeft.onClick.RemoveAllListeners();
+            effectSpeedButtonRight.onClick.RemoveAllListeners();
+            effectColourButtonLeft.onClick.RemoveAllListeners();
+            effectColourButtonRight.onClick.RemoveAllListeners();
+        }
+    
+        void AssetSettingsUpdateSoundType(ObjectData objectdata, AudioSource audioSource)
+        {
+            soundTypeTxt.text = objectdata.audioType.ToString();
+            soundTypeButtonLeft.onClick.AddListener(() =>
+            {
+                objectdata.audioType--;
+                soundTypeTxt.text = objectdata.audioType.ToString();
+            });
+            soundTypeButtonRight.onClick.AddListener(() =>
+            {
+                objectdata.audioType++;
+                soundTypeTxt.text = objectdata.audioType.ToString();
+            });
+        }
+
+        void AssetSettingsUpdateSoundVolume(ObjectData objectdata, AudioSource audioSource)
+        {
+            soundVolumeTxt.text = objectdata.volume.ToString();
+            soundVolumeLeft.onClick.AddListener(() =>
+            {
+                objectdata.volume--;
+                soundVolumeTxt.text = objectdata.volume.ToString();
+            });
+            soundVolumeRight.onClick.AddListener(() =>
+            {
+                objectdata.volume++;
+                soundVolumeTxt.text = objectdata.volume.ToString();
+            });
+        }
+    
+        void AssetSettingsUpdateSoundIndoorVariant(ObjectData objectdata, AudioSource audioSource)
+        {
+
+        }
+
+        void AssetSettingsUpdateEffectVariant(ObjectData objectdata, ParticleSystem particleSystem)
+        {
+
+        }
+
+        void AssetSettingsUpdateEffectSpeed(ObjectData objectdata, ParticleSystem particleSystem)
+        {
+
+        }
+
+        void AssetSettingsUpdateEffectColour(ObjectData objectdata, ParticleSystem particleSystem)
+        {
 
         }
     }
