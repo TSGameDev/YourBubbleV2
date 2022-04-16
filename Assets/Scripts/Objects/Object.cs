@@ -17,16 +17,17 @@ namespace TSGameDev.Object
         }
 
         UIManager uiManager;
-        Player player;
+        GameManager gameManager;
         AudioSource audioSource;
         ParticleSystem currentParticleSystem;
+        BoxCollider boxCollider;
 
         #endregion 
        
         private void Awake()
         {
             uiManager = FindObjectOfType<UIManager>();
-            player = FindObjectOfType<Player>();
+            gameManager = FindObjectOfType<GameManager>();
         }
 
         private void Start()
@@ -41,24 +42,21 @@ namespace TSGameDev.Object
             if (data.effect != null)
             {
                 currentParticleSystem = Instantiate(data.effect, gameObject.transform);
+                
             }
+            gameObject.layer = 6;
+            boxCollider = gameObject.AddComponent<BoxCollider>();
+            boxCollider.size = new Vector3(1, 1, 1);
         }
 
-        //Function to Open and Close the asset settings UI menu
-        public void OpenCloseAssetSettings(bool Open)
+        public void OpenAssetSettingsMenu()
         {
-            if(Open)
-            {
-                uiManager.OpenCloseAssetSettingsMenu(true);
-                player.LockUnlockCamera(true);
-                player.LockUnlockCursor(false);
-            }
-            else
-            {
-                uiManager.OpenCloseAssetSettingsMenu(false);
-                player.LockUnlockCamera(false);
-                player.LockUnlockCursor(true);
-            }
+            gameManager.gameStateActions.ChangeToState(GameState.AssetSettings);
+        }
+
+        public void CloseAssetSettingsMenu()
+        {
+
         }
     }
 }

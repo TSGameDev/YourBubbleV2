@@ -75,7 +75,12 @@ public class ApplicationStateAction : GameStateAction
                 gameManager.gameStateActions = new AssetMenuStateAction(gameManager);
                 break;
             case GameState.AssetSettings:
-
+                player.LockUnlockCursor(false);
+                inputManager.ActiveUIInputs();
+                player.LockUnlockCamera(true);
+                UIManager.instance.OpenCloseAssetSettingsMenu(true);
+                gameManager.gameState = GameState.AssetSettings;
+                gameManager.gameStateActions = new AssetSettingsAction(gameManager);
                 break;
         }
     }
@@ -100,10 +105,23 @@ public class AssetMenuStateAction : GameStateAction
                 gameManager.gameStateActions = new ApplicationStateAction(gameManager);
                 break;
             default:
-
                 break;
         }
 
+    }
+}
+
+public class AssetSettingsAction : GameStateAction
+{
+    public AssetSettingsAction(GameManager gameManager) : base(gameManager) { }
+
+    public override void ChangeToState(GameState state)
+    {
+        switch(state)
+        {
+            case GameState.Application:
+                break;
+        }
     }
 }
 

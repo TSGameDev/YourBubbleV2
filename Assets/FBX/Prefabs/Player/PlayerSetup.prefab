@@ -499,6 +499,9 @@ MonoBehaviour:
   cameraa: {fileID: 0}
   virtualcam: {fileID: 4543650706518093532}
   speed: 5
+  stepInterval: 0
+  interactionTxt: {fileID: 0}
+  raycastMaxDis: 10
 --- !u!114 &4543650708476826915
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using TMPro;
 using TSGameDev.Managers;
 using TSGameDev.Data;
 using TSGameDev.Object;
+using TSGameDev.Interactables;
 
 public class CreateBubble : MonoBehaviour
 {
@@ -247,9 +248,20 @@ public class CreateBubble : MonoBehaviour
     //function to select a terrain texture
     void SelectTerrainTexture()
     {
-        if (posInTerrainArray >= GM.TerrainTextures.Length) { currentTerrainTexture = GM.TerrainTextures[GM.TerrainTextures.Length - 1]; posInTerrainArray = GM.TerrainTextures.Length - 1; }
-        else if (posInTerrainArray < 0) { currentTerrainTexture = GM.TerrainTextures[0]; posInTerrainArray = 0; }
-        else { currentTerrainTexture = GM.TerrainTextures[posInTerrainArray]; }
+        if (posInTerrainArray >= GM.TerrainTextures.Length) 
+        { 
+            currentTerrainTexture = GM.TerrainTextures[GM.TerrainTextures.Length - 1];
+            posInTerrainArray = GM.TerrainTextures.Length - 1;
+        }
+        else if (posInTerrainArray < 0) 
+        { 
+            currentTerrainTexture = GM.TerrainTextures[0];
+            posInTerrainArray = 0; 
+        }
+        else 
+        { 
+            currentTerrainTexture = GM.TerrainTextures[posInTerrainArray];
+        }
     }
 
     //function to select a tone mapping mode

@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TSGameDev.Managers;
 using Cinemachine;
+using TMPro;
 
 namespace TSGameDev.Interactables
 {
@@ -18,18 +17,23 @@ namespace TSGameDev.Interactables
 
         #region Private Variables
 
+        [Header("Movement Settings")]
         [SerializeField] Camera cameraa;
         [SerializeField] CinemachineVirtualCamera virtualcam;
         [SerializeField] float speed = 10f;
-
         [SerializeField] float stepInterval;
-        private AudioClip footstepSFX;
-        private float stepTime;
+        [Space(10)]
 
-
+        [Header("Raycast Settings")]
+        [SerializeField] TextMeshProUGUI interactionTxt;
+        [SerializeField] float raycastMaxDis = 10;
+        int layerBitMask = 1 << 6;
+        
+        float stepTime;
         CharacterController characterController;
         AudioManager audioManager;
         AudioSource audioSource;
+        UIManager uiManager;
 
         #endregion
 
@@ -46,9 +50,15 @@ namespace TSGameDev.Interactables
             audioManager = GetComponent<AudioManager>();
             audioSource = GetComponent<AudioSource>();
             cameraa = FindObjectOfType<Camera>();
+            uiManager = FindObjectOfType<UIManager>();
+            interactionTxt = uiManager.InteractionTxt;
+        }
 
+        private void Start()
+        {
             LockUnlockCursor();
             Interaction = AvoidNullInteractionFunction;
+            interactionTxt.gameObject.SetActive(false);
         }
 
         private void Update()
@@ -59,6 +69,7 @@ namespace TSGameDev.Interactables
         private void FixedUpdate()
         {
             Gravity();
+            ObjectRaycast();
         }
 
         //function controling playing movement using the unity componants character controller and the composite vector2 from Input Actions
@@ -70,11 +81,13 @@ namespace TSGameDev.Interactables
             Vector3 movement = cameraa.transform.right * x + cameraa.transform.forward * z;
 
             if (movement.magnitude >= Mathf.Epsilon && running.ReadValue<float>() >= Mathf.Epsilon)
+            {
                 characterController.Move(movement * (speed * 2) * Time.deltaTime);
+            }
             else if (movement.magnitude >= Mathf.Epsilon)
+            {
                 characterController.Move(movement * speed * Time.deltaTime);
-
-            FootstepSFX();
+            }
         }
 
         //Function that impliments Gravity to the character controller as the componant doesn't get effected by it naturally.
@@ -83,6 +96,22 @@ namespace TSGameDev.Interactables
             if (!characterController.isGrounded)
             {
                 characterController.Move(Physics.gravity * Time.deltaTime);
+            }
+        }
+
+        void ObjectRaycast()
+        {
+            RaycastHit hit;
+            if(Physics.Raycast(cameraa.transform.position, cameraa.transform.forward, out hit, raycastMaxDis, layerBitMask))
+            {
+                Debug.Log($"Hit {hit.collider.gameObject.name}");
+                interactionTxt.gameObject.SetActive(true);
+                Interaction = hit.collider.GetComponent<Object.Object>().OpenAssetSettingsMenu;
+            }
+            else
+            {
+                Debug.Log("No Hit");
+                interactionTxt.gameObject.SetActive(false);
             }
         }
 
@@ -110,22 +139,9 @@ namespace TSGameDev.Interactables
     
         public Vector3 GetObjectSpawnPosition(float spawnDisFromPlayer)
         {
-            Vector3 spawnPos = gameObject.transform.position + (gameObject.transform.forward * spawnDisFromPlayer);
+            Vector3 spawnPos = cameraa.gameObject.transform.position + (cameraa.gameObject.transform.forward * spawnDisFromPlayer);
             Debug.Log(spawnPos);
             return spawnPos;
-        }
-
-        public void FootstepSFX()
-        {
-            if (stepTime >= stepInterval)
-            {
-                audioManager.PlayOneShotVariation(audioSource, footstepSFX);
-                stepTime = 0;
-            }
-            else
-            {
-                stepTime += 1 * Time.deltaTime;
-            }
         }
 
         //function that is assigned to the interaction delegate at the beginning to avoid a null interaction delegate reference

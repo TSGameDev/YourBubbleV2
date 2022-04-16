@@ -21,7 +21,6 @@ namespace TSGameDev.Object
         //series of sound data variables
         [Header("Sound Data")]
         public AudioClip soundClip;
-        public List<AudioClip> soundVariants;
         public AudioType audioType;
         public float volume;
         public float minDistance;
@@ -50,12 +49,11 @@ namespace TSGameDev.Object
         #endregion
 
         //contructor for the struct
-        public ObjectData(AudioClip soundClip, List<AudioClip> soundVariants, List<AudioClip> indoorVariants, ParticleSystem effect, List<ParticleSystem> effectVariants)
+        public ObjectData(AudioClip soundClip, List<AudioClip> indoorVariants, ParticleSystem effect, List<ParticleSystem> effectVariants)
         {
             spawnDisFromPlayer = 5f;
 
             this.soundClip = soundClip;
-            this.soundVariants = soundVariants;
             audioType = AudioType.Mode2D;
             volume = 1f;
             minDistance = 1f;

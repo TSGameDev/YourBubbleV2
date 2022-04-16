@@ -1,6 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
-using TSGameDev.Interactables;
 using UnityEngine.Rendering;
+using TSGameDev.Interactables;
 using TSGameDev.Data;
 
 namespace TSGameDev.Managers
@@ -9,19 +10,16 @@ namespace TSGameDev.Managers
     {
         #region Getter-Setter
         [Header("Managers")]
-        
         [SerializeField] UIManager uiManager;
         public UIManager UIManager
         {
             private set {}
             get { return uiManager; }
         }
-        
         [Space(10)]
 
         [Header("Scene Creation")]
         [SerializeField] Material[] skyboxes;
-
         public Material[] Skyboxes
         {
             private set {}
@@ -29,21 +27,23 @@ namespace TSGameDev.Managers
         }
 
         [SerializeField] Material[] terrainTextures;
-
         public Material[] TerrainTextures
         {
             private set {}
             get { return terrainTextures; }
         }
-        
+        [Space(10)]
+
+        [Header("Post Processing")]
         [SerializeField] VolumeProfile volumeProfile;
         public ScenePostProcessingData scenePostProcessingData;
-        
+        [Space(10)]
         #endregion
 
         #region Public Variables
- 
         public GameStateAction gameStateActions;
+        
+        [Header("Game State Settings")]
         public GameState gameState;
         public Player player;
         public InputManager inputManager;

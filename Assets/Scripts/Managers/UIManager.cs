@@ -53,6 +53,12 @@ namespace TSGameDev.Managers
 
         //Reference to a text elements gameobject for the purpose of displaying "Waiting for Binding" when the rebinding process as begin and then player needs to input a control
         [SerializeField] GameObject waitingForBindTxt;
+        [SerializeField] TextMeshProUGUI interactionTxt;
+        public TextMeshProUGUI InteractionTxt 
+        {
+            private set { interactionTxt = value; }
+            get { return interactionTxt; }
+        }
 
         #endregion
 
