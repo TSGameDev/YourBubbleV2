@@ -10,11 +10,7 @@ namespace TSGameDev.Object
     {
         #region Private Variables
 
-        public ObjectData data
-        {
-            set;
-            private get;
-        }
+        public ObjectData data;
 
         UIManager uiManager;
         GameManager gameManager;
@@ -52,11 +48,12 @@ namespace TSGameDev.Object
         public void OpenAssetSettingsMenu()
         {
             gameManager.gameStateActions.ChangeToState(GameState.AssetSettings);
+            uiManager.UpdateAssetMenuSettings(data, audioSource);
         }
 
         public void CloseAssetSettingsMenu()
         {
-
+            gameManager.gameStateActions.ChangeToState(GameState.Application);
         }
     }
 }

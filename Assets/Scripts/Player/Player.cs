@@ -104,14 +104,13 @@ namespace TSGameDev.Interactables
             RaycastHit hit;
             if(Physics.Raycast(cameraa.transform.position, cameraa.transform.forward, out hit, raycastMaxDis, layerBitMask))
             {
-                Debug.Log($"Hit {hit.collider.gameObject.name}");
                 interactionTxt.gameObject.SetActive(true);
                 Interaction = hit.collider.GetComponent<Object.Object>().OpenAssetSettingsMenu;
             }
             else
             {
-                Debug.Log("No Hit");
                 interactionTxt.gameObject.SetActive(false);
+                Interaction = AvoidNullInteractionFunction;
             }
         }
 
@@ -147,7 +146,7 @@ namespace TSGameDev.Interactables
         //function that is assigned to the interaction delegate at the beginning to avoid a null interaction delegate reference
         void AvoidNullInteractionFunction()
         {
-            Debug.Log("Interaction Works");
+            Debug.Log("Avoid Null Interaction Function");
         }
     
     }

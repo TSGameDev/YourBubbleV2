@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: SFX001
   objectData:
+    spawnDisFromPlayer: 0
     soundClip: {fileID: 8300000, guid: b660811bae3b6644fa84b5c8d9e0e782, type: 3}
-    soundVariants: []
     audioType: 0
-    relativeVolume: 0
-    uniformRadius: 0
+    volume: 1
+    minDistance: 1
+    maxDistance: 5
     indoorVariants: []
+    currentIndoorVariant: 0
     model: {fileID: 0}
     effect: {fileID: 0}
-    effectVariants: []
-    speed: 0
     colour: {r: 0, g: 0, b: 0, a: 0}
   objectSprite: {fileID: 0}
   objectName: Sound

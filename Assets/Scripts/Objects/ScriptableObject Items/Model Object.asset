@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: FBX001
   objectData:
+    spawnDisFromPlayer: 0
     soundClip: {fileID: 0}
-    soundVariants: []
     audioType: 0
-    relativeVolume: 0
-    uniformRadius: 0
+    volume: 0
+    minDistance: 0
+    maxDistance: 0
     indoorVariants: []
-    model: {fileID: 348824314927045215, guid: 5571b4c59fa66664ca874457311c64b1, type: 3}
+    currentIndoorVariant: 0
+    model: {fileID: 4802942625574401804, guid: 1211f217308f6f74e9e98a3b1ad0d85f, type: 3}
     effect: {fileID: 0}
-    effectVariants: []
-    speed: 0
     colour: {r: 0, g: 0, b: 0, a: 0}
   objectSprite: {fileID: 0}
   objectName: Model

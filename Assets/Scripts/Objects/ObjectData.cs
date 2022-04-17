@@ -26,6 +26,7 @@ namespace TSGameDev.Object
         public float minDistance;
         public float maxDistance;
         public List<AudioClip> indoorVariants;
+        public int currentIndoorVariant;
         [Space(10)]
 
         #endregion
@@ -42,8 +43,6 @@ namespace TSGameDev.Object
         //series of effect data variables
         [Header("Effect Data")]
         public ParticleSystem effect;
-        public List<ParticleSystem> effectVariants;
-        public float speed;
         public Color colour;
 
         #endregion
@@ -59,12 +58,11 @@ namespace TSGameDev.Object
             minDistance = 1f;
             maxDistance = 10f;
             this.indoorVariants = indoorVariants;
+            currentIndoorVariant = 0;
 
             model = null;
 
             this.effect = effect;
-            this.effectVariants = effectVariants;
-            speed = 1f;
             colour = Color.white;
         }
 

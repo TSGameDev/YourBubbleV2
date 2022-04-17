@@ -153,6 +153,7 @@ MonoBehaviour:
   whiteBalanceTemperatureTxt: {fileID: 3224899296212607042}
   whiteBalanceTintTxt: {fileID: 5031899135538096782}
   playerSetup: {fileID: 4267434801448212900, guid: 16af6bd974a4dac47b0e522144bcb22a, type: 3}
+  sceneObjectDatabase: {fileID: 0}
 --- !u!1001 &4738055623586075697
 PrefabInstance:
   m_ObjectHideFlags: 0

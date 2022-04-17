@@ -50,3 +50,35 @@ MonoBehaviour:
   bubbleSettingsTween: {fileID: 0}
   assetMenuTween: {fileID: 0}
   assetSettingsTween: {fileID: 0}
+  mainMenu: {fileID: -2641964745275582374, guid: 932c2118e2e4c1248b87db782271325c, type: 3}
+  assetMenu: {fileID: 8491448229563287109, guid: 932c2118e2e4c1248b87db782271325c, type: 3}
+  run: {fileID: 5240317027309699792, guid: 932c2118e2e4c1248b87db782271325c, type: 3}
+  quickExit: {fileID: -426329820307258869, guid: 932c2118e2e4c1248b87db782271325c, type: 3}
+  terraforming: {fileID: -2600898271425610369, guid: 932c2118e2e4c1248b87db782271325c, type: 3}
+  interaction: {fileID: -572806180493017915, guid: 932c2118e2e4c1248b87db782271325c, type: 3}
+  cameraRail: {fileID: 1077441615013006360, guid: 932c2118e2e4c1248b87db782271325c, type: 3}
+  mainMenuBindingTxt: {fileID: 0}
+  assetMenuBindingTxt: {fileID: 0}
+  runBindingTxt: {fileID: 0}
+  quickExitBindingTxt: {fileID: 0}
+  terraformingBindingTxt: {fileID: 0}
+  interactionBindingTxt: {fileID: 0}
+  cameraRailBindingTxt: {fileID: 0}
+  waitingForBindTxt: {fileID: 0}
+  interactionTxt: {fileID: 0}
+  soundTypeTxt: {fileID: 0}
+  soundTypeButtonLeft: {fileID: 0}
+  soundTypeButtonRight: {fileID: 0}
+  soundVolumeTxt: {fileID: 0}
+  soundVolumeRight: {fileID: 0}
+  soundVolumeLeft: {fileID: 0}
+  soundMinDisTxt: {fileID: 0}
+  soundMinDisButtonLeft: {fileID: 0}
+  soundMinDisButtonRight: {fileID: 0}
+  soundMaxDisTxt: {fileID: 0}
+  soundMaxDisButtonRight: {fileID: 0}
+  soundMaxDisButtonLeft: {fileID: 0}
+  soundIndoorTxt: {fileID: 0}
+  soundIndoorButtonRight: {fileID: 0}
+  soundIndoorButtonLeft: {fileID: 0}
+  uiState: 0

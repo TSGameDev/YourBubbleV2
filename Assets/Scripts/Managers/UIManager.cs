@@ -25,8 +25,10 @@ namespace TSGameDev.Managers
 
         #endregion
 
+        #region Rebinding Variables
+
         #region Input Action References
-        
+
         //Reference to all the Input Actions for the purpose of rebinding controls
         [Header("Input Action References")]
         [SerializeField] InputActionReference mainMenu;
@@ -41,7 +43,7 @@ namespace TSGameDev.Managers
         #endregion
 
         #region Input Action Binding Texts
-        
+
         //Reference to the Text elements of each UI control binding to update when the control has been changed.
         [Header("Input Action Binding Texts")]
         [SerializeField] TextMeshProUGUI mainMenuBindingTxt;
@@ -56,7 +58,7 @@ namespace TSGameDev.Managers
         //Reference to a text elements gameobject for the purpose of displaying "Waiting for Binding" when the rebinding process as begin and then player needs to input a control
         [SerializeField] GameObject waitingForBindTxt;
         [SerializeField] TextMeshProUGUI interactionTxt;
-        public TextMeshProUGUI InteractionTxt 
+        public TextMeshProUGUI InteractionTxt
         {
             private set { interactionTxt = value; }
             get { return interactionTxt; }
@@ -74,6 +76,11 @@ namespace TSGameDev.Managers
         const string terraformingBindingKey = "Terraforming";
         const string interactionBindingKey = "Interaction";
         const string cameraRailBindingKey = "Camera Rail";
+
+        #endregion
+
+        //A cache of the rebinding controler operation to discard the memory used to prevent memory leakage
+        InputActionRebindingExtensions.RebindingOperation rebindingOperation;
 
         #endregion
 
@@ -101,24 +108,7 @@ namespace TSGameDev.Managers
         [SerializeField] Button soundIndoorButtonLeft;
         [Space(10)]
 
-        [Header("Effect Section Variables")]
-        [SerializeField] TextMeshProUGUI effectVariantTxt;
-        [SerializeField] Button effectVariantButtonRight;
-        [SerializeField] Button effectVariantButtonLeft;
-
-        [SerializeField] TextMeshProUGUI effectSpeedTxt;
-        [SerializeField] Button effectSpeedButtonRight;
-        [SerializeField] Button effectSpeedButtonLeft;
-
-        [SerializeField] TextMeshProUGUI effectColourTxt;
-        [SerializeField] Button effectColourButtonRight;
-        [SerializeField] Button effectColourButtonLeft;
-        [Space(10)]
-
         #endregion
-
-        //A cache of the rebinding controler operation to discard the memory used to prevent memory leakage
-        InputActionRebindingExtensions.RebindingOperation rebindingOperation;
 
         //The global cached UIState
         public UIState uiState = UIState.Mainmenu;
@@ -323,25 +313,30 @@ namespace TSGameDev.Managers
 
         }
 
-        public void UpdateAssetMenuSettings(ObjectData objectdata, AudioSource audioSource = null, ParticleSystem particleSystem = null)
+        /// <summary>
+        /// Updates the asset menu settings to the passed in objects data
+        /// </summary>
+        /// <param name="objectdata">The interacted with objects data to become the values for the asset settings menu</param>
+        /// <param name="audioSource">The audio source attached to the object so OnClick methods will take effect on correct audio source</param>
+        public void UpdateAssetMenuSettings(ObjectData objectdata, AudioSource audioSource = null)
         {
             RemoveAllAssetSettingsListeners();
+            Debug.Log("Removed Listeners");
 
             if (audioSource != null)
             {
                 AssetSettingsUpdateSoundType(objectdata, audioSource);
+                Debug.Log("Updated Sound Type");
                 AssetSettingsUpdateSoundVolume(objectdata, audioSource);
-                AssetSettingsUpdateSoundIndoorVariant(objectdata, audioSource);
-            }
-
-            if (particleSystem != null)
-            {
-                AssetSettingsUpdateEffectVariant(objectdata, particleSystem);
-                AssetSettingsUpdateEffectSpeed(objectdata, particleSystem);
-                AssetSettingsUpdateEffectColour(objectdata, particleSystem);
+                Debug.Log("Updated Sound Volume");
+                if(objectdata.indoorVariants.Count > 0) AssetSettingsUpdateSoundIndoorVariant(objectdata);
+                Debug.Log("Updated Indoor Variants");
             }
         }
 
+        /// <summary>
+        /// Removes all previous listeners to the asset settings buttons
+        /// </summary>
         void RemoveAllAssetSettingsListeners()
         {
             soundTypeButtonLeft.onClick.RemoveAllListeners();
@@ -350,63 +345,70 @@ namespace TSGameDev.Managers
             soundVolumeRight.onClick.RemoveAllListeners();
             soundIndoorButtonLeft.onClick.RemoveAllListeners();
             soundIndoorButtonRight.onClick.RemoveAllListeners();
-
-            effectVariantButtonLeft.onClick.RemoveAllListeners();
-            effectVariantButtonRight.onClick.RemoveAllListeners();
-            effectSpeedButtonLeft.onClick.RemoveAllListeners();
-            effectSpeedButtonRight.onClick.RemoveAllListeners();
-            effectColourButtonLeft.onClick.RemoveAllListeners();
-            effectColourButtonRight.onClick.RemoveAllListeners();
         }
     
+        /// <summary>
+        /// Updates the sound type field of the asset settings
+        /// </summary>
+        /// <param name="objectdata">The object data of the interacted with object</param>
+        /// <param name="audioSource">The audio souce of the interacted with object</param>
         void AssetSettingsUpdateSoundType(ObjectData objectdata, AudioSource audioSource)
         {
             soundTypeTxt.text = objectdata.audioType.ToString();
             soundTypeButtonLeft.onClick.AddListener(() =>
             {
                 objectdata.audioType--;
+                audioSource.spatialBlend--;
                 soundTypeTxt.text = objectdata.audioType.ToString();
             });
             soundTypeButtonRight.onClick.AddListener(() =>
             {
                 objectdata.audioType++;
+                audioSource.spatialBlend++;
                 soundTypeTxt.text = objectdata.audioType.ToString();
             });
         }
 
+        /// <summary>
+        /// Updates the sound volume field of the asset settings
+        /// </summary>
+        /// <param name="objectdata">The object data of the interacted with object</param>
+        /// <param name="audioSource">The audio source of the interacted with object</param>
         void AssetSettingsUpdateSoundVolume(ObjectData objectdata, AudioSource audioSource)
         {
             soundVolumeTxt.text = objectdata.volume.ToString();
             soundVolumeLeft.onClick.AddListener(() =>
             {
                 objectdata.volume--;
+                audioSource.volume--;
                 soundVolumeTxt.text = objectdata.volume.ToString();
             });
             soundVolumeRight.onClick.AddListener(() =>
             {
                 objectdata.volume++;
+                audioSource.volume++;
                 soundVolumeTxt.text = objectdata.volume.ToString();
             });
         }
-    
-        void AssetSettingsUpdateSoundIndoorVariant(ObjectData objectdata, AudioSource audioSource)
+        
+        /// <summary>
+        /// Updates the sound indoor variant field of the asset settings
+        /// </summary>
+        /// <param name="objectdata">The object data of the interacted with object</param>
+        void AssetSettingsUpdateSoundIndoorVariant(ObjectData objectdata)
         {
+            soundIndoorTxt.text = objectdata.indoorVariants[objectdata.currentIndoorVariant].ToString();
+            soundIndoorButtonLeft.onClick.AddListener(() =>
+            {
+                objectdata.currentIndoorVariant--;
+                soundIndoorTxt.text = objectdata.indoorVariants[objectdata.currentIndoorVariant].ToString();
 
-        }
-
-        void AssetSettingsUpdateEffectVariant(ObjectData objectdata, ParticleSystem particleSystem)
-        {
-
-        }
-
-        void AssetSettingsUpdateEffectSpeed(ObjectData objectdata, ParticleSystem particleSystem)
-        {
-
-        }
-
-        void AssetSettingsUpdateEffectColour(ObjectData objectdata, ParticleSystem particleSystem)
-        {
-
+            });
+            soundIndoorButtonRight.onClick.AddListener(() =>
+            {
+                objectdata.currentIndoorVariant++;
+                soundIndoorTxt.text = objectdata.indoorVariants[objectdata.currentIndoorVariant].ToString();
+            });
         }
     }
 
