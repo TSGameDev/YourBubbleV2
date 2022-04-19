@@ -45,6 +45,9 @@ namespace TSGameDev.Interactables
             playerInputs.Game.MainMenu.performed += ctx => gameManager.gameStateActions.ChangeToState(GameState.UI);
             playerInputs.Game.AssetMenu.performed += ctx => gameManager.gameStateActions.ChangeToState(GameState.AssetMenu);
             playerInputs.Game.QuickExit.performed += ctx => uiManager.QuitApplication();
+            playerInputs.Game.MouseLeftClick.performed += ctx => player.callBackDelegate(ctx);
+            playerInputs.Game.ObjectRotationLeft.performed += ctx => player.callBackDelegate(ctx);
+            playerInputs.Game.ObjectRotationRight.performed += ctx => player.callBackDelegate(ctx);
             player.running = playerInputs.Game.Running;
 
             //assgins player controls for the UI action map

@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Settings/Input Actions/PlayerActions.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Scenes/Settings/Input Actions/PlayerActions.inputactions'
 
 using System;
 using System.Collections;
@@ -67,26 +67,34 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Terraforming"",
-                    ""type"": ""Button"",
-                    ""id"": ""0a4cac1a-cdd1-4e86-892f-1dc08a23361a"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Camera Rail"",
-                    ""type"": ""Button"",
-                    ""id"": ""fd208364-c759-42c7-a492-4d75dcbae5f4"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
                     ""name"": ""MouseDelta"",
                     ""type"": ""PassThrough"",
                     ""id"": ""b9c66f07-411c-4f30-942d-03751ba412da"",
                     ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""MouseLeftClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""d33cd2ba-9d7d-437f-acb1-65359ec00e3f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""ObjectRotationLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""66b4e6e0-170f-468c-8a9e-35bbd0747e7a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""ObjectRotationRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""7fb0b46e-7226-4f20-8a56-05f776c6011d"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -150,7 +158,7 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""bec90d9c-91f9-4867-bc6e-b8fa1e5759bd"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -177,28 +185,6 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Asset Menu"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""70fef6c0-894d-425e-bb98-ab794dedf4dd"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Terraforming"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6597841e-1454-4ec7-b4e9-8c6d97be545f"",
-                    ""path"": ""<Keyboard>/c"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Camera Rail"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -232,6 +218,39 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""MouseDelta"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eb230f1c-60fa-413a-8cbb-3320173904a6"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseLeftClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""631b3fe5-2f6a-45ff-81cf-af761872f0a1"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ObjectRotationLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a305a8f2-77bd-4632-a541-6fa7a43cb1f8"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ObjectRotationRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -313,9 +332,10 @@ public class @PlayerActions : IInputActionCollection, IDisposable
         m_Game_MainMenu = m_Game.FindAction("Main Menu", throwIfNotFound: true);
         m_Game_QuickExit = m_Game.FindAction("Quick Exit", throwIfNotFound: true);
         m_Game_AssetMenu = m_Game.FindAction("Asset Menu", throwIfNotFound: true);
-        m_Game_Terraforming = m_Game.FindAction("Terraforming", throwIfNotFound: true);
-        m_Game_CameraRail = m_Game.FindAction("Camera Rail", throwIfNotFound: true);
         m_Game_MouseDelta = m_Game.FindAction("MouseDelta", throwIfNotFound: true);
+        m_Game_MouseLeftClick = m_Game.FindAction("MouseLeftClick", throwIfNotFound: true);
+        m_Game_ObjectRotationLeft = m_Game.FindAction("ObjectRotationLeft", throwIfNotFound: true);
+        m_Game_ObjectRotationRight = m_Game.FindAction("ObjectRotationRight", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_MousePosition = m_UI.FindAction("Mouse Position", throwIfNotFound: true);
@@ -376,9 +396,10 @@ public class @PlayerActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Game_MainMenu;
     private readonly InputAction m_Game_QuickExit;
     private readonly InputAction m_Game_AssetMenu;
-    private readonly InputAction m_Game_Terraforming;
-    private readonly InputAction m_Game_CameraRail;
     private readonly InputAction m_Game_MouseDelta;
+    private readonly InputAction m_Game_MouseLeftClick;
+    private readonly InputAction m_Game_ObjectRotationLeft;
+    private readonly InputAction m_Game_ObjectRotationRight;
     public struct GameActions
     {
         private @PlayerActions m_Wrapper;
@@ -389,9 +410,10 @@ public class @PlayerActions : IInputActionCollection, IDisposable
         public InputAction @MainMenu => m_Wrapper.m_Game_MainMenu;
         public InputAction @QuickExit => m_Wrapper.m_Game_QuickExit;
         public InputAction @AssetMenu => m_Wrapper.m_Game_AssetMenu;
-        public InputAction @Terraforming => m_Wrapper.m_Game_Terraforming;
-        public InputAction @CameraRail => m_Wrapper.m_Game_CameraRail;
         public InputAction @MouseDelta => m_Wrapper.m_Game_MouseDelta;
+        public InputAction @MouseLeftClick => m_Wrapper.m_Game_MouseLeftClick;
+        public InputAction @ObjectRotationLeft => m_Wrapper.m_Game_ObjectRotationLeft;
+        public InputAction @ObjectRotationRight => m_Wrapper.m_Game_ObjectRotationRight;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -419,15 +441,18 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                 @AssetMenu.started -= m_Wrapper.m_GameActionsCallbackInterface.OnAssetMenu;
                 @AssetMenu.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnAssetMenu;
                 @AssetMenu.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnAssetMenu;
-                @Terraforming.started -= m_Wrapper.m_GameActionsCallbackInterface.OnTerraforming;
-                @Terraforming.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnTerraforming;
-                @Terraforming.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnTerraforming;
-                @CameraRail.started -= m_Wrapper.m_GameActionsCallbackInterface.OnCameraRail;
-                @CameraRail.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnCameraRail;
-                @CameraRail.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnCameraRail;
                 @MouseDelta.started -= m_Wrapper.m_GameActionsCallbackInterface.OnMouseDelta;
                 @MouseDelta.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnMouseDelta;
                 @MouseDelta.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnMouseDelta;
+                @MouseLeftClick.started -= m_Wrapper.m_GameActionsCallbackInterface.OnMouseLeftClick;
+                @MouseLeftClick.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnMouseLeftClick;
+                @MouseLeftClick.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnMouseLeftClick;
+                @ObjectRotationLeft.started -= m_Wrapper.m_GameActionsCallbackInterface.OnObjectRotationLeft;
+                @ObjectRotationLeft.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnObjectRotationLeft;
+                @ObjectRotationLeft.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnObjectRotationLeft;
+                @ObjectRotationRight.started -= m_Wrapper.m_GameActionsCallbackInterface.OnObjectRotationRight;
+                @ObjectRotationRight.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnObjectRotationRight;
+                @ObjectRotationRight.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnObjectRotationRight;
             }
             m_Wrapper.m_GameActionsCallbackInterface = instance;
             if (instance != null)
@@ -450,15 +475,18 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                 @AssetMenu.started += instance.OnAssetMenu;
                 @AssetMenu.performed += instance.OnAssetMenu;
                 @AssetMenu.canceled += instance.OnAssetMenu;
-                @Terraforming.started += instance.OnTerraforming;
-                @Terraforming.performed += instance.OnTerraforming;
-                @Terraforming.canceled += instance.OnTerraforming;
-                @CameraRail.started += instance.OnCameraRail;
-                @CameraRail.performed += instance.OnCameraRail;
-                @CameraRail.canceled += instance.OnCameraRail;
                 @MouseDelta.started += instance.OnMouseDelta;
                 @MouseDelta.performed += instance.OnMouseDelta;
                 @MouseDelta.canceled += instance.OnMouseDelta;
+                @MouseLeftClick.started += instance.OnMouseLeftClick;
+                @MouseLeftClick.performed += instance.OnMouseLeftClick;
+                @MouseLeftClick.canceled += instance.OnMouseLeftClick;
+                @ObjectRotationLeft.started += instance.OnObjectRotationLeft;
+                @ObjectRotationLeft.performed += instance.OnObjectRotationLeft;
+                @ObjectRotationLeft.canceled += instance.OnObjectRotationLeft;
+                @ObjectRotationRight.started += instance.OnObjectRotationRight;
+                @ObjectRotationRight.performed += instance.OnObjectRotationRight;
+                @ObjectRotationRight.canceled += instance.OnObjectRotationRight;
             }
         }
     }
@@ -520,9 +548,10 @@ public class @PlayerActions : IInputActionCollection, IDisposable
         void OnMainMenu(InputAction.CallbackContext context);
         void OnQuickExit(InputAction.CallbackContext context);
         void OnAssetMenu(InputAction.CallbackContext context);
-        void OnTerraforming(InputAction.CallbackContext context);
-        void OnCameraRail(InputAction.CallbackContext context);
         void OnMouseDelta(InputAction.CallbackContext context);
+        void OnMouseLeftClick(InputAction.CallbackContext context);
+        void OnObjectRotationLeft(InputAction.CallbackContext context);
+        void OnObjectRotationRight(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

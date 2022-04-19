@@ -54,26 +54,34 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Terraforming",
-                    "type": "Button",
-                    "id": "0a4cac1a-cdd1-4e86-892f-1dc08a23361a",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Camera Rail",
-                    "type": "Button",
-                    "id": "fd208364-c759-42c7-a492-4d75dcbae5f4",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "MouseDelta",
                     "type": "PassThrough",
                     "id": "b9c66f07-411c-4f30-942d-03751ba412da",
                     "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "MouseLeftClick",
+                    "type": "Button",
+                    "id": "d33cd2ba-9d7d-437f-acb1-65359ec00e3f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "ObjectRotationLeft",
+                    "type": "Button",
+                    "id": "66b4e6e0-170f-468c-8a9e-35bbd0747e7a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "ObjectRotationRight",
+                    "type": "Button",
+                    "id": "7fb0b46e-7226-4f20-8a56-05f776c6011d",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 }
@@ -137,7 +145,7 @@
                 {
                     "name": "",
                     "id": "bec90d9c-91f9-4867-bc6e-b8fa1e5759bd",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -164,28 +172,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Asset Menu",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "70fef6c0-894d-425e-bb98-ab794dedf4dd",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Terraforming",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6597841e-1454-4ec7-b4e9-8c6d97be545f",
-                    "path": "<Keyboard>/c",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Camera Rail",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -219,6 +205,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "MouseDelta",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eb230f1c-60fa-413a-8cbb-3320173904a6",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseLeftClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "631b3fe5-2f6a-45ff-81cf-af761872f0a1",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ObjectRotationLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a305a8f2-77bd-4632-a541-6fa7a43cb1f8",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ObjectRotationRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

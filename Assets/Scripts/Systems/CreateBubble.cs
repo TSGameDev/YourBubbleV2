@@ -43,6 +43,7 @@ public class CreateBubble : MonoBehaviour
     [SerializeField] TextMeshProUGUI whiteBalanceTintTxt;
 
     [Header("Scene Creation Prefabs")]
+    [SerializeField] GameObject cameraa;
     [SerializeField] GameObject playerSetup;
     [SerializeField] SceneDatabase sceneObjectDatabase;
 
@@ -331,6 +332,7 @@ public class CreateBubble : MonoBehaviour
         
         Instantiate(playerSetup, new Vector3(currentTerrainWidth / 2, 0, currentTerrainLength / 2), Quaternion.identity);
         sceneObjectDatabase.PopulateAssetMenu();
+        SceneManager.MoveGameObjectToScene(cameraa, SceneManager.GetSceneByName("TestSceneCreation"));
 
         GM.gameState = GameState.Application;
         GM.gameStateActions = new ApplicationStateAction(GM);

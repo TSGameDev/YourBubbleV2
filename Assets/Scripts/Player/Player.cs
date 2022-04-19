@@ -13,6 +13,9 @@ namespace TSGameDev.Interactables
         public delegate void PlayerInteraction();
         public PlayerInteraction Interaction;
 
+        public delegate void CallBackDelegate(InputAction.CallbackContext context = new InputAction.CallbackContext());
+        public CallBackDelegate callBackDelegate;
+
         #endregion
 
         #region Private Variables
@@ -27,9 +30,20 @@ namespace TSGameDev.Interactables
         [Header("Raycast Settings")]
         [SerializeField] TextMeshProUGUI interactionTxt;
         [SerializeField] float raycastMaxDis = 10;
-        int layerBitMask = 1 << 6;
+
+        [Header("Object Reposition String Consts")]
+        [SerializeField] const string leftMouseClickRef = "MouseLeftClick";
+        [SerializeField] const string rotateObjectLeftRef = "ObjectRotationLeft";
+        [SerializeField] const string rotateObjectRightRef = "ObjectRotationRight";
+
+        int objectBitMask = 1 << 6;
+        int environemtBitMask = 1 << 7;
         
         float stepTime;
+
+        GameObject connectedObject = null;
+        bool objectConnected = false;
+
         CharacterController characterController;
         AudioManager audioManager;
         AudioSource audioSource;
@@ -58,6 +72,7 @@ namespace TSGameDev.Interactables
         {
             LockUnlockCursor();
             Interaction = AvoidNullInteractionFunction;
+            callBackDelegate = ObjectSettingsRaycast;
             interactionTxt.gameObject.SetActive(false);
         }
 
@@ -69,7 +84,8 @@ namespace TSGameDev.Interactables
         private void FixedUpdate()
         {
             Gravity();
-            ObjectRaycast();
+            if (objectConnected) ObjectRepositionRaycast();
+            else ObjectSettingsRaycast();
         }
 
         //function controling playing movement using the unity componants character controller and the composite vector2 from Input Actions
@@ -99,19 +115,58 @@ namespace TSGameDev.Interactables
             }
         }
 
-        void ObjectRaycast()
+        public void ObjectSettingsRaycast(InputAction.CallbackContext context = new InputAction.CallbackContext())
         {
             RaycastHit hit;
-            if(Physics.Raycast(cameraa.transform.position, cameraa.transform.forward, out hit, raycastMaxDis, layerBitMask))
+            if(Physics.Raycast(cameraa.transform.position, cameraa.transform.forward, out hit, raycastMaxDis, objectBitMask))
             {
                 interactionTxt.gameObject.SetActive(true);
                 Interaction = hit.collider.GetComponent<Object.Object>().OpenAssetSettingsMenu;
+                if(context.performed)
+                {
+                    hit.collider.gameObject.transform.SetParent(cameraa.transform, true);
+                    objectConnected = true;
+                    connectedObject = hit.collider.gameObject;
+                    callBackDelegate = ObjectRepositionRaycast;
+                }
             }
             else
             {
                 interactionTxt.gameObject.SetActive(false);
                 Interaction = AvoidNullInteractionFunction;
             }
+        }
+
+        public void ObjectRepositionRaycast(InputAction.CallbackContext context = new InputAction.CallbackContext())
+        {
+            RaycastHit hit;
+            if(Physics.Raycast(cameraa.transform.position, cameraa.transform.forward, out hit, raycastMaxDis, environemtBitMask))
+                connectedObject.transform.position = hit.point;
+            else 
+                connectedObject.transform.position = GetObjectSpawnPosition(raycastMaxDis);
+
+            if (context.performed)
+            {
+                switch (context.action.name)
+                {
+                    case leftMouseClickRef:
+                        connectedObject.transform.SetParent(null, true);
+                        objectConnected = false;
+                        callBackDelegate = ObjectSettingsRaycast;
+                        break;
+                    case rotateObjectLeftRef:
+                        connectedObject.transform.eulerAngles += new Vector3(0, 15, 0);
+                        break;
+                    case rotateObjectRightRef:
+                        connectedObject.transform.eulerAngles -= new Vector3(0, 15, 0);
+                        break;
+                    default:
+                        Debug.Log(context.action.name);
+                        break;
+                }
+            }
+            //else
+                //connectedObject.transform.eulerAngles = new Vector3(0, connectedObject.transform.rotation.y, 0);
         }
 
         //function to lock and unlock the cursor I.E. making the cursor visible and unlocked from centre of teh screen
@@ -139,7 +194,7 @@ namespace TSGameDev.Interactables
         public Vector3 GetObjectSpawnPosition(float spawnDisFromPlayer)
         {
             Vector3 spawnPos = cameraa.gameObject.transform.position + (cameraa.gameObject.transform.forward * spawnDisFromPlayer);
-            Debug.Log(spawnPos);
+            spawnPos.y = 0;
             return spawnPos;
         }
 
