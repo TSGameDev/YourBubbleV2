@@ -1,9 +1,9 @@
+using TMPro;
+using TSGameDev.Object;
+using TSGameDev.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using TMPro;
-using TSGameDev.UI;
-using TSGameDev.Object;
 
 namespace TSGameDev.Managers
 {
@@ -110,8 +110,17 @@ namespace TSGameDev.Managers
 
         #endregion
 
+        #region OnClick Button References
+
+        [Header("OnClickButton References")]
+        [SerializeField] Button assetMenuCloseButton;
+        [Space(10)]
+
+        #endregion
+
         //The global cached UIState
         public UIState uiState = UIState.Mainmenu;
+        private GameManager gameManager;
 
         //The singleton instance fo this script
         public static UIManager instance;
@@ -126,12 +135,16 @@ namespace TSGameDev.Managers
 
             //singleton persist through scene loads
             DontDestroyOnLoad(this);
+
+            gameManager = FindObjectOfType<GameManager>();
         }
 
         private void Start()
         {
             //Tweens the main menu in to begin the application
             OpenCloseMainMenu(true);
+            //Assigns some button onclick events that are not possible in inspector
+            AssignButtonOnClickEvents();
         }
 
         /// <summary>
@@ -326,11 +339,10 @@ namespace TSGameDev.Managers
             if (audioSource != null)
             {
                 AssetSettingsUpdateSoundType(objectdata, audioSource);
-                Debug.Log("Updated Sound Type");
                 AssetSettingsUpdateSoundVolume(objectdata, audioSource);
-                Debug.Log("Updated Sound Volume");
                 if(objectdata.indoorVariants.Count > 0) AssetSettingsUpdateSoundIndoorVariant(objectdata);
-                Debug.Log("Updated Indoor Variants");
+                AssetSettingsUpdateSoundMinDistance(objectdata, audioSource);
+                AssetSettingsUpdateSoundMaxDistance(objectdata, audioSource);
             }
         }
 
@@ -379,14 +391,14 @@ namespace TSGameDev.Managers
             soundVolumeTxt.text = objectdata.volume.ToString();
             soundVolumeLeft.onClick.AddListener(() =>
             {
-                objectdata.volume--;
-                audioSource.volume--;
+                objectdata.volume -= 0.1f;
+                audioSource.volume -= 0.1f;
                 soundVolumeTxt.text = objectdata.volume.ToString();
             });
             soundVolumeRight.onClick.AddListener(() =>
             {
-                objectdata.volume++;
-                audioSource.volume++;
+                objectdata.volume += 0.1f;
+                audioSource.volume += 0.1f;
                 soundVolumeTxt.text = objectdata.volume.ToString();
             });
         }
@@ -408,6 +420,61 @@ namespace TSGameDev.Managers
             {
                 objectdata.currentIndoorVariant++;
                 soundIndoorTxt.text = objectdata.indoorVariants[objectdata.currentIndoorVariant].ToString();
+            });
+        }
+        
+        /// <summary>
+        /// Updates the sound min distance field of the asset settings
+        /// </summary>
+        /// <param name="objectdata">Object data of the object interacted with</param>
+        /// <param name="audioSource">Audio source of the object interacted with</param>
+        void AssetSettingsUpdateSoundMinDistance(ObjectData objectdata, AudioSource audioSource)
+        {
+            soundMinDisTxt.text = objectdata.minDistance.ToString();
+            soundMinDisButtonLeft.onClick.AddListener(() =>
+            {
+                objectdata.minDistance--;
+                audioSource.minDistance--;
+                soundMinDisTxt.text = objectdata.minDistance.ToString();
+            });
+            soundMinDisButtonRight.onClick.AddListener(() =>
+            {
+                objectdata.minDistance++;
+                audioSource.minDistance++;
+                soundMinDisTxt.text = objectdata.minDistance.ToString();
+            });
+        }
+
+        /// <summary>
+        /// Updates the sound max distance field of the asset settings
+        /// </summary>
+        /// <param name="objectdata">Obejct data of the object interacted with</param>
+        /// <param name="audioSource">Audio source of the object interacted with</param>
+        void AssetSettingsUpdateSoundMaxDistance(ObjectData objectdata, AudioSource audioSource)
+        {
+            soundMaxDisTxt.text = objectdata.minDistance.ToString();
+            soundMaxDisButtonLeft.onClick.AddListener(() =>
+            {
+                objectdata.maxDistance--;
+                audioSource.maxDistance--;
+                soundMaxDisTxt.text = objectdata.maxDistance.ToString();
+            });
+            soundMaxDisButtonRight.onClick.AddListener(() =>
+            {
+                objectdata.maxDistance++;
+                audioSource.maxDistance++;
+                soundMaxDisTxt.text = objectdata.maxDistance.ToString();
+            });
+        }
+    
+        /// <summary>
+        /// A function used on the start up of the UI manager used to assign buttons on click events that are not possible within the inspector
+        /// </summary>
+        void AssignButtonOnClickEvents()
+        {
+            assetMenuCloseButton.onClick.AddListener(() =>
+            {
+                gameManager.gameStateActions.ChangeToState(GameState.Application);
             });
         }
     }

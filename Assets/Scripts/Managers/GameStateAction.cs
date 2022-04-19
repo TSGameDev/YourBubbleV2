@@ -42,7 +42,6 @@ public class MainMenuStateAction : GameStateAction
 //Application or main game stater for when the user is walking around placing objects.
 public class ApplicationStateAction : GameStateAction
 {
-
     public ApplicationStateAction(GameManager gameManager) : base(gameManager) { }
 
     //Function containing all transitions from the application
@@ -120,6 +119,12 @@ public class AssetSettingsAction : GameStateAction
         switch(state)
         {
             case GameState.Application:
+                player.LockUnlockCursor(true);
+                inputManager.ActiveGameInputs();
+                player.LockUnlockCamera(false);
+                UIManager.instance.OpenCloseAssetSettingsMenu(false);
+                gameManager.gameState = GameState.Application;
+                gameManager.gameStateActions = new ApplicationStateAction(gameManager);
                 break;
         }
     }
