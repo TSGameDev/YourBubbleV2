@@ -34,7 +34,7 @@ namespace TSGameDev.Object
         #region Model
         //series of model data variables
         [Header("Model Data")]
-        public GameObject model;
+        public List<GameObject> model;
         [Space(10)]
 
         #endregion

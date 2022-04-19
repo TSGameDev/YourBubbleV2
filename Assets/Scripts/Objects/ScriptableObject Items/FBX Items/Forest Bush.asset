@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96ac597c151570345b1b6465e55a168e, type: 3}
+  m_Name: Forest Bush
+  m_EditorClassIdentifier: 
+  ID: FBX003
+  objectData:
+    spawnDisFromPlayer: 5
+    soundClip: {fileID: 0}
+    audioType: 0
+    volume: 0
+    minDistance: 0
+    maxDistance: 0
+    indoorVariants: []
+    currentIndoorVariant: 0
+    model:
+    - {fileID: 5847696231395724156, guid: 340dfb69a2bd7b9489afb438cc9e566e, type: 3}
+    - {fileID: 5288558936781117557, guid: 3a751f9001e059c49a8734eeb6593f5b, type: 3}
+    - {fileID: 6667968990907921635, guid: 1937ac3f70365944bad8bdf3b675383d, type: 3}
+    - {fileID: 1881460652296464791, guid: 71a272fc6a9f2954e8d155e0e62bf877, type: 3}
+    - {fileID: 8087222026009764380, guid: af66ed53f2416e842a52e8a869d664f0, type: 3}
+    - {fileID: 7415240224651977786, guid: dd85084267194184cac60c1e085c4336, type: 3}
+    - {fileID: 3316324062562806108, guid: de801a8416b1a0d4cb56c34e1735e4f1, type: 3}
+    - {fileID: 7218652726287053731, guid: 46ef67c4acc33374cab465760f8590b2, type: 3}
+    - {fileID: 3069696375355132070, guid: d6af4aa37d71eff4ea0ca83fc94ad083, type: 3}
+    - {fileID: 2645817894018875756, guid: ddbc24b9f36f2654184c7a064a57bd5b, type: 3}
+    - {fileID: 5637534602108381319, guid: 2cb53f7f60797d44699ecd6deba9b2b0, type: 3}
+    effect: {fileID: 0}
+    colour: {r: 0, g: 0, b: 0, a: 0}
+  objectSprite: {fileID: 0}
+  objectName: Forest Bush

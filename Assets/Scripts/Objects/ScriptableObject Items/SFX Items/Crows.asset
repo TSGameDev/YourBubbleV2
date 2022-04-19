@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96ac597c151570345b1b6465e55a168e, type: 3}
-  m_Name: Model Object
+  m_Name: Crows
   m_EditorClassIdentifier: 
-  ID: FBX001
+  ID: SFX001
   objectData:
-    spawnDisFromPlayer: 0
-    soundClip: {fileID: 0}
+    spawnDisFromPlayer: 5
+    soundClip: {fileID: 8300000, guid: a8e1306586c92024ab56d1a53714224f, type: 3}
     audioType: 0
-    volume: 0
-    minDistance: 0
-    maxDistance: 0
+    volume: 1
+    minDistance: 1
+    maxDistance: 10
     indoorVariants: []
     currentIndoorVariant: 0
-    model: {fileID: 4802942625574401804, guid: 1211f217308f6f74e9e98a3b1ad0d85f, type: 3}
+    model: []
     effect: {fileID: 0}
     colour: {r: 0, g: 0, b: 0, a: 0}
   objectSprite: {fileID: 0}
-  objectName: Model
+  objectName: Crow Ambiance

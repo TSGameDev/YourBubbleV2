@@ -38,7 +38,7 @@ namespace TSGameDev.Object
 
                     if(sound.objectData.model != null)
                     {
-                        newAsset = Instantiate(sound.objectData.model, player.GetObjectSpawnPosition(sound.objectData.spawnDisFromPlayer), Quaternion.identity);
+                        newAsset = Instantiate(sound.objectData.model[0], player.GetObjectSpawnPosition(sound.objectData.spawnDisFromPlayer), Quaternion.identity);
                         newAsset.AddComponent<Object>().data = sound.objectData;
                     }
                     else
@@ -63,7 +63,7 @@ namespace TSGameDev.Object
 
                     if (model.objectData.model != null)
                     {
-                        newAsset = Instantiate(model.objectData.model, player.GetObjectSpawnPosition(model.objectData.spawnDisFromPlayer), Quaternion.identity);
+                        newAsset = Instantiate(model.objectData.model[0], player.GetObjectSpawnPosition(model.objectData.spawnDisFromPlayer), Quaternion.identity);
                         newAsset.AddComponent<Object>().data = model.objectData;
                     }
                     else
@@ -88,7 +88,7 @@ namespace TSGameDev.Object
 
                     if (effect.objectData.model != null)
                     {
-                        newAsset = Instantiate(effect.objectData.model, player.GetObjectSpawnPosition(effect.objectData.spawnDisFromPlayer), Quaternion.identity);
+                        newAsset = Instantiate(effect.objectData.model[0], player.GetObjectSpawnPosition(effect.objectData.spawnDisFromPlayer), Quaternion.identity);
                         newAsset.AddComponent<Object>().data = effect.objectData;
                     }
                     else
