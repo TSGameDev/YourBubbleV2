@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace TSGameDev.Object
 {
@@ -21,5 +20,9 @@ namespace TSGameDev.Object
         [Header("UI Element Data")]
         public Sprite objectSprite;
         public string objectName;
+        [Space(10)]
+
+        [Header("Audio Elements")]
+        public AudioMixerGroup itemSoundsAudioGroup;
     }
 }

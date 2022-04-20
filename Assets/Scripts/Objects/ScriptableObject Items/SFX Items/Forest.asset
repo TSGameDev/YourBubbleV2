@@ -22,7 +22,8 @@ MonoBehaviour:
     maxDistance: 10
     indoorVariants: []
     currentIndoorVariant: 0
-    model: []
+    model:
+    - {fileID: 977356634217492547, guid: d82b134b55457154fb24f531c3866dc5, type: 3}
     effect: {fileID: 0}
     colour: {r: 0, g: 0, b: 0, a: 0}
   objectSprite: {fileID: 0}

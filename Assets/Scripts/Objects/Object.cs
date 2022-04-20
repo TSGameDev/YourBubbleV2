@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using TSGameDev.Managers;
-using TSGameDev.Interactables;
 
 namespace TSGameDev.Object
 {
@@ -11,6 +9,7 @@ namespace TSGameDev.Object
         #region Private Variables
 
         public ObjectData data;
+        public AudioMixerGroup audioMixerGroup;
 
         UIManager uiManager;
         GameManager gameManager;
@@ -33,6 +32,10 @@ namespace TSGameDev.Object
                 audioSource = gameObject.AddComponent<AudioSource>();
                 audioSource.clip = data.soundClip;
                 audioSource.Play();
+                audioSource.minDistance = data.minDistance;
+                audioSource.maxDistance = data.maxDistance;
+                audioSource.volume = data.volume;
+                audioSource.outputAudioMixerGroup = audioMixerGroup;
             }
 
             if (data.effect != null)
