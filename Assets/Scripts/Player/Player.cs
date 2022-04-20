@@ -31,11 +31,16 @@ namespace TSGameDev.Interactables
         [SerializeField] TextMeshProUGUI interactionTxt;
         [SerializeField] float raycastMaxDis = 10;
 
+        [Header("Object Reposition Settings")]
+        [SerializeField] float objectPositionLerpTime = 0.5f;
+        [Space(10)]
+
         [Header("Object Reposition String Consts")]
         [SerializeField] const string leftMouseClickRef = "MouseLeftClick";
         [SerializeField] const string rotateObjectLeftRef = "ObjectRotationLeft";
         [SerializeField] const string rotateObjectRightRef = "ObjectRotationRight";
-
+        
+        
         int objectBitMask = 1 << 6;
         int environemtBitMask = 1 << 7;
         
@@ -124,7 +129,6 @@ namespace TSGameDev.Interactables
                 Interaction = hit.collider.GetComponent<Object.Object>().OpenAssetSettingsMenu;
                 if(context.performed)
                 {
-                    hit.collider.gameObject.transform.SetParent(cameraa.transform, true);
                     objectConnected = true;
                     connectedObject = hit.collider.gameObject;
                     callBackDelegate = ObjectRepositionRaycast;
@@ -140,9 +144,9 @@ namespace TSGameDev.Interactables
         public void ObjectRepositionRaycast(InputAction.CallbackContext context = new InputAction.CallbackContext())
         {
             RaycastHit hit;
-            if(Physics.Raycast(cameraa.transform.position, cameraa.transform.forward, out hit, raycastMaxDis, environemtBitMask))
-                connectedObject.transform.position = hit.point;
-            else 
+            if (Physics.Raycast(cameraa.transform.position, cameraa.transform.forward, out hit, raycastMaxDis, environemtBitMask))
+                connectedObject.transform.position = Vector3.LerpUnclamped(connectedObject.transform.position, hit.point, objectPositionLerpTime);
+            else
                 connectedObject.transform.position = GetObjectSpawnPosition(raycastMaxDis);
 
             if (context.performed)
@@ -150,7 +154,6 @@ namespace TSGameDev.Interactables
                 switch (context.action.name)
                 {
                     case leftMouseClickRef:
-                        connectedObject.transform.SetParent(null, true);
                         objectConnected = false;
                         callBackDelegate = ObjectSettingsRaycast;
                         break;
@@ -165,8 +168,6 @@ namespace TSGameDev.Interactables
                         break;
                 }
             }
-            //else
-                //connectedObject.transform.eulerAngles = new Vector3(0, connectedObject.transform.rotation.y, 0);
         }
 
         //function to lock and unlock the cursor I.E. making the cursor visible and unlocked from centre of teh screen
