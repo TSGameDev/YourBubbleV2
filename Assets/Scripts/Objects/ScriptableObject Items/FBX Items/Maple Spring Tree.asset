@@ -36,3 +36,4 @@ MonoBehaviour:
     colour: {r: 0, g: 0, b: 0, a: 0}
   objectSprite: {fileID: 0}
   objectName: Maple Sping Tree
+  itemSoundsAudioGroup: {fileID: -8120283804797173796, guid: 93f722d42ebe73c46a28a538a7d530a1, type: 2}

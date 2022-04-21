@@ -14,16 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: VFX001
   objectData:
+    spawnDisFromPlayer: 0
     soundClip: {fileID: 0}
-    soundVariants: []
     audioType: 0
-    relativeVolume: 0
-    uniformRadius: 0
+    volume: 0
+    minDistance: 0
+    maxDistance: 0
     indoorVariants: []
-    model: {fileID: 0}
+    currentIndoorVariant: 0
+    model:
+    - {fileID: 0}
     effect: {fileID: 0}
-    effectVariants: []
-    speed: 0
     colour: {r: 0, g: 0, b: 0, a: 0}
   objectSprite: {fileID: 0}
   objectName: Effect
+  itemSoundsAudioGroup: {fileID: -2055689869331865511, guid: 93f722d42ebe73c46a28a538a7d530a1, type: 2}
