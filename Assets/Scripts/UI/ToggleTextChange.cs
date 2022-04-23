@@ -20,7 +20,10 @@ public class ToggleTextChange : MonoBehaviour
         toggle = GetComponent<Toggle>();
     }
 
-    //function to change the text colour on toggles so the text is readable
+    /// <summary>
+    /// Function to change the toggle text of a toggle for better readability. Also mutes the passed in audio group
+    /// </summary>
+    /// <param name="audioGroup">The audio group within the audio mixer to mute</param>
     public void TextColourChange(string audioGroup)
     {
         toggleTxt.color = toggle.isOn ? Color.black : Color.white;

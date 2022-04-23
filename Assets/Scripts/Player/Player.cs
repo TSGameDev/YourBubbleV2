@@ -8,7 +8,7 @@ namespace TSGameDev.Interactables
 {
     public class Player : MonoBehaviour
     {
-        #region Public Variables
+        #region Interaction Variables
 
         public delegate void PlayerInteraction();
         public PlayerInteraction Interaction;
@@ -16,9 +16,24 @@ namespace TSGameDev.Interactables
         public delegate void CallBackDelegate(InputAction.CallbackContext context = new InputAction.CallbackContext());
         public CallBackDelegate callBackDelegate;
 
+        [Header("Interaction Settings")]
+        [SerializeField] TextMeshProUGUI interactionTxt;
+        [SerializeField] float raycastMaxDis = 10;
+        [SerializeField] float objectPositionLerpTime = 0.5f;
+
+        [SerializeField] const string leftMouseClickRef = "MouseLeftClick";
+        [SerializeField] const string rotateObjectLeftRef = "ObjectRotationLeft";
+        [SerializeField] const string rotateObjectRightRef = "ObjectRotationRight";
+        [Space(10)]
+
+        int objectBitMask = 1 << 6;
+        int environemtBitMask = 1 << 7;
+        GameObject connectedObject = null;
+        bool objectConnected = false;
+
         #endregion
 
-        #region Private Variables
+        #region Movement Variables
 
         [Header("Movement Settings")]
         [SerializeField] Camera cameraa;
@@ -27,39 +42,23 @@ namespace TSGameDev.Interactables
         [SerializeField] float stepInterval;
         [Space(10)]
 
-        [Header("Raycast Settings")]
-        [SerializeField] TextMeshProUGUI interactionTxt;
-        [SerializeField] float raycastMaxDis = 10;
-
-        [Header("Object Reposition Settings")]
-        [SerializeField] float objectPositionLerpTime = 0.5f;
-        [Space(10)]
-
-        [Header("Object Reposition String Consts")]
-        [SerializeField] const string leftMouseClickRef = "MouseLeftClick";
-        [SerializeField] const string rotateObjectLeftRef = "ObjectRotationLeft";
-        [SerializeField] const string rotateObjectRightRef = "ObjectRotationRight";
-        
-        
-        int objectBitMask = 1 << 6;
-        int environemtBitMask = 1 << 7;
-        
-        float stepTime;
-
-        GameObject connectedObject = null;
-        bool objectConnected = false;
-
-        CharacterController characterController;
-        AudioManager audioManager;
-        AudioSource audioSource;
-        UIManager uiManager;
-
         #endregion
 
-        #region Get-Set
+        #region Footstep Sound Effect Variables
+        
+        AudioManager audioManager;
+        AudioSource audioSource;
+        float stepTime;
+        
+        #endregion
+
+        #region Character Variables
 
         public Vector2 inputMovement { set; private get; }
         public InputAction running { set; private get; }
+
+        CharacterController characterController;
+        UIManager uiManager;
 
         #endregion
 
@@ -93,7 +92,9 @@ namespace TSGameDev.Interactables
             else ObjectSettingsRaycast();
         }
 
-        //function controling playing movement using the unity componants character controller and the composite vector2 from Input Actions
+        /// <summary>
+        /// Function controlling the movement of the player
+        /// </summary>
         void Movement()
         {
             float x = inputMovement.x;
@@ -111,7 +112,9 @@ namespace TSGameDev.Interactables
             }
         }
 
-        //Function that impliments Gravity to the character controller as the componant doesn't get effected by it naturally.
+        /// <summary>
+        /// Function implimenting gravity to the player as the character controller component isn't effected by natural gravity
+        /// </summary>
         void Gravity()
         {
             if (!characterController.isGrounded)
@@ -120,6 +123,10 @@ namespace TSGameDev.Interactables
             }
         }
 
+        /// <summary>
+        /// Function to control the interaction with an object spawned into the world and calls the object settings functions. Is called in FixedUpdate as raycasts are use.
+        /// </summary>
+        /// <param name="context">The action context from the performed action that called this function in the input manager</param>
         public void ObjectSettingsRaycast(InputAction.CallbackContext context = new InputAction.CallbackContext())
         {
             RaycastHit hit;
@@ -141,6 +148,10 @@ namespace TSGameDev.Interactables
             }
         }
 
+        /// <summary>
+        /// The function controlling the reposition of a selected object spawned into the world
+        /// </summary>
+        /// <param name="context">The action context from the performed aaction that called this fucntion in the input manager</param>
         public void ObjectRepositionRaycast(InputAction.CallbackContext context = new InputAction.CallbackContext())
         {
             RaycastHit hit;
@@ -170,7 +181,10 @@ namespace TSGameDev.Interactables
             }
         }
 
-        //function to lock and unlock the cursor I.E. making the cursor visible and unlocked from centre of teh screen
+        /// <summary>
+        /// Function locks and unlocks the cursor based on the passed bool
+        /// </summary>
+        /// <param name="isLocked">Bool that locks or unlocks the cursor. To lock cursor this needs to be True</param>
         public void LockUnlockCursor(bool isLocked = true)
         {
             if (isLocked)
@@ -186,12 +200,20 @@ namespace TSGameDev.Interactables
 
         }
 
-        //function to lock and unlock the camera I.E. stop the camera from responding to mouse movements
+        /// <summary>
+        /// Function locks and unlocked the camera by turning the cinemachine componants on and off.
+        /// </summary>
+        /// <param name="isLocked">Bool that lock and unlocks the camera. To lock camera this need to be True</param>
         public void LockUnlockCamera(bool isLocked)
         {
             virtualcam.enabled = !isLocked;
         }
-    
+        
+        /// <summary>
+        /// Function to get a position away form the players front.
+        /// </summary>
+        /// <param name="spawnDisFromPlayer">The float value away from the player in the forward direction</param>
+        /// <returns></returns>
         public Vector3 GetObjectSpawnPosition(float spawnDisFromPlayer)
         {
             Vector3 spawnPos = cameraa.gameObject.transform.position + (cameraa.gameObject.transform.forward * spawnDisFromPlayer);
@@ -199,7 +221,9 @@ namespace TSGameDev.Interactables
             return spawnPos;
         }
 
-        //function that is assigned to the interaction delegate at the beginning to avoid a null interaction delegate reference
+        /// <summary>
+        /// Function to assign to delegate to avoid them being null at the start of in some situations when they are unassigned.
+        /// </summary>
         void AvoidNullInteractionFunction()
         {
             Debug.Log("Avoid Null Interaction Function");

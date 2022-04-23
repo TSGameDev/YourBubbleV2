@@ -17,6 +17,10 @@ public class CreateBubble : MonoBehaviour
     [SerializeField] TextMeshProUGUI terrainWidthTxt;
     [Space(10)]
 
+    #endregion
+
+    #region Post Processing Variables
+
     [Header("Post Processing Texts")]
     [SerializeField] TextMeshProUGUI DOFFocusDistanceTxt;
     [SerializeField] TextMeshProUGUI DOFFocalLengthTxt;
@@ -42,13 +46,13 @@ public class CreateBubble : MonoBehaviour
     [SerializeField] TextMeshProUGUI whiteBalanceTemperatureTxt;
     [SerializeField] TextMeshProUGUI whiteBalanceTintTxt;
 
+    #endregion
+
+    #region Scene Creation Variables
     [Header("Scene Creation Prefabs")]
     [SerializeField] GameObject cameraa;
     [SerializeField] GameObject playerSetup;
     [SerializeField] SceneDatabase sceneObjectDatabase;
-
-    GameManager GM;
-    UIManager uiManager;
 
     Material currentSkybox;
     int posInSkyboxArray = 0;
@@ -67,6 +71,9 @@ public class CreateBubble : MonoBehaviour
 
     #endregion
 
+    GameManager GM;
+    UIManager uiManager;
+
     private void Awake()
     {
         GM = FindObjectOfType<GameManager>();
@@ -77,7 +84,10 @@ public class CreateBubble : MonoBehaviour
 
     }
 
-    //Function used to increase the value of a bubble setting field I.E. increasing position in list of skyboxes
+    /// <summary>
+    /// Increase one of the values within the create bubble settings menu
+    /// </summary>
+    /// <param name="FieldToIncrease">Which field the call will increase</param>
     public void IncreaseField(string FieldToIncrease)
     {
         switch (FieldToIncrease)
@@ -158,7 +168,10 @@ public class CreateBubble : MonoBehaviour
         }
     }
 
-    //Function use to decrease tge value of a bubble setting field
+    /// <summary>
+    /// Decrease one of the values within the create bubble settings menu
+    /// </summary>
+    /// <param name="FieldToIncrease">Which field the call will decrease</param>
     public void DecreaseField(string FieldToDecrease)
     {
         switch (FieldToDecrease)
@@ -238,7 +251,9 @@ public class CreateBubble : MonoBehaviour
         }
     }
 
-    //function to select a skybox
+    /// <summary>
+    /// Function to select a skybox from the array located on the game manager
+    /// </summary>
     void SelectSkyBox()
     {
         if (posInSkyboxArray >= GM.Skyboxes.Length) { currentSkybox = GM.Skyboxes[GM.Skyboxes.Length - 1]; posInSkyboxArray = GM.Skyboxes.Length - 1; }
@@ -246,7 +261,9 @@ public class CreateBubble : MonoBehaviour
         else { currentSkybox = GM.Skyboxes[posInSkyboxArray]; }
     }
 
-    //function to select a terrain texture
+    /// <summary>
+    /// Function to select the terrain texture of the world from the array located on the game manager
+    /// </summary>
     void SelectTerrainTexture()
     {
         if (posInTerrainArray >= GM.TerrainTextures.Length) 
@@ -265,7 +282,10 @@ public class CreateBubble : MonoBehaviour
         }
     }
 
-    //function to select a tone mapping mode
+    /// <summary>
+    /// Function to select the tone mapping mode post processing
+    /// </summary>
+    /// <param name="postProcessingData">The post processing data used within the created bubble/overhaul application</param>
     void SelectToneMappingMode(ScenePostProcessingData postProcessingData)
     {
         if (posInToneMappingArray >= TonemappingModes.Length - 1) 
@@ -287,7 +307,9 @@ public class CreateBubble : MonoBehaviour
         }
     }
 
-    //function called within the awake function to setup the text elements
+    /// <summary>
+    /// function to 'awake' the UI of the create bubble settings
+    /// </summary>
     void AwakeText()
     {
         skyboxTxt.text = currentSkybox.name;
@@ -315,7 +337,9 @@ public class CreateBubble : MonoBehaviour
         whiteBalanceTintTxt.text = GM.scenePostProcessingData.whiteBalance.tint.value.ToString();
     }
 
-    //function to the create a new scene
+    /// <summary>
+    /// function to create the new scene of which the player can spawn different models, effects and sounds to build an environment
+    /// </summary>
     public void CreateScene()
     {
         SceneManager.CreateScene("TestSceneCreation");
@@ -337,4 +361,5 @@ public class CreateBubble : MonoBehaviour
         GM.gameState = GameState.Application;
         GM.gameStateActions = new ApplicationStateAction(GM);
     }
+
 }

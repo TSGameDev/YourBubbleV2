@@ -23,10 +23,12 @@ namespace TSGameDev.systems
         bool onShelterEnterCalled;
         bool onShelterExitCalled;
 
+        #endregion
+
         private void FixedUpdate()
         {
             RaycastHit hit;
-            
+            //If a ray hits something on the envionrment layer above the player, make sounds play their indoor variants via events
             if(Physics.Raycast(transform.position, Vector3.up, out hit, raycastDistance, environmentLayermask))
             {
                 if (!onShelterEnterCalled) 
@@ -36,6 +38,7 @@ namespace TSGameDev.systems
                     onShelterExitCalled = false; 
                 }
             }
+            //if not, make sounds play outside variant via events
             else
             {
                 if (!onShelterExitCalled) 
@@ -46,8 +49,5 @@ namespace TSGameDev.systems
                 }
             }
         }
-
-
-        #endregion
     }
 }
