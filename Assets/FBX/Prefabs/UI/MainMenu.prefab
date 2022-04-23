@@ -217,31 +217,31 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7624206116154398852}
-        m_TargetAssemblyTypeName: UITween, Assembly-CSharp
+        m_TargetAssemblyTypeName: TSGameDev.UI.UITween, Assembly-CSharp
         m_MethodName: BeginTween
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
   OnTweenReturn:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7624206116352128862}
-        m_TargetAssemblyTypeName: UITween, Assembly-CSharp
+        m_TargetAssemblyTypeName: TSGameDev.UI.UITween, Assembly-CSharp
         m_MethodName: ReturnTween
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &7624206115115547111
 GameObject:
@@ -471,29 +471,29 @@ MonoBehaviour:
   tweenLocation: {fileID: 6457498467876213751}
   tweenRotation: {x: 0, y: 0, z: 0, w: 0}
   tweenScale: {x: 1, y: 1, z: 1}
-  moveTweenTime: 1
+  moveTweenTime: 0.5
   rotationTweenTime: 0
   scaleTweenTime: 0
   OnTweenComplete:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7624206116352128862}
-        m_TargetAssemblyTypeName: UITween, Assembly-CSharp
+        m_TargetAssemblyTypeName: TSGameDev.UI.UITween, Assembly-CSharp
         m_MethodName: BeginTween
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
   OnTweenReturn:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: TSGameDev.Managers.UIManager, Assembly-CSharp
         m_MethodName: MainMenuChange
         m_Mode: 1
         m_Arguments:
@@ -937,20 +937,20 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7624206116016167302}
-        m_TargetAssemblyTypeName: UITween, Assembly-CSharp
+        m_TargetAssemblyTypeName: TSGameDev.UI.UITween, Assembly-CSharp
         m_MethodName: ReturnTween
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: ChangeState
+        m_TargetAssemblyTypeName: TSGameDev.Managers.UIManager, Assembly-CSharp
+        m_MethodName: ChangeUIState
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -988,16 +988,16 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7624206116154398852}
-        m_TargetAssemblyTypeName: UITween, Assembly-CSharp
+        m_TargetAssemblyTypeName: TSGameDev.UI.UITween, Assembly-CSharp
         m_MethodName: ReturnTween
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &7624206116154398863
 GameObject:
@@ -1122,20 +1122,20 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7624206116016167302}
-        m_TargetAssemblyTypeName: UITween, Assembly-CSharp
+        m_TargetAssemblyTypeName: TSGameDev.UI.UITween, Assembly-CSharp
         m_MethodName: ReturnTween
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: ChangeState
+        m_TargetAssemblyTypeName: TSGameDev.Managers.UIManager, Assembly-CSharp
+        m_MethodName: ChangeUIState
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1170,31 +1170,31 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7624206116016167302}
-        m_TargetAssemblyTypeName: UITween, Assembly-CSharp
+        m_TargetAssemblyTypeName: TSGameDev.UI.UITween, Assembly-CSharp
         m_MethodName: BeginTween
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
   OnTweenReturn:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7624206114619667875}
-        m_TargetAssemblyTypeName: UITween, Assembly-CSharp
+        m_TargetAssemblyTypeName: TSGameDev.UI.UITween, Assembly-CSharp
         m_MethodName: ReturnTween
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &7624206116352128857
 GameObject:
@@ -1319,20 +1319,20 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7624206116016167302}
-        m_TargetAssemblyTypeName: UITween, Assembly-CSharp
+        m_TargetAssemblyTypeName: TSGameDev.UI.UITween, Assembly-CSharp
         m_MethodName: ReturnTween
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: ChangeState
+        m_TargetAssemblyTypeName: TSGameDev.Managers.UIManager, Assembly-CSharp
+        m_MethodName: ChangeUIState
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1367,31 +1367,31 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7624206114619667875}
-        m_TargetAssemblyTypeName: UITween, Assembly-CSharp
+        m_TargetAssemblyTypeName: TSGameDev.UI.UITween, Assembly-CSharp
         m_MethodName: BeginTween
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
   OnTweenReturn:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7624206115434760011}
-        m_TargetAssemblyTypeName: UITween, Assembly-CSharp
+        m_TargetAssemblyTypeName: TSGameDev.UI.UITween, Assembly-CSharp
         m_MethodName: ReturnTween
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &7624206116590858063
 GameObject:

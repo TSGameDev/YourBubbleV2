@@ -48,12 +48,18 @@ namespace TSGameDev.Object
             boxCollider.size = new Vector3(1, 1, 1);
         }
 
+        /// <summary>
+        /// Opens the Asset Settings Menu via the Game State Actions, to perform functions to change states, and UI Manager, to update UI elements to match Object data of selected object.
+        /// </summary>
         public void OpenAssetSettingsMenu()
         {
             gameManager.gameStateActions.ChangeToState(GameState.AssetSettings);
             uiManager.UpdateAssetMenuSettings(data, audioSource);
         }
 
+        /// <summary>
+        /// Closes the Asset Settings Menu via the Game State Acions.
+        /// </summary>
         public void CloseAssetSettingsMenu()
         {
             gameManager.gameStateActions.ChangeToState(GameState.Application);

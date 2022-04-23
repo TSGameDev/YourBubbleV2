@@ -16,13 +16,15 @@ namespace TSGameDev.Object
         public ObjectData objectData;
         [Space(10)]
 
-        //Require elemts for UI and AssetMenu spawning
+        
         [Header("UI Element Data")]
+        //Require elemts for UI and AssetMenu spawning
         public Sprite objectSprite;
         public string objectName;
         [Space(10)]
 
         [Header("Audio Elements")]
+        //Require element to make the player setting effect the volume of sounds spawned into the world
         public AudioMixerGroup itemSoundsAudioGroup;
     }
 }

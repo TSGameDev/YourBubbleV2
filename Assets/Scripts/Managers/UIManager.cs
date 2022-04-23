@@ -340,7 +340,7 @@ namespace TSGameDev.Managers
             {
                 AssetSettingsUpdateSoundType(objectdata, audioSource);
                 AssetSettingsUpdateSoundVolume(objectdata, audioSource);
-                if(objectdata.indoorVariants.Count > 0) AssetSettingsUpdateSoundIndoorVariant(objectdata);
+                AssetSettingsUpdateSoundIndoorVariant(objectdata);
                 AssetSettingsUpdateSoundMinDistance(objectdata, audioSource);
                 AssetSettingsUpdateSoundMaxDistance(objectdata, audioSource);
             }
@@ -409,18 +409,7 @@ namespace TSGameDev.Managers
         /// <param name="objectdata">The object data of the interacted with object</param>
         void AssetSettingsUpdateSoundIndoorVariant(ObjectData objectdata)
         {
-            soundIndoorTxt.text = objectdata.indoorVariants[objectdata.currentIndoorVariant].ToString();
-            soundIndoorButtonLeft.onClick.AddListener(() =>
-            {
-                objectdata.currentIndoorVariant--;
-                soundIndoorTxt.text = objectdata.indoorVariants[objectdata.currentIndoorVariant].ToString();
-
-            });
-            soundIndoorButtonRight.onClick.AddListener(() =>
-            {
-                objectdata.currentIndoorVariant++;
-                soundIndoorTxt.text = objectdata.indoorVariants[objectdata.currentIndoorVariant].ToString();
-            });
+            soundIndoorTxt.text = objectdata.indoorVariant.ToString();
         }
         
         /// <summary>

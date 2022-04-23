@@ -66,7 +66,9 @@ namespace TSGameDev.Managers
             scenePostProcessingData = new ScenePostProcessingData(volumeProfile);
         }
     
-        //Function to close the asset menu
+        /// <summary>
+        /// Function to close the Asset menu
+        /// </summary>
         public void CloseAssetMenu()
         {
             gameStateActions.ChangeToState(GameState.Application);

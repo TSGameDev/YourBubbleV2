@@ -19,7 +19,9 @@ namespace TSGameDev.Object
 
         private Player player;
 
-
+        /// <summary>
+        /// Function to popular the asset menu with all items stored in the respective databases
+        /// </summary>
         public void PopulateAssetMenu()
         {
             player = FindObjectOfType<Player>();

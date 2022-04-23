@@ -340,7 +340,7 @@ MonoBehaviour:
   tweenLocation: {fileID: 844863307722298272}
   tweenRotation: {x: 0, y: 0, z: 0, w: 0}
   tweenScale: {x: 1, y: 1, z: 1}
-  moveTweenTime: 2
+  moveTweenTime: 1
   rotationTweenTime: 0
   scaleTweenTime: 0
   OnTweenComplete:
@@ -350,16 +350,16 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UITween, Assembly-CSharp
+        m_TargetAssemblyTypeName: TSGameDev.UI.UITween, Assembly-CSharp
         m_MethodName: BeginTween
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &1682016000702536525
 GameObject:
@@ -617,16 +617,16 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 453349208584151397}
-        m_TargetAssemblyTypeName: UITween, Assembly-CSharp
+        m_TargetAssemblyTypeName: TSGameDev.UI.UITween, Assembly-CSharp
         m_MethodName: ReturnTween
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &4154709902381946663
 GameObject:
