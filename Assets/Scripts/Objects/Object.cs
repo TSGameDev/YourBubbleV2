@@ -8,6 +8,7 @@ namespace TSGameDev.Object
     {
         #region Private Variables
 
+        public ObjectSO objectItem;
         public ObjectData data;
         public AudioMixerGroup audioMixerGroup;
 
@@ -27,10 +28,10 @@ namespace TSGameDev.Object
 
         private void Start()
         {
-            if (data.soundClip != null)
+            if (objectItem.soundClip != null)
             {
                 audioSource = gameObject.AddComponent<AudioSource>();
-                audioSource.clip = data.soundClip;
+                audioSource.clip = objectItem.soundClip;
                 audioSource.Play();
                 audioSource.minDistance = data.minDistance;
                 audioSource.maxDistance = data.maxDistance;
@@ -38,9 +39,9 @@ namespace TSGameDev.Object
                 audioSource.outputAudioMixerGroup = audioMixerGroup;
             }
 
-            if (data.effect != null)
+            if (objectItem.effect != null)
             {
-                currentParticleSystem = Instantiate(data.effect, gameObject.transform);
+                currentParticleSystem = Instantiate(objectItem.effect, gameObject.transform);
                 
             }
             gameObject.layer = 6;
@@ -54,7 +55,7 @@ namespace TSGameDev.Object
         public void OpenAssetSettingsMenu()
         {
             gameManager.gameStateActions.ChangeToState(GameState.AssetSettings);
-            uiManager.UpdateAssetMenuSettings(data, audioSource);
+            uiManager.UpdateAssetMenuSettings(objectItem, data, audioSource);
         }
 
         /// <summary>

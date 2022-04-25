@@ -9,19 +9,9 @@ namespace TSGameDev.Object
     [Serializable]
     public struct ObjectData
     {
-        #region General Settings
-
-        [Header("User benefit settings")]
-        public float spawnDisFromPlayer;
-        [Space(10)]
-
-        #endregion
-
         #region Sound
         //series of sound data variables
         [Header("Sound Data")]
-        public AudioClip soundClip;
-        public AudioClip indoorVariant;
         public AudioType audioType;
         public float volume;
         public float minDistance;
@@ -30,18 +20,9 @@ namespace TSGameDev.Object
 
         #endregion
 
-        #region Model
-        //series of model data variables
-        [Header("Model Data")]
-        public List<GameObject> model;
-        [Space(10)]
-
-        #endregion
-
         #region Effect
         //series of effect data variables
         [Header("Effect Data")]
-        public ParticleSystem effect;
         public Color colour;
 
         #endregion
@@ -52,21 +33,15 @@ namespace TSGameDev.Object
         /// <param name="soundClip">The Sound for sound base items</param>
         /// <param name="indoorVariants">A sound clip as an indoor version of the primary sound</param>
         /// <param name="effect">The Effect for effect base items</param>
-        public ObjectData(AudioClip soundClip, AudioClip indoorVariant, ParticleSystem effect)
+        public ObjectData(Color colour, AudioType audioType = AudioType.Mode2D, float volume = 1f, float minDis = 1f, float maxDis = 10f)
         {
-            spawnDisFromPlayer = 5f;
-
-            this.soundClip = soundClip;
-            audioType = AudioType.Mode2D;
-            volume = 1f;
-            minDistance = 1f;
-            maxDistance = 10f;
-            this.indoorVariant = indoorVariant;
-
-            model = null;
-
-            this.effect = effect;
-            colour = Color.white;
+            
+            this.audioType = audioType;
+            this.volume = volume;
+            this.minDistance = minDis;
+            this.maxDistance = maxDis;
+            if (colour == null) this.colour = Color.white;
+            else this.colour = colour;
         }
 
     }

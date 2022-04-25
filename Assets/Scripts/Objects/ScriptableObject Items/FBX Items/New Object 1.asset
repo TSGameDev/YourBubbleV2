@@ -10,23 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96ac597c151570345b1b6465e55a168e, type: 3}
-  m_Name: Thicket
+  m_Name: New Object 1
   m_EditorClassIdentifier: 
-  ID: FBX009
+  ID: 
+  spawnDisFromPlayer: 0
+  soundClip: {fileID: 0}
+  indoorVariant: {fileID: 0}
+  model: []
+  effect: {fileID: 0}
   objectData:
-    spawnDisFromPlayer: 5
-    soundClip: {fileID: 0}
     audioType: 0
     volume: 0
     minDistance: 0
     maxDistance: 0
-    indoorVariants: []
-    currentIndoorVariant: 0
-    model:
-    - {fileID: 2822124737668333667, guid: 4dec21770026cf541b8459e8d1866c8d, type: 3}
-    - {fileID: 3675705996514140063, guid: 1ee1640807392c0428d2e2e0fd889308, type: 3}
-    effect: {fileID: 0}
     colour: {r: 0, g: 0, b: 0, a: 0}
   objectSprite: {fileID: 0}
-  objectName: Thicket
-  itemSoundsAudioGroup: {fileID: -8120283804797173796, guid: 93f722d42ebe73c46a28a538a7d530a1, type: 2}
+  objectName: 
+  itemSoundsAudioGroup: {fileID: 0}

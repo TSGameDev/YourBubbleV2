@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -13,6 +14,15 @@ namespace TSGameDev.Object
 
         [Header("ObjectData")]
         //Object componant data for manipulation, saving and loading
+        public float spawnDisFromPlayer; 
+        [Space(5)]
+        public AudioClip soundClip;
+        public AudioClip indoorVariant;
+        //series of model data variables
+        public List<GameObject> model;
+        [Space(5)]
+        public ParticleSystem effect;
+        [Space(5)]
         public ObjectData objectData;
         [Space(10)]
 

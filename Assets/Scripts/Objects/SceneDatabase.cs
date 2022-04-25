@@ -38,18 +38,22 @@ namespace TSGameDev.Object
                     Debug.Log("On Click Event Called");
                     GameObject newAsset = null;
 
-                    if(sound.objectData.model != null)
+                    if(sound.model != null)
                     {
-                        newAsset = Instantiate(sound.objectData.model[0], player.GetObjectSpawnPosition(sound.objectData.spawnDisFromPlayer), Quaternion.identity);
+                        newAsset = Instantiate(sound.model[0], player.GetObjectSpawnPosition(sound.spawnDisFromPlayer), Quaternion.identity);
                         newAsset.AddComponent<Object>().data = sound.objectData;
-                        newAsset.GetComponent<Object>().audioMixerGroup = sound.itemSoundsAudioGroup;
+                        Object obj = newAsset.GetComponent<Object>();
+                        obj.audioMixerGroup = sound.itemSoundsAudioGroup;
+                        obj.objectItem = sound;
                     }
                     else
                     {
                         newAsset = new GameObject($"{sound.objectName}", typeof(Object));
-                        newAsset.transform.position = player.GetObjectSpawnPosition(sound.objectData.spawnDisFromPlayer);
+                        newAsset.transform.position = player.GetObjectSpawnPosition(sound.spawnDisFromPlayer);
                         newAsset.GetComponent<Object>().data = sound.objectData;
-                        newAsset.GetComponent<Object>().audioMixerGroup = sound.itemSoundsAudioGroup;
+                        Object obj = newAsset.GetComponent<Object>();
+                        obj.audioMixerGroup = sound.itemSoundsAudioGroup;
+                        obj.objectItem = sound;
                     }
 
                 });
@@ -65,18 +69,22 @@ namespace TSGameDev.Object
                     Debug.Log("On Click Event Called");
                     GameObject newAsset = null;
 
-                    if (model.objectData.model != null)
+                    if (model.model != null)
                     {
-                        newAsset = Instantiate(model.objectData.model[0], player.GetObjectSpawnPosition(model.objectData.spawnDisFromPlayer), Quaternion.identity);
+                        newAsset = Instantiate(model.model[0], player.GetObjectSpawnPosition(model.spawnDisFromPlayer), Quaternion.identity);
                         newAsset.AddComponent<Object>().data = model.objectData;
-                        newAsset.GetComponent<Object>().audioMixerGroup = model.itemSoundsAudioGroup;
+                        Object obj = newAsset.GetComponent<Object>();
+                        obj.audioMixerGroup = model.itemSoundsAudioGroup;
+                        obj.objectItem = model;
                     }
                     else
                     {
                         newAsset = new GameObject($"{model.objectName}", typeof(Object));
-                        newAsset.transform.position = player.GetObjectSpawnPosition(model.objectData.spawnDisFromPlayer);
+                        newAsset.transform.position = player.GetObjectSpawnPosition(model.spawnDisFromPlayer);
                         newAsset.GetComponent<Object>().data = model.objectData;
-                        newAsset.GetComponent<Object>().audioMixerGroup = model.itemSoundsAudioGroup;
+                        Object obj = newAsset.GetComponent<Object>();
+                        obj.audioMixerGroup = model.itemSoundsAudioGroup;
+                        obj.objectItem = model;
                     }
 
                 });
@@ -92,18 +100,22 @@ namespace TSGameDev.Object
                     Debug.Log("On Click Event Called");
                     GameObject newAsset = null;
 
-                    if (effect.objectData.model != null)
+                    if (effect.model != null)
                     {
-                        newAsset = Instantiate(effect.objectData.model[0], player.GetObjectSpawnPosition(effect.objectData.spawnDisFromPlayer), Quaternion.identity);
+                        newAsset = Instantiate(effect.model[0], player.GetObjectSpawnPosition(effect.spawnDisFromPlayer), Quaternion.identity);
                         newAsset.AddComponent<Object>().data = effect.objectData;
-                        newAsset.GetComponent<Object>().audioMixerGroup = effect.itemSoundsAudioGroup;
+                        Object obj = newAsset.GetComponent<Object>();
+                        obj.audioMixerGroup = effect.itemSoundsAudioGroup;
+                        obj.objectItem = effect;
                     }
                     else
                     {
                         newAsset = new GameObject($"{effect.objectName}", typeof(Object));
-                        newAsset.transform.position = player.GetObjectSpawnPosition(effect.objectData.spawnDisFromPlayer);
+                        newAsset.transform.position = player.GetObjectSpawnPosition(effect.spawnDisFromPlayer);
                         newAsset.GetComponent<Object>().data = effect.objectData;
-                        newAsset.GetComponent<Object>().audioMixerGroup = effect.itemSoundsAudioGroup;
+                        Object obj = newAsset.GetComponent<Object>();
+                        obj.audioMixerGroup = effect.itemSoundsAudioGroup;
+                        obj.objectItem = effect;
                     }
 
                 });

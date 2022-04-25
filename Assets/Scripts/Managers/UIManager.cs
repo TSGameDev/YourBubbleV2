@@ -331,7 +331,7 @@ namespace TSGameDev.Managers
         /// </summary>
         /// <param name="objectdata">The interacted with objects data to become the values for the asset settings menu</param>
         /// <param name="audioSource">The audio source attached to the object so OnClick methods will take effect on correct audio source</param>
-        public void UpdateAssetMenuSettings(ObjectData objectdata, AudioSource audioSource = null)
+        public void UpdateAssetMenuSettings(ObjectSO objectItem, ObjectData objectdata, AudioSource audioSource = null)
         {
             RemoveAllAssetSettingsListeners();
             Debug.Log("Removed Listeners");
@@ -340,7 +340,7 @@ namespace TSGameDev.Managers
             {
                 AssetSettingsUpdateSoundType(objectdata, audioSource);
                 AssetSettingsUpdateSoundVolume(objectdata, audioSource);
-                AssetSettingsUpdateSoundIndoorVariant(objectdata);
+                AssetSettingsUpdateSoundIndoorVariant(objectItem);
                 AssetSettingsUpdateSoundMinDistance(objectdata, audioSource);
                 AssetSettingsUpdateSoundMaxDistance(objectdata, audioSource);
             }
@@ -407,9 +407,9 @@ namespace TSGameDev.Managers
         /// Updates the sound indoor variant field of the asset settings
         /// </summary>
         /// <param name="objectdata">The object data of the interacted with object</param>
-        void AssetSettingsUpdateSoundIndoorVariant(ObjectData objectdata)
+        void AssetSettingsUpdateSoundIndoorVariant(ObjectSO objectItem)
         {
-            soundIndoorTxt.text = objectdata.indoorVariant.ToString();
+            soundIndoorTxt.text = objectItem.indoorVariant.ToString();
         }
         
         /// <summary>
