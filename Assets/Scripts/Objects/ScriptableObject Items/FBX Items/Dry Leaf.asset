@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96ac597c151570345b1b6465e55a168e, type: 3}
-  m_Name: New Object
+  m_Name: Dry Leaf
   m_EditorClassIdentifier: 
-  ID: 
-  spawnDisFromPlayer: 0
+  ID: FBX001
+  spawnDisFromPlayer: 5
   soundClip: {fileID: 0}
   indoorVariant: {fileID: 0}
-  model: []
+  model:
+  - {fileID: 906369411404259083, guid: 5bffb77cffef4cd4c9f409dddac1e66e, type: 3}
+  - {fileID: 7299975703468247617, guid: 4ce0585c3fc7c6a40916ffdda2ee581f, type: 3}
   effect: {fileID: 0}
   objectData:
     audioType: 0
@@ -25,5 +27,5 @@ MonoBehaviour:
     maxDistance: 0
     colour: {r: 0, g: 0, b: 0, a: 0}
   objectSprite: {fileID: 0}
-  objectName: 
+  objectName: Dry Leaf
   itemSoundsAudioGroup: {fileID: 0}

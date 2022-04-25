@@ -10,13 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96ac597c151570345b1b6465e55a168e, type: 3}
-  m_Name: New Object 4
+  m_Name: Grass Plant
   m_EditorClassIdentifier: 
-  ID: 
-  spawnDisFromPlayer: 0
+  ID: FBX009
+  spawnDisFromPlayer: 5
   soundClip: {fileID: 0}
   indoorVariant: {fileID: 0}
-  model: []
+  model:
+  - {fileID: 4367639017824091188, guid: 55ee404c16852594eb8c995fe90ce217, type: 3}
+  - {fileID: 3340949777533558514, guid: d4c756c253cff0c46b8bbf9481426cac, type: 3}
+  - {fileID: 3551186065519224072, guid: 822a5550ebded624cacd868f86bf196f, type: 3}
+  - {fileID: 5227207971142321622, guid: d8982815d9097134192eb0951a9dff87, type: 3}
   effect: {fileID: 0}
   objectData:
     audioType: 0
@@ -25,5 +29,5 @@ MonoBehaviour:
     maxDistance: 0
     colour: {r: 0, g: 0, b: 0, a: 0}
   objectSprite: {fileID: 0}
-  objectName: 
+  objectName: Grass Plant
   itemSoundsAudioGroup: {fileID: 0}

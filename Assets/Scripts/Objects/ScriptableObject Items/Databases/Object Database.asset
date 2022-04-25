@@ -12,6 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e55e3cdad10553d46bca571a18f65cfa, type: 3}
   m_Name: Object Database
   m_EditorClassIdentifier: 
-  soundDatabase: []
-  modelDatabase: []
+  soundDatabase:
+  - {fileID: 11400000, guid: 10a78b630c2b1af48bbdb44f4fd4cd45, type: 2}
+  - {fileID: 11400000, guid: e0c40339425ad38439a7ad01eec834c2, type: 2}
+  - {fileID: 11400000, guid: 3934f9d7e49c0884ba0aeae1afe44b80, type: 2}
+  - {fileID: 11400000, guid: 22f45e890fde4264197bb0e09ada0d85, type: 2}
+  modelDatabase:
+  - {fileID: 11400000, guid: 6845faef9e93ad141a9239e544b27175, type: 2}
+  - {fileID: 11400000, guid: c42880ed4806e494698f9a0bd27e9a78, type: 2}
+  - {fileID: 11400000, guid: 7b455b135b58bc048a82640dcf7b323c, type: 2}
+  - {fileID: 11400000, guid: 35bf480a637ff3b4a8c686c295d7f2fc, type: 2}
+  - {fileID: 11400000, guid: c1bcaefad0d152447b5997c1e1dd02e3, type: 2}
+  - {fileID: 11400000, guid: 20d9897d40ef1a044b48d12ed001ac3c, type: 2}
+  - {fileID: 11400000, guid: 199de3da61ccd294b88a9d7d0525e6e0, type: 2}
+  - {fileID: 11400000, guid: e6d9dd059ded91247828cca089743bb9, type: 2}
+  - {fileID: 11400000, guid: c640f44decc171e47bb00540ac15185a, type: 2}
+  - {fileID: 11400000, guid: f52c72a76596ef949a98c9559d80fb9f, type: 2}
+  - {fileID: 11400000, guid: 6a5500877a7149d449628233726de732, type: 2}
+  - {fileID: 11400000, guid: e4777567573174d43984accf4720ed0c, type: 2}
   effectDatabase: []

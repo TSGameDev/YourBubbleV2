@@ -10,13 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96ac597c151570345b1b6465e55a168e, type: 3}
-  m_Name: New Object 10
+  m_Name: Forest Stick Small
   m_EditorClassIdentifier: 
-  ID: 
-  spawnDisFromPlayer: 0
+  ID: FBX005
+  spawnDisFromPlayer: 2
   soundClip: {fileID: 0}
   indoorVariant: {fileID: 0}
-  model: []
+  model:
+  - {fileID: 7836020553983618319, guid: 41f84b090afcfba40b67deb6e011f422, type: 3}
+  - {fileID: 7337643157226444380, guid: 668966a808452804f824b003746446d7, type: 3}
+  - {fileID: 6801206585462685077, guid: d518c6986321831409d2ae0b05ce9808, type: 3}
   effect: {fileID: 0}
   objectData:
     audioType: 0
@@ -25,5 +28,5 @@ MonoBehaviour:
     maxDistance: 0
     colour: {r: 0, g: 0, b: 0, a: 0}
   objectSprite: {fileID: 0}
-  objectName: 
+  objectName: Forest Stick Small
   itemSoundsAudioGroup: {fileID: 0}
