@@ -9,6 +9,7 @@ public class ToggleTextChange : MonoBehaviour
     [SerializeField] Text toggleTxt;
     
     AudioManager audioManager;
+    GameManager gameManager;
     Toggle toggle;
 
     #endregion
@@ -17,6 +18,7 @@ public class ToggleTextChange : MonoBehaviour
     void Awake()
     {
         audioManager = FindObjectOfType<AudioManager>();
+        gameManager = FindObjectOfType<GameManager>();
         toggle = GetComponent<Toggle>();
     }
 
@@ -27,7 +29,7 @@ public class ToggleTextChange : MonoBehaviour
     public void TextColourChange(string audioGroup)
     {
         toggleTxt.color = toggle.isOn ? Color.black : Color.white;
-        audioManager.playerSettingsData.SetMuted(audioGroup, toggle.isOn);
+        gameManager.playerSettingsData.SetMuted(audioGroup, toggle.isOn);
         audioManager.PlayerMuteAudioGroup(audioGroup, toggle.isOn);
     }
 }

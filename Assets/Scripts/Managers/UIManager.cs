@@ -31,13 +31,13 @@ namespace TSGameDev.Managers
 
         //Reference to all the Input Actions for the purpose of rebinding controls
         [Header("Input Action References")]
-        [SerializeField] InputActionReference mainMenu;
-        [SerializeField] InputActionReference assetMenu;
-        [SerializeField] InputActionReference run;
-        [SerializeField] InputActionReference quickExit;
-        [SerializeField] InputActionReference terraforming;
-        [SerializeField] InputActionReference interaction;
-        [SerializeField] InputActionReference cameraRail;
+        public InputActionReference mainMenu;
+        public InputActionReference assetMenu;
+        public InputActionReference run;
+        public InputActionReference quickExit;
+        public InputActionReference terraforming;
+        public InputActionReference interaction;
+        public InputActionReference cameraRail;
         [Space(10)]
 
         #endregion
@@ -283,14 +283,8 @@ namespace TSGameDev.Managers
                 case quickExitBindingKey:
                     Rebinding(quickExit, quickExitBindingTxt);
                     break;
-                case terraformingBindingKey:
-                    Rebinding(terraforming, terraformingBindingTxt);
-                    break;
                 case interactionBindingKey:
                     Rebinding(interaction, interactionBindingTxt);
-                    break;
-                case cameraRailBindingKey:
-                    Rebinding(cameraRail, cameraRailBindingTxt);
                     break;
             }
         }

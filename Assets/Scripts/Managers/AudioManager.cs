@@ -19,7 +19,6 @@ namespace TSGameDev.Managers
         [Space(10)]
 
         #endregion
-
         #region Audio Mix Group Variables
 
         //variables ralating to the maipulation of audio mixer groups volume
@@ -39,11 +38,7 @@ namespace TSGameDev.Managers
         [SerializeField] Slider effectAudioSlider;
         [Space(10)]
 
-        //reference to player data to set and record the different settings for easily manipulation and saving.
-        public PlayerSettingsData playerSettingsData;
-
         #endregion
-
         #region Toggle Text Refs
 
         [Header("Toogle Text Refs")]
@@ -56,6 +51,7 @@ namespace TSGameDev.Managers
 
         // Singleton instance of this call
         public static AudioManager instance;
+        private GameManager gameManager;
 
         private void Awake()
         {
@@ -68,7 +64,22 @@ namespace TSGameDev.Managers
             //makes singleton instance persist through scene changes
             DontDestroyOnLoad(this);
 
-            playerSettingsData = new PlayerSettingsData();
+            gameManager = FindObjectOfType<GameManager>();
+        }
+
+        public void Init(PlayerSettingsData playerData)
+        {
+            if(playerData.masterMuted) { audioMixer.SetFloat(masterAudioGroundRef, -80f); masterAudioSlider.interactable = false; }
+            else { audioMixer.SetFloat(masterAudioGroundRef, playerData.masterVol); }
+
+            if(playerData.environmentMuted) { audioMixer.SetFloat(environmentAudioGroundRef, -80f); environmentAudioSlider.interactable = false; }
+            else { audioMixer.SetFloat(environmentAudioGroundRef, playerData.environmentVol); }
+
+            if (playerData.weatherMuted) { audioMixer.SetFloat(weatherAudioGroundRef, -80f); weatherAudioSlider.interactable = false; }
+            else{ audioMixer.SetFloat(weatherAudioGroundRef, playerData.weatherVol); }
+
+            if (playerData.effectMuted) { audioMixer.SetFloat(effectAudioGroundRef, -80f); effectAudioSlider.interactable = false; }
+            else{ audioMixer.SetFloat(effectAudioGroundRef, playerData.effectVol); }
         }
 
         /// <summary>
@@ -130,19 +141,19 @@ namespace TSGameDev.Managers
             {
                 case "Master":
                     audioMixer.SetFloat(masterAudioGroundRef, masterAudioSlider.value);
-                    playerSettingsData.masterVol = masterAudioSlider.value;
+                    gameManager.playerSettingsData.masterVol = masterAudioSlider.value;
                     break;
                 case "Environment":
                     audioMixer.SetFloat(environmentAudioGroundRef, environmentAudioSlider.value);
-                    playerSettingsData.environmentVol = environmentAudioSlider.value;
+                    gameManager.playerSettingsData.environmentVol = environmentAudioSlider.value;
                     break;
                 case "Weather":
                     audioMixer.SetFloat(weatherAudioGroundRef, weatherAudioSlider.value);
-                    playerSettingsData.weatherVol = weatherAudioSlider.value;
+                    gameManager.playerSettingsData.weatherVol = weatherAudioSlider.value;
                     break;
                 case "Effect":
                     audioMixer.SetFloat(effectAudioGroundRef, effectAudioSlider.value);
-                    playerSettingsData.effectVol = effectAudioSlider.value;
+                    gameManager.playerSettingsData.effectVol = effectAudioSlider.value;
                     break;
             }
         }
@@ -161,28 +172,28 @@ namespace TSGameDev.Managers
                     audioMixer.SetFloat(masterAudioGroundRef, -80f);
                     audioMixer.GetFloat(masterAudioGroundRef, out volumeValue);
                     masterAudioSlider.value = volumeValue;
-                    playerSettingsData.masterVol = volumeValue;
+                    gameManager.playerSettingsData.masterVol = volumeValue;
                     masterAudioSlider.interactable = !toggleValue;
                     break;
                 case "Environment":
                     audioMixer.SetFloat(environmentAudioGroundRef, -80f);
                     audioMixer.GetFloat(environmentAudioGroundRef, out volumeValue);
                     environmentAudioSlider.value = volumeValue;
-                    playerSettingsData.environmentVol = volumeValue;
+                    gameManager.playerSettingsData.environmentVol = volumeValue;
                     environmentAudioSlider.interactable = !toggleValue;
                     break;
                 case "Weather":
                     audioMixer.SetFloat(weatherAudioGroundRef, -80f);
                     audioMixer.GetFloat(weatherAudioGroundRef, out volumeValue);
                     weatherAudioSlider.value = volumeValue;
-                    playerSettingsData.weatherVol = volumeValue;
+                    gameManager.playerSettingsData.weatherVol = volumeValue;
                     weatherAudioSlider.interactable = !toggleValue;
                     break;
                 case "Effect":
                     audioMixer.SetFloat(effectAudioGroundRef, -80f);
                     audioMixer.GetFloat(effectAudioGroundRef, out volumeValue);
                     effectAudioSlider.value = volumeValue;
-                    playerSettingsData.effectVol = volumeValue;
+                    gameManager.playerSettingsData.effectVol = volumeValue;
                     effectAudioSlider.interactable = !toggleValue;
                     break;
             }
