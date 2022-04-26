@@ -1,6 +1,7 @@
 using TMPro;
 using TSGameDev.Object;
 using TSGameDev.UI;
+using TSGameDev.Data;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -35,9 +36,7 @@ namespace TSGameDev.Managers
         public InputActionReference assetMenu;
         public InputActionReference run;
         public InputActionReference quickExit;
-        public InputActionReference terraforming;
         public InputActionReference interaction;
-        public InputActionReference cameraRail;
         [Space(10)]
 
         #endregion
@@ -50,9 +49,7 @@ namespace TSGameDev.Managers
         [SerializeField] TextMeshProUGUI assetMenuBindingTxt;
         [SerializeField] TextMeshProUGUI runBindingTxt;
         [SerializeField] TextMeshProUGUI quickExitBindingTxt;
-        [SerializeField] TextMeshProUGUI terraformingBindingTxt;
         [SerializeField] TextMeshProUGUI interactionBindingTxt;
-        [SerializeField] TextMeshProUGUI cameraRailBindingTxt;
         [Space(5)]
 
         //Reference to a text elements gameobject for the purpose of displaying "Waiting for Binding" when the rebinding process as begin and then player needs to input a control
@@ -73,9 +70,7 @@ namespace TSGameDev.Managers
         const string assetMenuBindingKey = "Asset Menu";
         const string runBindingKey = "Run";
         const string quickExitBindingKey = "Quick Exit";
-        const string terraformingBindingKey = "Terraforming";
         const string interactionBindingKey = "Interaction";
-        const string cameraRailBindingKey = "Camera Rail";
 
         #endregion
 
@@ -145,6 +140,21 @@ namespace TSGameDev.Managers
             OpenCloseMainMenu(true);
             //Assigns some button onclick events that are not possible in inspector
             AssignButtonOnClickEvents();
+        }
+
+        public void Init(PlayerSettingsData playerData)
+        {
+            mainMenu.action.ApplyBindingOverride(playerData.mainMenuBindingPath);
+            assetMenu.action.ApplyBindingOverride(playerData.assetMenuBindingPath);
+            run.action.ApplyBindingOverride(playerData.runBindingPath);
+            quickExit.action.ApplyBindingOverride(playerData.quickExitBindingPath);
+            interaction.action.ApplyBindingOverride(playerData.interactionBindingPath);
+
+            mainMenuBindingTxt.text = InputControlPath.ToHumanReadableString(mainMenu.action.bindings[0].effectivePath, InputControlPath.HumanReadableStringOptions.OmitDevice);
+            assetMenuBindingTxt.text = InputControlPath.ToHumanReadableString(assetMenu.action.bindings[0].effectivePath, InputControlPath.HumanReadableStringOptions.OmitDevice);
+            runBindingTxt.text = InputControlPath.ToHumanReadableString(run.action.bindings[0].effectivePath, InputControlPath.HumanReadableStringOptions.OmitDevice);
+            quickExitBindingTxt.text = InputControlPath.ToHumanReadableString(quickExit.action.bindings[0].effectivePath, InputControlPath.HumanReadableStringOptions.OmitDevice);
+            interactionBindingTxt.text = InputControlPath.ToHumanReadableString(interaction.action.bindings[0].effectivePath, InputControlPath.HumanReadableStringOptions.OmitDevice);
         }
 
         /// <summary>
@@ -264,27 +274,27 @@ namespace TSGameDev.Managers
         /// <summary>
         /// Function called when the player clicks on a control button, decides on what action is to be rebinded using the passed in name
         /// </summary>
-        /// <param name="actionToRebind">Name of the control to rebind</param>
-        public void StartRebinding(string actionToRebind)
+        /// <param name="BindingKey">Name of the control to rebind</param>
+        public void StartRebinding(string BindingKey)
         {
             //actives a "Waiting for Binding" text to show the user to input a binding.
             waitingForBindTxt.SetActive(true);
-            switch (actionToRebind)
+            switch (BindingKey)
             {
                 case mainMenuBindingKey:
-                    Rebinding(mainMenu, mainMenuBindingTxt);
+                    Rebinding(mainMenu, mainMenuBindingTxt, BindingKey);
                     break;
                 case assetMenuBindingKey:
-                    Rebinding(assetMenu, assetMenuBindingTxt);
+                    Rebinding(assetMenu, assetMenuBindingTxt, BindingKey);
                     break;
                 case runBindingKey:
-                    Rebinding(run, runBindingTxt);
+                    Rebinding(run, runBindingTxt, BindingKey);
                     break;
                 case quickExitBindingKey:
-                    Rebinding(quickExit, quickExitBindingTxt);
+                    Rebinding(quickExit, quickExitBindingTxt, BindingKey);
                     break;
                 case interactionBindingKey:
-                    Rebinding(interaction, interactionBindingTxt);
+                    Rebinding(interaction, interactionBindingTxt, BindingKey);
                     break;
             }
         }
@@ -294,13 +304,13 @@ namespace TSGameDev.Managers
         /// </summary>
         /// <param name="actionToRebind">The Action Reference within the Input Map to rebind</param>
         /// <param name="actionRebindingTxt">The text element within the player control settings corisponding to the control that is being rebinded</param>
-        void Rebinding(InputActionReference actionToRebind, TextMeshProUGUI actionRebindingTxt)
+        void Rebinding(InputActionReference actionToRebind, TextMeshProUGUI actionRebindingTxt, string BindingKey)
         {
             //caches the operation Unity Input System uses to change a binding. Added the options to exclude mouse controls, call a function on completion and wait 0.1 second before completing the operation of the press of a valid control.
             rebindingOperation = actionToRebind.action.PerformInteractiveRebinding()
                 .WithControlsExcluding("Mouse")
                 .OnMatchWaitForAnother(0.1f)
-                .OnComplete(operation => EndRebinding(actionToRebind, actionRebindingTxt))
+                .OnComplete(operation => EndRebinding(actionToRebind, actionRebindingTxt, BindingKey))
                 .Start();
         }
 
@@ -309,7 +319,7 @@ namespace TSGameDev.Managers
         /// </summary>
         /// <param name="actionToRebind">The Action Reference within the Input Map to rebind</param>
         /// <param name="actionRebindingTxt">The text element within the player control settings corisponding to the control taht is being rebinded</param>
-        void EndRebinding(InputActionReference actionToRebind, TextMeshProUGUI actionRebindingTxt)
+        void EndRebinding(InputActionReference actionToRebind, TextMeshProUGUI actionRebindingTxt, string BindingKey)
         {
             //removes task from memory and waiting for bind text
             waitingForBindTxt.SetActive(false);
@@ -318,6 +328,24 @@ namespace TSGameDev.Managers
             //set the relivant text element to the new control
             actionRebindingTxt.text = InputControlPath.ToHumanReadableString(actionToRebind.action.bindings[0].effectivePath, InputControlPath.HumanReadableStringOptions.OmitDevice);
 
+            switch (BindingKey)
+            {
+                case mainMenuBindingKey:
+                    gameManager.playerSettingsData.mainMenuBindingPath = actionToRebind.action.bindings[0].overridePath;
+                    break;
+                case assetMenuBindingKey:
+                    gameManager.playerSettingsData.assetMenuBindingPath = actionToRebind.action.bindings[0].overridePath;
+                    break;
+                case runBindingKey:
+                    gameManager.playerSettingsData.runBindingPath = actionToRebind.action.bindings[0].overridePath;
+                    break;
+                case quickExitBindingKey:
+                    gameManager.playerSettingsData.quickExitBindingPath = actionToRebind.action.bindings[0].overridePath;
+                    break;
+                case interactionBindingKey:
+                    gameManager.playerSettingsData.interactionBindingPath = actionToRebind.action.bindings[0].overridePath;
+                    break;
+            }
         }
 
         /// <summary>

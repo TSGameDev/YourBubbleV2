@@ -69,17 +69,53 @@ namespace TSGameDev.Managers
 
         public void Init(PlayerSettingsData playerData)
         {
-            if(playerData.masterMuted) { audioMixer.SetFloat(masterAudioGroundRef, -80f); masterAudioSlider.interactable = false; }
-            else { audioMixer.SetFloat(masterAudioGroundRef, playerData.masterVol); }
+            if(playerData.masterMuted) 
+            { 
+                audioMixer.SetFloat(masterAudioGroundRef, -80f); 
+                masterAudioSlider.interactable = false; 
+                masterAudioSlider.value = 0f;
+            }
+            else 
+            { 
+                audioMixer.SetFloat(masterAudioGroundRef, playerData.masterVol);
+                masterAudioSlider.value = playerData.masterVol;
+            }
 
-            if(playerData.environmentMuted) { audioMixer.SetFloat(environmentAudioGroundRef, -80f); environmentAudioSlider.interactable = false; }
-            else { audioMixer.SetFloat(environmentAudioGroundRef, playerData.environmentVol); }
+            if(playerData.environmentMuted) 
+            { 
+                audioMixer.SetFloat(environmentAudioGroundRef, -80f); 
+                environmentAudioSlider.interactable = false; 
+                environmentAudioSlider.value = 0f;
+            }
+            else 
+            { 
+                audioMixer.SetFloat(environmentAudioGroundRef, playerData.environmentVol);
+                environmentAudioSlider.value= playerData.environmentVol;
+            }
 
-            if (playerData.weatherMuted) { audioMixer.SetFloat(weatherAudioGroundRef, -80f); weatherAudioSlider.interactable = false; }
-            else{ audioMixer.SetFloat(weatherAudioGroundRef, playerData.weatherVol); }
+            if (playerData.weatherMuted) 
+            { 
+                audioMixer.SetFloat(weatherAudioGroundRef, -80f); 
+                weatherAudioSlider.interactable = false; 
+                weatherAudioSlider.value = 0f;
+            }
+            else
+            { 
+                audioMixer.SetFloat(weatherAudioGroundRef, playerData.weatherVol);
+                weatherAudioSlider.value = playerData.weatherVol;
+            }
 
-            if (playerData.effectMuted) { audioMixer.SetFloat(effectAudioGroundRef, -80f); effectAudioSlider.interactable = false; }
-            else{ audioMixer.SetFloat(effectAudioGroundRef, playerData.effectVol); }
+            if (playerData.effectMuted) 
+            { 
+                audioMixer.SetFloat(effectAudioGroundRef, -80f); 
+                effectAudioSlider.interactable = false;
+                effectAudioSlider.value = 0f;
+            }
+            else
+            {
+                audioMixer.SetFloat(effectAudioGroundRef, playerData.effectVol);
+                effectAudioSlider.value = playerData.effectVol;
+            }
         }
 
         /// <summary>

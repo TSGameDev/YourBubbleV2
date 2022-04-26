@@ -85,6 +85,7 @@ namespace TSGameDev.Managers
         public void LoadPlayerData()
         {
             audioManager.Init(playerSettingsData);
+            uiManager.Init(playerSettingsData);
         }
     }
 }
