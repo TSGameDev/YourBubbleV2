@@ -78,6 +78,7 @@ public class CreateBubble : MonoBehaviour
     {
         GM = FindObjectOfType<GameManager>();
         uiManager = FindObjectOfType<UIManager>();
+        GM.createBubble = this;
     }
 
     private void Start()
@@ -313,13 +314,12 @@ public class CreateBubble : MonoBehaviour
     /// <summary>
     /// function to 'awake' the UI of the create bubble settings
     /// </summary>
-    void AwakeText()
+    public void AwakeText()
     {
         skyboxTxt.text = currentSkybox.name;
         terrainTxt.text = currentTerrainTexture.name;
         terrainLengthTxt.text = $"{currentTerrainLength}m";
         terrainWidthTxt.text = $"{currentTerrainWidth}m";
-        Debug.Log(GM);
         DOFFocusDistanceTxt.text = GM.scenePostProcessingData.depthOfField.focusDistance.value.ToString();
         DOFFocalLengthTxt.text = GM.scenePostProcessingData.depthOfField.focalLength.value.ToString();
         DOFAppertureTxt.text = GM.scenePostProcessingData.depthOfField.aperture.value.ToString();

@@ -42,18 +42,11 @@ namespace TSGameDev.Object
                     {
                         newAsset = Instantiate(sound.model[0], player.GetObjectSpawnPosition(sound.spawnDisFromPlayer), Quaternion.identity);
                         newAsset.AddComponent<Object>().data = sound.objectData;
+                        Debug.Log(newAsset.ToString());
                         Object obj = newAsset.GetComponent<Object>();
                         obj.audioMixerGroup = sound.itemSoundsAudioGroup;
                         obj.objectItem = sound;
-                    }
-                    else
-                    {
-                        newAsset = new GameObject($"{sound.objectName}", typeof(Object));
-                        newAsset.transform.position = player.GetObjectSpawnPosition(sound.spawnDisFromPlayer);
-                        newAsset.GetComponent<Object>().data = sound.objectData;
-                        Object obj = newAsset.GetComponent<Object>();
-                        obj.audioMixerGroup = sound.itemSoundsAudioGroup;
-                        obj.objectItem = sound;
+                        Debug.Log(obj.ToString());
                     }
 
                 });
@@ -73,15 +66,6 @@ namespace TSGameDev.Object
                     {
                         newAsset = Instantiate(model.model[0], player.GetObjectSpawnPosition(model.spawnDisFromPlayer), Quaternion.identity);
                         newAsset.AddComponent<Object>().data = model.objectData;
-                        Object obj = newAsset.GetComponent<Object>();
-                        obj.audioMixerGroup = model.itemSoundsAudioGroup;
-                        obj.objectItem = model;
-                    }
-                    else
-                    {
-                        newAsset = new GameObject($"{model.objectName}", typeof(Object));
-                        newAsset.transform.position = player.GetObjectSpawnPosition(model.spawnDisFromPlayer);
-                        newAsset.GetComponent<Object>().data = model.objectData;
                         Object obj = newAsset.GetComponent<Object>();
                         obj.audioMixerGroup = model.itemSoundsAudioGroup;
                         obj.objectItem = model;

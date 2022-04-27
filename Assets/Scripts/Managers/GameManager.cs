@@ -47,6 +47,7 @@ namespace TSGameDev.Managers
 
         UIManager uiManager;
         AudioManager audioManager;
+        public CreateBubble createBubble;
         //Awake called just before start and after variable inisilisation. Sets up the game manager as a singleton instance
         private void Awake()
         {
@@ -59,7 +60,6 @@ namespace TSGameDev.Managers
 
             gameState = GameState.UI;
             gameStateActions = new MainMenuStateAction(this);
-            scenePostProcessingData = new ScenePostProcessingData(volumeProfile);
             uiManager = FindObjectOfType<UIManager>();
             audioManager = FindObjectOfType<AudioManager>();
         }
@@ -67,6 +67,7 @@ namespace TSGameDev.Managers
         private void Start()
         {
             playerSettingsData = SaveSystem.LoadPlayerSettingsData(uiManager);
+            scenePostProcessingData = new ScenePostProcessingData();
         }
 
         /// <summary>

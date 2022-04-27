@@ -78,6 +78,7 @@ namespace TSGameDev.Interactables
         {
             playerInputs.Game.Disable();
             playerInputs.UI.Enable();
+            player.MovementValid = false;
         }
 
         //function to active the game action map
@@ -85,6 +86,7 @@ namespace TSGameDev.Interactables
         {
             playerInputs.UI.Disable();
             playerInputs.Game.Enable();
+            player.MovementValid = true;
         }
     }
 }

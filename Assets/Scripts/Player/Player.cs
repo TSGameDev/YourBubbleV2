@@ -35,6 +35,19 @@ namespace TSGameDev.Interactables
 
         #region Movement Variables
 
+        private bool movementValid = true;
+        public bool MovementValid
+        {
+            set
+            {
+                movementValid = value;
+            }
+            private get
+            {
+                return movementValid;
+            }
+        }
+
         [Header("Movement Settings")]
         [SerializeField] Camera cameraa;
         [SerializeField] CinemachineVirtualCamera virtualcam;
@@ -45,7 +58,7 @@ namespace TSGameDev.Interactables
         #endregion
 
         #region Footstep Sound Effect Variables
-        
+
         AudioManager audioManager;
         AudioSource audioSource;
         float stepTime;
@@ -101,14 +114,10 @@ namespace TSGameDev.Interactables
             float z = inputMovement.y;
 
             Vector3 movement = cameraa.transform.right * x + cameraa.transform.forward * z;
-
-            if (movement.magnitude >= Mathf.Epsilon && running.ReadValue<float>() >= Mathf.Epsilon)
+            if(MovementValid)
             {
-                characterController.Move(movement * (speed * 2) * Time.deltaTime);
-            }
-            else if (movement.magnitude >= Mathf.Epsilon)
-            {
-                characterController.Move(movement * speed * Time.deltaTime);
+                if (movement.magnitude >= Mathf.Epsilon && running.ReadValue<float>() >= Mathf.Epsilon) { characterController.Move(movement * (speed * 2) * Time.deltaTime); }
+                else if (movement.magnitude >= Mathf.Epsilon) { characterController.Move(movement * speed * Time.deltaTime); }
             }
         }
 

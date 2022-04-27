@@ -1,12 +1,14 @@
 using System.IO;
 using UnityEngine;
+using UnityEngine.Rendering;
 using TSGameDev.Data;
 using TSGameDev.Managers;
 
 public static class SaveSystem
 {
     static readonly string SaveFolder = Application.dataPath + "/Saves/";
-    static readonly string PlayerDataSave = SaveFolder + "PlayerSettingsSave.txt";
+    static readonly string PlayerDataSavePath = SaveFolder + "PlayerSettingsSave.txt";
+    static readonly string PostProcessingSavePath = SaveFolder + "PostProcessingSave.txt";
     public static void SavePlayerSettingsData(PlayerSettingsData playerData)
     {
         if(!Directory.Exists(SaveFolder))
@@ -14,16 +16,15 @@ public static class SaveSystem
             Directory.CreateDirectory(SaveFolder);
         }
         string JsonPlayerData = JsonUtility.ToJson(playerData);
-        File.WriteAllText(PlayerDataSave, JsonPlayerData);
+        File.WriteAllText(PlayerDataSavePath, JsonPlayerData);
     }
 
     public static PlayerSettingsData LoadPlayerSettingsData(UIManager uiManager)
     {
-        if (File.Exists(PlayerDataSave))
+        if (File.Exists(PlayerDataSavePath))
         {
-            string JsonPlayerData = File.ReadAllText(PlayerDataSave);
+            string JsonPlayerData = File.ReadAllText(PlayerDataSavePath);
             PlayerSettingsData newPlayerSettingsData = JsonUtility.FromJson<PlayerSettingsData>(JsonPlayerData);
-            Debug.Log("loaded PlayerSettingsData"); 
             return newPlayerSettingsData;
         }
         else

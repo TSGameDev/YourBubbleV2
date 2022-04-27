@@ -16,7 +16,8 @@ MonoBehaviour:
   spawnDisFromPlayer: 3
   soundClip: {fileID: 8300000, guid: d06f34b21f79c664aaba70beff7dd883, type: 3}
   indoorVariant: {fileID: 0}
-  model: []
+  model:
+  - {fileID: 977356634217492547, guid: d82b134b55457154fb24f531c3866dc5, type: 3}
   effect: {fileID: 0}
   objectData:
     audioType: 0

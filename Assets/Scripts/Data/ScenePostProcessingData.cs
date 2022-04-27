@@ -26,6 +26,5 @@ namespace TSGameDev.Data
             volumeProfile.TryGet(out vignette);
             volumeProfile.TryGet(out whiteBalance);
         }
-
     }
 }
