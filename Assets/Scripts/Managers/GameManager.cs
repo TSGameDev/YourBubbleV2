@@ -9,6 +9,12 @@ namespace TSGameDev.Managers
     public class GameManager : MonoBehaviour
     {
         #region Getter-Setter
+        public WorldData worldData
+        {
+            private set;
+            get;
+        }
+
         [Header("Scene Creation")]
         [SerializeField] Material[] skyboxes;
         public Material[] Skyboxes
@@ -16,6 +22,7 @@ namespace TSGameDev.Managers
             private set {}
             get { return skyboxes; }
         }
+        public int posInSkyboxArray = 0;
 
         [SerializeField] Material[] terrainTextures;
         public Material[] TerrainTextures
@@ -23,6 +30,9 @@ namespace TSGameDev.Managers
             private set {}
             get { return terrainTextures; }
         }
+        public int posInTerrainArray = 0;
+        public int terrainWidth;
+        public int terrainLength;
         [Space(10)]
 
         [Header("Post Processing")]
@@ -48,6 +58,7 @@ namespace TSGameDev.Managers
         UIManager uiManager;
         AudioManager audioManager;
         public CreateBubble createBubble;
+
         //Awake called just before start and after variable inisilisation. Sets up the game manager as a singleton instance
         private void Awake()
         {
@@ -68,6 +79,7 @@ namespace TSGameDev.Managers
         {
             playerSettingsData = SaveSystem.LoadPlayerSettingsData(uiManager);
             scenePostProcessingData = new ScenePostProcessingData();
+            worldData = SaveSystem.LoadWorldData(this);
         }
 
         /// <summary>
@@ -88,5 +100,16 @@ namespace TSGameDev.Managers
             audioManager.Init(playerSettingsData);
             uiManager.Init(playerSettingsData);
         }
+    
+        public void SaveWorldData()
+        {
+            SaveSystem.SaveWorldData(worldData);
+        }
+
+        public void LoadWorldData()
+        {
+
+        }
+
     }
 }

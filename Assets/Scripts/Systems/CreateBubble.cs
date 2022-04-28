@@ -55,10 +55,8 @@ public class CreateBubble : MonoBehaviour
     [SerializeField] SceneDatabase sceneObjectDatabase;
 
     Material currentSkybox;
-    int posInSkyboxArray = 0;
 
     Material currentTerrainTexture;
-    int posInTerrainArray = 0;
 
     int posInToneMappingArray = 0;
     UnityEngine.Rendering.Universal.TonemappingMode[] TonemappingModes = 
@@ -97,12 +95,12 @@ public class CreateBubble : MonoBehaviour
         switch (FieldToIncrease)
         {
             case "Skybox":
-                posInSkyboxArray++; 
+                GM.posInSkyboxArray++; 
                 SelectSkyBox();
                 skyboxTxt.text = currentSkybox.name;
                 break;
             case "Texture":
-                posInTerrainArray++; 
+                GM.posInTerrainArray++; 
                 SelectTerrainTexture();
                 terrainTxt.text = currentTerrainTexture.name;
                 break;
@@ -181,12 +179,12 @@ public class CreateBubble : MonoBehaviour
         switch (FieldToDecrease)
         {
             case "Skybox":
-                posInSkyboxArray--;
+                GM.posInSkyboxArray--;
                 SelectSkyBox();
                 skyboxTxt.text = currentSkybox.name;
                 break;
             case "Texture":
-                posInTerrainArray--;
+                GM.posInTerrainArray--;
                 SelectTerrainTexture();
                 terrainTxt.text = currentTerrainTexture.name;
                 break;
@@ -260,9 +258,9 @@ public class CreateBubble : MonoBehaviour
     /// </summary>
     void SelectSkyBox()
     {
-        if (posInSkyboxArray >= GM.Skyboxes.Length) { currentSkybox = GM.Skyboxes[GM.Skyboxes.Length - 1]; posInSkyboxArray = GM.Skyboxes.Length - 1; }
-        else if (posInSkyboxArray < 0) { currentSkybox = GM.Skyboxes[0]; posInSkyboxArray = 0; }
-        else { currentSkybox = GM.Skyboxes[posInSkyboxArray]; }
+        if (GM.posInSkyboxArray >= GM.Skyboxes.Length) { currentSkybox = GM.Skyboxes[GM.Skyboxes.Length - 1]; GM.posInSkyboxArray = GM.Skyboxes.Length - 1; }
+        else if (GM.posInSkyboxArray < 0) { currentSkybox = GM.Skyboxes[0]; GM.posInSkyboxArray = 0; }
+        else { currentSkybox = GM.Skyboxes[GM.posInSkyboxArray]; }
     }
 
     /// <summary>
@@ -270,19 +268,19 @@ public class CreateBubble : MonoBehaviour
     /// </summary>
     void SelectTerrainTexture()
     {
-        if (posInTerrainArray >= GM.TerrainTextures.Length) 
+        if (GM.posInTerrainArray >= GM.TerrainTextures.Length) 
         { 
             currentTerrainTexture = GM.TerrainTextures[GM.TerrainTextures.Length - 1];
-            posInTerrainArray = GM.TerrainTextures.Length - 1;
+            GM.posInTerrainArray = GM.TerrainTextures.Length - 1;
         }
-        else if (posInTerrainArray < 0) 
+        else if (GM.posInTerrainArray < 0) 
         { 
             currentTerrainTexture = GM.TerrainTextures[0];
-            posInTerrainArray = 0; 
+            GM.posInTerrainArray = 0; 
         }
         else 
         { 
-            currentTerrainTexture = GM.TerrainTextures[posInTerrainArray];
+            currentTerrainTexture = GM.TerrainTextures[GM.posInTerrainArray];
         }
     }
 

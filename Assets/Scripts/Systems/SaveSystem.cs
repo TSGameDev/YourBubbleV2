@@ -1,6 +1,5 @@
 using System.IO;
 using UnityEngine;
-using UnityEngine.Rendering;
 using TSGameDev.Data;
 using TSGameDev.Managers;
 
@@ -8,13 +7,12 @@ public static class SaveSystem
 {
     static readonly string SaveFolder = Application.dataPath + "/Saves/";
     static readonly string PlayerDataSavePath = SaveFolder + "PlayerSettingsSave.txt";
-    static readonly string PostProcessingSavePath = SaveFolder + "PostProcessingSave.txt";
+    static readonly string WorldDataSavePath = SaveFolder + "WorldSaveData.txt";
     public static void SavePlayerSettingsData(PlayerSettingsData playerData)
     {
         if(!Directory.Exists(SaveFolder))
-        {
             Directory.CreateDirectory(SaveFolder);
-        }
+
         string JsonPlayerData = JsonUtility.ToJson(playerData);
         File.WriteAllText(PlayerDataSavePath, JsonPlayerData);
     }
@@ -30,6 +28,29 @@ public static class SaveSystem
         else
         {
             return new PlayerSettingsData(uiManager.mainMenu, uiManager.assetMenu, uiManager.run, uiManager.quickExit, uiManager.interaction);
+        }
+    }
+
+    public static void SaveWorldData(WorldData worldData)
+    {
+        if(!Directory.Exists(SaveFolder))
+            Directory.CreateDirectory(SaveFolder);
+
+        string JsonWorldData = JsonUtility.ToJson(worldData);
+        File.WriteAllText(WorldDataSavePath, JsonWorldData);
+    }
+
+    public static WorldData LoadWorldData(GameManager gameManager)
+    {
+        if(File.Exists(WorldDataSavePath))
+        {
+            string JsonWorldData = File.ReadAllText(WorldDataSavePath);
+            WorldData newWorldData = JsonUtility.FromJson<WorldData>(JsonWorldData);
+            return newWorldData;
+        }
+        else
+        {
+            return new WorldData(gameManager);
         }
     }
 }
