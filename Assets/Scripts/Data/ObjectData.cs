@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using TSGameDev.Managers;
 
 namespace TSGameDev.Object
 {
@@ -50,5 +51,4 @@ namespace TSGameDev.Object
         Mode2D,
         Mode3D
     }
-
 }

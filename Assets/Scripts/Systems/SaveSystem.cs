@@ -11,7 +11,9 @@ public static class SaveSystem
     public static void SavePlayerSettingsData(PlayerSettingsData playerData)
     {
         if(!Directory.Exists(SaveFolder))
+        {
             Directory.CreateDirectory(SaveFolder);
+        }
 
         string JsonPlayerData = JsonUtility.ToJson(playerData);
         File.WriteAllText(PlayerDataSavePath, JsonPlayerData);
@@ -31,26 +33,28 @@ public static class SaveSystem
         }
     }
 
-    public static void SaveWorldData(WorldData worldData)
+    public static void SaveWorldData(BubbleData worldData)
     {
-        if(!Directory.Exists(SaveFolder))
+        if (!Directory.Exists(SaveFolder))
+        {
             Directory.CreateDirectory(SaveFolder);
+        }
 
         string JsonWorldData = JsonUtility.ToJson(worldData);
         File.WriteAllText(WorldDataSavePath, JsonWorldData);
     }
 
-    public static WorldData LoadWorldData(GameManager gameManager)
+    public static BubbleData LoadWorldData(GameManager gameManager)
     {
         if(File.Exists(WorldDataSavePath))
         {
             string JsonWorldData = File.ReadAllText(WorldDataSavePath);
-            WorldData newWorldData = JsonUtility.FromJson<WorldData>(JsonWorldData);
+            BubbleData newWorldData = JsonUtility.FromJson<BubbleData>(JsonWorldData);
             return newWorldData;
         }
         else
         {
-            return new WorldData(gameManager);
+            return new BubbleData(gameManager);
         }
     }
 }

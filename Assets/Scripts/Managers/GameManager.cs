@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using TSGameDev.Interactables;
@@ -9,11 +8,7 @@ namespace TSGameDev.Managers
     public class GameManager : MonoBehaviour
     {
         #region Getter-Setter
-        public WorldData worldData
-        {
-            private set;
-            get;
-        }
+        public BubbleData worldData;
 
         [Header("Scene Creation")]
         [SerializeField] Material[] skyboxes;
