@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using TSGameDev.Interactables;
 using TSGameDev.Data;
 
@@ -73,7 +74,7 @@ namespace TSGameDev.Managers
         private void Start()
         {
             playerSettingsData = SaveSystem.LoadPlayerSettingsData(uiManager);
-            scenePostProcessingData = new ScenePostProcessingData();
+            scenePostProcessingData = new ScenePostProcessingData(volumeProfile);
             worldData = SaveSystem.LoadWorldData(this);
         }
 
@@ -103,7 +104,49 @@ namespace TSGameDev.Managers
 
         public void LoadWorldData()
         {
+            LoadScene(worldData);
+        }
 
+        /// <summary>
+        /// function to create the new scene of which the player can spawn different models, effects and sounds to build an environment
+        /// </summary>
+        public void CreateScene()
+        {
+            SceneManager.CreateScene("TestSceneCreation");
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName("TestSceneCreation"));
+            RenderSettings.skybox = createBubble.currentSkybox;
+
+            uiManager.OpenCloseBubbleSettingsMenu(false, false);
+
+            TerrainData newTerrainData = new TerrainData();
+            newTerrainData.size = new Vector3(createBubble.currentTerrainWidth, 0, createBubble.currentTerrainLength);
+            Terrain newTerrain = Terrain.CreateTerrainGameObject(newTerrainData).GetComponent<Terrain>();
+            newTerrain.materialTemplate = createBubble.currentTerrainTexture;
+            newTerrain.terrainData = newTerrainData;
+
+            Instantiate(createBubble.playerSetup, new Vector3(createBubble.currentTerrainWidth / 2, 0, createBubble.currentTerrainLength / 2), Quaternion.identity);
+            createBubble.sceneObjectDatabase.PopulateAssetMenu();
+            SceneManager.MoveGameObjectToScene(createBubble.cameraa, SceneManager.GetSceneByName("TestSceneCreation"));
+
+            gameState = GameState.Application;
+            gameStateActions = new ApplicationStateAction(this);
+
+            worldData.worldSkybox = posInSkyboxArray;
+            worldData.worldTerrainTexture = posInTerrainArray;
+            worldData.worldTerrainLength = createBubble.currentTerrainLength;
+            worldData.worldTerrainWidth = createBubble.currentTerrainWidth;
+        }
+
+        void LoadScene(BubbleData bubbleData)
+        {
+            createBubble.currentSkybox = Skyboxes[bubbleData.worldSkybox];
+            createBubble.currentTerrainTexture = TerrainTextures[bubbleData.worldTerrainTexture];
+            createBubble.currentTerrainLength = bubbleData.worldTerrainLength;
+            createBubble.currentTerrainWidth = bubbleData.worldTerrainWidth;
+
+            uiManager.OpenCloseMainMenu(false);
+
+            CreateScene();
         }
 
     }

@@ -50,13 +50,12 @@ public class CreateBubble : MonoBehaviour
 
     #region Scene Creation Variables
     [Header("Scene Creation Prefabs")]
-    [SerializeField] GameObject cameraa;
-    [SerializeField] GameObject playerSetup;
-    [SerializeField] SceneDatabase sceneObjectDatabase;
+    public GameObject cameraa;
+    public GameObject playerSetup;
+    public SceneDatabase sceneObjectDatabase;
 
-    Material currentSkybox;
-
-    Material currentTerrainTexture;
+    public Material currentSkybox;
+    public Material currentTerrainTexture;
 
     int posInToneMappingArray = 0;
     UnityEngine.Rendering.Universal.TonemappingMode[] TonemappingModes = 
@@ -64,18 +63,16 @@ public class CreateBubble : MonoBehaviour
         UnityEngine.Rendering.Universal.TonemappingMode.Neutral, 
         UnityEngine.Rendering.Universal.TonemappingMode.ACES };
 
-    int currentTerrainWidth = 100;
-    int currentTerrainLength = 100;
+    public int currentTerrainWidth = 100;
+    public int currentTerrainLength = 100;
 
     #endregion
 
     GameManager GM;
-    UIManager uiManager;
 
     private void Awake()
     {
         GM = FindObjectOfType<GameManager>();
-        uiManager = FindObjectOfType<UIManager>();
         GM.createBubble = this;
     }
 
@@ -318,6 +315,10 @@ public class CreateBubble : MonoBehaviour
         terrainTxt.text = currentTerrainTexture.name;
         terrainLengthTxt.text = $"{currentTerrainLength}m";
         terrainWidthTxt.text = $"{currentTerrainWidth}m";
+        Debug.Log(DOFFocusDistanceTxt.ToString());
+        Debug.Log(GM.ToString());
+        Debug.Log(GM.scenePostProcessingData.ToString());
+        Debug.Log(GM.scenePostProcessingData.depthOfField.ToString());
         DOFFocusDistanceTxt.text = GM.scenePostProcessingData.depthOfField.focusDistance.value.ToString();
         DOFFocalLengthTxt.text = GM.scenePostProcessingData.depthOfField.focalLength.value.ToString();
         DOFAppertureTxt.text = GM.scenePostProcessingData.depthOfField.aperture.value.ToString();
@@ -336,31 +337,6 @@ public class CreateBubble : MonoBehaviour
 
         whiteBalanceTemperatureTxt.text = GM.scenePostProcessingData.whiteBalance.temperature.value.ToString();
         whiteBalanceTintTxt.text = GM.scenePostProcessingData.whiteBalance.tint.value.ToString();
-    }
-
-    /// <summary>
-    /// function to create the new scene of which the player can spawn different models, effects and sounds to build an environment
-    /// </summary>
-    public void CreateScene()
-    {
-        SceneManager.CreateScene("TestSceneCreation");
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName("TestSceneCreation"));
-        RenderSettings.skybox = currentSkybox;
-
-        uiManager.OpenCloseBubbleSettingsMenu(false, false);
-
-        TerrainData newTerrainData = new TerrainData();
-        newTerrainData.size = new Vector3(currentTerrainWidth, 0, currentTerrainLength);
-        Terrain newTerrain = Terrain.CreateTerrainGameObject(newTerrainData).GetComponent<Terrain>();
-        newTerrain.materialTemplate = currentTerrainTexture;
-        newTerrain.terrainData = newTerrainData;
-        
-        Instantiate(playerSetup, new Vector3(currentTerrainWidth / 2, 0, currentTerrainLength / 2), Quaternion.identity);
-        sceneObjectDatabase.PopulateAssetMenu();
-        SceneManager.MoveGameObjectToScene(cameraa, SceneManager.GetSceneByName("TestSceneCreation"));
-
-        GM.gameState = GameState.Application;
-        GM.gameStateActions = new ApplicationStateAction(GM);
     }
 
 }
