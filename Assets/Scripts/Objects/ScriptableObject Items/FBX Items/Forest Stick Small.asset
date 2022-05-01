@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96ac597c151570345b1b6465e55a168e, type: 3}
   m_Name: Forest Stick Small
   m_EditorClassIdentifier: 
-  ID: FBX005
   spawnDisFromPlayer: 2
   soundClip: {fileID: 0}
   indoorVariant: {fileID: 0}
@@ -22,6 +21,11 @@ MonoBehaviour:
   - {fileID: 6801206585462685077, guid: d518c6986321831409d2ae0b05ce9808, type: 3}
   effect: {fileID: 0}
   objectData:
+    ID: FBX005
+    objectPosition: {x: 0, y: 0, z: 0}
+    objectRotation: {x: 0, y: 0, z: 0, w: 0}
+    objectType: 1
+    currentActiveModel: 0
     audioType: 0
     volume: 0
     minDistance: 0

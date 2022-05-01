@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using TSGameDev.Managers;
 
 namespace TSGameDev.Object
 {
@@ -8,6 +7,16 @@ namespace TSGameDev.Object
     [Serializable]
     public struct ObjectData
     {
+        #region Save Settings
+
+        public string ID;
+        public Vector3 objectPosition;
+        public Quaternion objectRotation;
+        public ObjectType objectType;
+        public int currentActiveModel;
+
+        #endregion
+
         #region Sound
         //series of sound data variables
         [Header("Sound Data")]
@@ -32,13 +41,18 @@ namespace TSGameDev.Object
         /// <param name="soundClip">The Sound for sound base items</param>
         /// <param name="indoorVariants">A sound clip as an indoor version of the primary sound</param>
         /// <param name="effect">The Effect for effect base items</param>
-        public ObjectData(Color colour, AudioType audioType = AudioType.Mode2D, float volume = 1f, float minDis = 1f, float maxDis = 10f)
+        public ObjectData(Color colour, AudioType audioType = AudioType.Mode2D, float volume = 1f, float minDistance = 1f, float maxDistance = 10f)
         {
-            
+            ID = "Input Object ID";
+            objectPosition = new Vector3();
+            objectRotation = new Quaternion();
+            objectType = ObjectType.Sound;
+            currentActiveModel = 0;
+
             this.audioType = audioType;
             this.volume = volume;
-            this.minDistance = minDis;
-            this.maxDistance = maxDis;
+            this.minDistance = minDistance;
+            this.maxDistance = maxDistance;
             if (colour == null) this.colour = Color.white;
             else this.colour = colour;
         }
@@ -50,5 +64,12 @@ namespace TSGameDev.Object
     {
         Mode2D,
         Mode3D
+    }
+
+    public enum ObjectType
+    {
+        Sound,
+        Model,
+        Effect
     }
 }

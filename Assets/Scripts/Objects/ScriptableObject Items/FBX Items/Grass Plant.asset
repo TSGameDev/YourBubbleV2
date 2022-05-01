@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96ac597c151570345b1b6465e55a168e, type: 3}
   m_Name: Grass Plant
   m_EditorClassIdentifier: 
-  ID: FBX009
   spawnDisFromPlayer: 5
   soundClip: {fileID: 0}
   indoorVariant: {fileID: 0}
@@ -23,6 +22,11 @@ MonoBehaviour:
   - {fileID: 5227207971142321622, guid: d8982815d9097134192eb0951a9dff87, type: 3}
   effect: {fileID: 0}
   objectData:
+    ID: FBX009
+    objectPosition: {x: 0, y: 0, z: 0}
+    objectRotation: {x: 0, y: 0, z: 0, w: 0}
+    objectType: 1
+    currentActiveModel: 0
     audioType: 0
     volume: 0
     minDistance: 0

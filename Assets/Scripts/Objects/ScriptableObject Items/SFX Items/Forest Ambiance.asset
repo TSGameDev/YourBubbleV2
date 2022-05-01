@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96ac597c151570345b1b6465e55a168e, type: 3}
   m_Name: Forest Ambiance
   m_EditorClassIdentifier: 
-  ID: SFX002
   spawnDisFromPlayer: 3
   soundClip: {fileID: 8300000, guid: d06f34b21f79c664aaba70beff7dd883, type: 3}
   indoorVariant: {fileID: 0}
@@ -20,6 +19,11 @@ MonoBehaviour:
   - {fileID: 977356634217492547, guid: d82b134b55457154fb24f531c3866dc5, type: 3}
   effect: {fileID: 0}
   objectData:
+    ID: SFX002
+    objectPosition: {x: 0, y: 0, z: 0}
+    objectRotation: {x: 0, y: 0, z: 0, w: 0}
+    objectType: 0
+    currentActiveModel: 0
     audioType: 0
     volume: 0
     minDistance: 0

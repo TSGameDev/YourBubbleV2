@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96ac597c151570345b1b6465e55a168e, type: 3}
   m_Name: Forst Stick
   m_EditorClassIdentifier: 
-  ID: FBX007
   spawnDisFromPlayer: 3
   soundClip: {fileID: 0}
   indoorVariant: {fileID: 0}
@@ -22,6 +21,11 @@ MonoBehaviour:
   - {fileID: 3229046505918126995, guid: 0a0e7219252611d499a6982dc73cede9, type: 3}
   effect: {fileID: 0}
   objectData:
+    ID: FBX007
+    objectPosition: {x: 0, y: 0, z: 0}
+    objectRotation: {x: 0, y: 0, z: 0, w: 0}
+    objectType: 1
+    currentActiveModel: 0
     audioType: 0
     volume: 0
     minDistance: 0

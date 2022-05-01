@@ -3,6 +3,8 @@ using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using TSGameDev.Interactables;
 using TSGameDev.Data;
+using TSGameDev.Object;
+using System.Collections.Generic;
 
 namespace TSGameDev.Managers
 {
@@ -10,6 +12,7 @@ namespace TSGameDev.Managers
     {
         #region Getter-Setter
         public BubbleData worldData;
+        public List<ObjectData> savedWorldObjects;
 
         [Header("Scene Creation")]
         [SerializeField] Material[] skyboxes;
@@ -53,6 +56,7 @@ namespace TSGameDev.Managers
 
         UIManager uiManager;
         AudioManager audioManager;
+        SceneDatabase sceneDatabase;
         public CreateBubble createBubble;
 
         //Awake called just before start and after variable inisilisation. Sets up the game manager as a singleton instance
@@ -69,6 +73,7 @@ namespace TSGameDev.Managers
             gameStateActions = new MainMenuStateAction(this);
             uiManager = FindObjectOfType<UIManager>();
             audioManager = FindObjectOfType<AudioManager>();
+            sceneDatabase = FindObjectOfType<SceneDatabase>();
         }
 
         private void Start()
@@ -76,6 +81,7 @@ namespace TSGameDev.Managers
             playerSettingsData = SaveSystem.LoadPlayerSettingsData(uiManager);
             scenePostProcessingData = new ScenePostProcessingData(volumeProfile);
             worldData = SaveSystem.LoadWorldData(this);
+            savedWorldObjects = SaveSystem.LoadWorldObjects();
         }
 
         /// <summary>
@@ -99,9 +105,12 @@ namespace TSGameDev.Managers
     
         public void SaveWorldData()
         {
+            if(player != null)
+                worldData.playerPosition = player.transform.position;
+            
             SaveSystem.SaveWorldData(worldData);
         }
-
+       
         public void LoadWorldData()
         {
             LoadScene(worldData);
@@ -124,12 +133,19 @@ namespace TSGameDev.Managers
             newTerrain.materialTemplate = createBubble.currentTerrainTexture;
             newTerrain.terrainData = newTerrainData;
 
-            Instantiate(createBubble.playerSetup, new Vector3(createBubble.currentTerrainWidth / 2, 0, createBubble.currentTerrainLength / 2), Quaternion.identity);
+            if(worldData.playerPosition != new Vector3())
+                Instantiate(createBubble.playerSetup, worldData.playerPosition, Quaternion.identity);
+            else
+                Instantiate(createBubble.playerSetup, new Vector3(createBubble.currentTerrainWidth / 2, 0, createBubble.currentTerrainLength / 2), Quaternion.identity);
+            
             createBubble.sceneObjectDatabase.PopulateAssetMenu();
             SceneManager.MoveGameObjectToScene(createBubble.cameraa, SceneManager.GetSceneByName("TestSceneCreation"));
 
             gameState = GameState.Application;
             gameStateActions = new ApplicationStateAction(this);
+
+            if(savedWorldObjects.Count > 0)
+                sceneDatabase.SpawnSavedWorldObjects(savedWorldObjects);
 
             worldData.worldSkybox = posInSkyboxArray;
             worldData.worldTerrainTexture = posInTerrainArray;
@@ -149,5 +165,15 @@ namespace TSGameDev.Managers
             CreateScene();
         }
 
+        public void SaveWorldObjectData()
+        {
+            List<ObjectData> allWorldObjectData = new List<ObjectData>();
+            Object.Object[] allWorldObjects = FindObjectsOfType(typeof(Object.Object)) as Object.Object[];
+            foreach (Object.Object obj in allWorldObjects)
+            {
+                allWorldObjectData.Add(obj.data);
+            }
+            SaveSystem.SaveWorldObjects(allWorldObjectData);
+        }
     }
 }

@@ -1,1 +1,1 @@
-{"worldSkybox":4,"worldTerrainTexture":4,"worldTerrainWidth":400,"worldTerrainLength":400}
+{"worldSkybox":4,"worldTerrainTexture":4,"worldTerrainWidth":300,"worldTerrainLength":300}

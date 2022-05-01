@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TSGameDev.Managers;
+using TSGameDev.Object;
 using Cinemachine;
 using TMPro;
 
@@ -168,6 +169,10 @@ namespace TSGameDev.Interactables
                 connectedObject.transform.position = Vector3.LerpUnclamped(connectedObject.transform.position, hit.point, objectPositionLerpTime);
             else
                 connectedObject.transform.position = GetObjectSpawnPosition(raycastMaxDis);
+
+            Object.Object ConnectedObjectScript = connectedObject.GetComponent<Object.Object>();
+            ConnectedObjectScript.data.objectPosition = connectedObject.transform.position;
+            ConnectedObjectScript.data.objectRotation = connectedObject.transform.rotation;
 
             if (context.performed)
             {

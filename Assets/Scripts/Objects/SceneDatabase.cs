@@ -1,7 +1,9 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using TSGameDev.Interactables;
+using TSGameDev.Object;
 
 namespace TSGameDev.Object
 {
@@ -35,19 +37,8 @@ namespace TSGameDev.Object
                 asset.GetComponentInChildren<TextMeshProUGUI>().text = sound.objectName;
                 asset.GetComponent<Button>().onClick.AddListener(() =>
                 {
-                    Debug.Log("On Click Event Called");
-                    GameObject newAsset = null;
-
                     if(sound.model != null)
-                    {
-                        newAsset = Instantiate(sound.model[0], player.GetObjectSpawnPosition(sound.spawnDisFromPlayer), Quaternion.identity);
-                        newAsset.AddComponent<Object>().data = sound.objectData;
-                        Debug.Log(newAsset.ToString());
-                        Object obj = newAsset.GetComponent<Object>();
-                        obj.audioMixerGroup = sound.itemSoundsAudioGroup;
-                        obj.objectItem = sound;
-                        Debug.Log(obj.ToString());
-                    }
+                        SpawnItemWithModel(sound);
 
                 });
             }
@@ -59,17 +50,8 @@ namespace TSGameDev.Object
                 asset.GetComponentInChildren<TextMeshProUGUI>().text = model.objectName;
                 asset.GetComponent<Button>().onClick.AddListener(() =>
                 {
-                    Debug.Log("On Click Event Called");
-                    GameObject newAsset = null;
-
                     if (model.model != null)
-                    {
-                        newAsset = Instantiate(model.model[0], player.GetObjectSpawnPosition(model.spawnDisFromPlayer), Quaternion.identity);
-                        newAsset.AddComponent<Object>().data = model.objectData;
-                        Object obj = newAsset.GetComponent<Object>();
-                        obj.audioMixerGroup = model.itemSoundsAudioGroup;
-                        obj.objectItem = model;
-                    }
+                        SpawnItemWithModel(model);
 
                 });
             }
@@ -81,29 +63,90 @@ namespace TSGameDev.Object
                 asset.GetComponentInChildren<TextMeshProUGUI>().text = effect.objectName;
                 asset.GetComponent<Button>().onClick.AddListener(() =>
                 {
-                    Debug.Log("On Click Event Called");
-                    GameObject newAsset = null;
-
                     if (effect.model != null)
-                    {
-                        newAsset = Instantiate(effect.model[0], player.GetObjectSpawnPosition(effect.spawnDisFromPlayer), Quaternion.identity);
-                        newAsset.AddComponent<Object>().data = effect.objectData;
-                        Object obj = newAsset.GetComponent<Object>();
-                        obj.audioMixerGroup = effect.itemSoundsAudioGroup;
-                        obj.objectItem = effect;
-                    }
+                        SpawnItemWithModel(effect);
                     else
-                    {
-                        newAsset = new GameObject($"{effect.objectName}", typeof(Object));
-                        newAsset.transform.position = player.GetObjectSpawnPosition(effect.spawnDisFromPlayer);
-                        newAsset.GetComponent<Object>().data = effect.objectData;
-                        Object obj = newAsset.GetComponent<Object>();
-                        obj.audioMixerGroup = effect.itemSoundsAudioGroup;
-                        obj.objectItem = effect;
-                    }
+                        SpawnItemWithoutModel(effect);
 
                 });
             }
+        }
+
+        public void SpawnSavedWorldObjects(List<ObjectData> savedWorldObjects)
+        {
+            foreach (ObjectData objectdata in savedWorldObjects)
+            {
+                string currentObjectID = objectdata.ID;
+                ObjectType currentObjectType = objectdata.objectType;
+                ObjectSO currentItem;
+                
+                switch (currentObjectType)
+                {
+                    case ObjectType.Sound:
+                        currentItem = objectDatabase.FindSoundByID(currentObjectID);
+                        SpawnItemWithModeFromSave(currentItem, objectdata);
+                        break;
+                    case ObjectType.Model:
+                        currentItem = objectDatabase.FindModelByID(currentObjectID);
+                        SpawnItemWithModeFromSave(currentItem, objectdata);
+                        break;
+                    case ObjectType.Effect:
+                        currentItem = objectDatabase.FindEffectByID(currentObjectID);
+                        
+                        if (currentItem.model != null)
+                            SpawnItemWithModeFromSave(currentItem, objectdata);
+                        else
+                            SpawnItemWithoutModelFromSave(currentItem, objectdata);
+                        
+                        break;
+                }
+            }
+        }
+
+        private void SpawnItemWithModel(ObjectSO Item)
+        {
+            GameObject newAsset = null;
+            newAsset = Instantiate(Item.model[0], player.GetObjectSpawnPosition(Item.spawnDisFromPlayer), Quaternion.identity);
+            newAsset.AddComponent<Object>().data = Item.objectData;
+            Object obj = newAsset.GetComponent<Object>();
+            obj.audioMixerGroup = Item.itemSoundsAudioGroup;
+            obj.objectItem = Item;
+        }
+
+        private void SpawnItemWithoutModel(ObjectSO Item)
+        {
+            GameObject newAsset = null;
+            newAsset = new GameObject($"{Item.objectName}", typeof(Object));
+            newAsset.transform.position = player.GetObjectSpawnPosition(Item.spawnDisFromPlayer);
+            newAsset.GetComponent<Object>().data = Item.objectData;
+            Object obj = newAsset.GetComponent<Object>();
+            obj.audioMixerGroup = Item.itemSoundsAudioGroup;
+            obj.objectItem = Item;
+        }
+
+        private void SpawnItemWithModeFromSave(ObjectSO Item, ObjectData objData)
+        {
+            GameObject newAsset = null;
+            newAsset = Instantiate(Item.model[0], objData.objectPosition, objData.objectRotation);
+            Debug.Log(objData.objectPosition);
+            Object obj = newAsset.AddComponent<Object>();
+            obj.data = objData;
+            obj.audioMixerGroup = Item.itemSoundsAudioGroup;
+            obj.objectItem = Item;
+        }
+
+        private void SpawnItemWithoutModelFromSave(ObjectSO Item,ObjectData objData)
+        {
+            GameObject newAsset = null;
+            
+            newAsset = new GameObject($"{Item.objectName}", typeof(Object));
+            newAsset.transform.position = objData.objectPosition;
+            newAsset.transform.rotation = objData.objectRotation;
+
+            Object obj = newAsset.GetComponent<Object>();
+            obj.data = objData;
+            obj.audioMixerGroup = Item.itemSoundsAudioGroup;
+            obj.objectItem = Item;
         }
     }
 }

@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96ac597c151570345b1b6465e55a168e, type: 3}
   m_Name: Forest Bush
   m_EditorClassIdentifier: 
-  ID: FBX003
   spawnDisFromPlayer: 5
   soundClip: {fileID: 0}
   indoorVariant: {fileID: 0}
@@ -30,6 +29,11 @@ MonoBehaviour:
   - {fileID: 5637534602108381319, guid: 2cb53f7f60797d44699ecd6deba9b2b0, type: 3}
   effect: {fileID: 0}
   objectData:
+    ID: FBX003
+    objectPosition: {x: 0, y: 0, z: 0}
+    objectRotation: {x: 0, y: 0, z: 0, w: 0}
+    objectType: 1
+    currentActiveModel: 0
     audioType: 0
     volume: 0
     minDistance: 0

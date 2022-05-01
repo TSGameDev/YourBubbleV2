@@ -7,11 +7,6 @@ namespace TSGameDev.Object
     [CreateAssetMenu(fileName = "New Object", menuName = "Assets/New Object")]
     public class ObjectSO : ScriptableObject
     {
-        [Header("Saving Data")]
-        //Object ID for databasing
-        public string ID;
-        [Space(10)]
-
         [Header("ObjectData")]
         //Object componant data for manipulation, saving and loading
         public float spawnDisFromPlayer; 
