@@ -10,56 +10,52 @@ namespace TSGameDev.Managers
 {
     public class GameManager : MonoBehaviour
     {
-        #region Getter-Setter
+        #region World Data
+        [Header("World Data")]
+        public GameState gameState;
         public BubbleData worldData;
         public List<ObjectData> savedWorldObjects;
 
-        [Header("Scene Creation")]
         [SerializeField] Material[] skyboxes;
         public Material[] Skyboxes
         {
-            private set {}
+            private set { }
             get { return skyboxes; }
         }
-        public int posInSkyboxArray = 0;
 
         [SerializeField] Material[] terrainTextures;
         public Material[] TerrainTextures
         {
-            private set {}
+            private set { }
             get { return terrainTextures; }
         }
+
+        public int posInSkyboxArray = 0;
         public int posInTerrainArray = 0;
         public int terrainWidth;
         public int terrainLength;
-        [Space(10)]
 
-        [Header("Post Processing")]
         [SerializeField] VolumeProfile volumeProfile;
         public ScenePostProcessingData scenePostProcessingData;
+
+        public PlayerSettingsData playerSettingsData;
         [Space(10)]
         #endregion
 
-        #region Public Variables
+        #region Dependancies
+
         public GameStateAction gameStateActions;
-        
-        [Header("Game State Settings")]
-        public GameState gameState;
         public Player player;
         public InputManager inputManager;
-
-        public static GameManager instance;
-
-        //reference to player data to set and record the different settings for easily manipulation and saving.
-        public PlayerSettingsData playerSettingsData;
-        #endregion
-
+        public CreateBubble createBubble;
+        
         UIManager uiManager;
         AudioManager audioManager;
         SceneDatabase sceneDatabase;
-        public CreateBubble createBubble;
 
-        //Awake called just before start and after variable inisilisation. Sets up the game manager as a singleton instance
+        #endregion
+
+        public static GameManager instance;
         private void Awake()
         {
             if(instance == null)
@@ -78,8 +74,9 @@ namespace TSGameDev.Managers
 
         private void Start()
         {
-            playerSettingsData = SaveSystem.LoadPlayerSettingsData(uiManager);
             scenePostProcessingData = new ScenePostProcessingData(volumeProfile);
+
+            playerSettingsData = SaveSystem.LoadPlayerSettingsData(uiManager);
             worldData = SaveSystem.LoadWorldData(this);
             savedWorldObjects = SaveSystem.LoadWorldObjects();
         }
@@ -91,7 +88,7 @@ namespace TSGameDev.Managers
         {
             gameStateActions.ChangeToState(GameState.Application);
         }
-    
+        
         public void SavePlayerData()
         {
             SaveSystem.SavePlayerSettingsData(playerSettingsData);

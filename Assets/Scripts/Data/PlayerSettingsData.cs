@@ -1,4 +1,5 @@
 using UnityEngine.InputSystem;
+
 namespace TSGameDev.Data
 {
     //A struct of player settings for the purpose of saving, loading and manipulating the data easily.
@@ -56,6 +57,14 @@ namespace TSGameDev.Data
             }
         }
 
+        /// <summary>
+        /// Constructor to create a new playersettingsdata
+        /// </summary>
+        /// <param name="mainMenu">Main Menu Action Reference</param>
+        /// <param name="assetMenu">Asset Menu Action Reference</param>
+        /// <param name="run">Run Action Reference</param>
+        /// <param name="quickExit">Quick Exit Action Reference</param>
+        /// <param name="interaction">Interaction Action Reference</param>
         public PlayerSettingsData(InputActionReference mainMenu, InputActionReference assetMenu, InputActionReference run, InputActionReference quickExit, InputActionReference interaction)
         {
             masterVol = 1f;

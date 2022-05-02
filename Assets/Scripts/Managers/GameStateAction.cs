@@ -36,6 +36,14 @@ public class MainMenuStateAction : GameStateAction
 {
     public MainMenuStateAction(GameManager gameManager) : base(gameManager) {}
 
+    public override void ChangeToState(GameState state)
+    {
+        switch(state)
+        {
+            case GameState.Application:
+                break;
+        }
+    }
 }
 
 //Application or main game stater for when the user is walking around placing objects.
@@ -100,8 +108,6 @@ public class AssetMenuStateAction : GameStateAction
                 gameManager.gameState = GameState.Application;
                 gameManager.gameStateActions = new ApplicationStateAction(gameManager);
                 break;
-            default:
-                break;
         }
 
     }
@@ -154,16 +160,5 @@ public class UIStateAction : GameStateAction
                 break;
         }
     }
-}
-
-//gamestate enum making it easier for manipulation of states
-public enum GameState
-{
-    Mainmenu,
-    Application,
-    AssetMenu,
-    AssetSettings,
-    UI,
-
 }
 

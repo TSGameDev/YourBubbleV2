@@ -3,21 +3,23 @@ using UnityEngine;
 
 namespace TSGameDev.Object
 {
-    //Struct that contains the data for each object a player can place. Also contains functions to serialsie and deserialise the struct for saving purposes
+    //Struct that contains the data for each object a player can place.
     [Serializable]
     public struct ObjectData
     {
-        #region Save Settings
-
+        #region Save Variables
+        
+        [Header("Save Data")]
         public string ID;
         public Vector3 objectPosition;
         public Quaternion objectRotation;
         public ObjectType objectType;
         public int currentActiveModel;
-
+        [Space(10)]
+        
         #endregion
 
-        #region Sound
+        #region Sound Variables
         //series of sound data variables
         [Header("Sound Data")]
         public AudioType audioType;
@@ -28,7 +30,7 @@ namespace TSGameDev.Object
 
         #endregion
 
-        #region Effect
+        #region Effect Variables
         //series of effect data variables
         [Header("Effect Data")]
         public Color colour;
@@ -57,19 +59,5 @@ namespace TSGameDev.Object
             else this.colour = colour;
         }
 
-    }
-
-    //enum contining auido style types to better tracking of audio style
-    public enum AudioType
-    {
-        Mode2D,
-        Mode3D
-    }
-
-    public enum ObjectType
-    {
-        Sound,
-        Model,
-        Effect
     }
 }

@@ -19,6 +19,7 @@ namespace TSGameDev.Managers
         [Space(10)]
 
         #endregion
+        
         #region Audio Mix Group Variables
 
         //variables ralating to the maipulation of audio mixer groups volume
@@ -39,6 +40,7 @@ namespace TSGameDev.Managers
         [Space(10)]
 
         #endregion
+        
         #region Toggle Text Refs
 
         [Header("Toogle Text Refs")]
