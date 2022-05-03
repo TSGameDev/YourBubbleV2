@@ -48,8 +48,21 @@ namespace TSGameDev.Managers
         public Player player;
         public InputManager inputManager;
         public CreateBubble createBubble;
-        
-        UIManager uiManager;
+
+        [SerializeField] RebindHandler rebindHandler;
+        [SerializeField] TweenHandler tweenHandler;
+        public TweenHandler TweenHandler
+        {
+            private set
+            {
+                tweenHandler = value;
+            }
+            get
+            {
+                return tweenHandler;
+            }
+        }
+
         AudioManager audioManager;
         SceneDatabase sceneDatabase;
 
@@ -67,7 +80,6 @@ namespace TSGameDev.Managers
 
             gameState = GameState.UI;
             gameStateActions = new MainMenuStateAction(this);
-            uiManager = FindObjectOfType<UIManager>();
             audioManager = FindObjectOfType<AudioManager>();
             sceneDatabase = FindObjectOfType<SceneDatabase>();
         }
@@ -76,7 +88,7 @@ namespace TSGameDev.Managers
         {
             scenePostProcessingData = new ScenePostProcessingData(volumeProfile);
 
-            playerSettingsData = SaveSystem.LoadPlayerSettingsData(uiManager);
+            playerSettingsData = SaveSystem.LoadPlayerSettingsData(rebindHandler);
             worldData = SaveSystem.LoadWorldData(this);
             savedWorldObjects = SaveSystem.LoadWorldObjects();
         }
@@ -89,17 +101,26 @@ namespace TSGameDev.Managers
             gameStateActions.ChangeToState(GameState.Application);
         }
         
+        /// <summary>
+        /// Function to save the player settings data via the SaveSystem static class
+        /// </summary>
         public void SavePlayerData()
         {
             SaveSystem.SavePlayerSettingsData(playerSettingsData);
         }
         
+        /// <summary>
+        /// Function to perform the setting or variables and data when wanting to load the player data
+        /// </summary>
         public void LoadPlayerData()
         {
             audioManager.Init(playerSettingsData);
-            uiManager.Init(playerSettingsData);
+            rebindHandler.Init(playerSettingsData);
         }
-    
+        
+        /// <summary>
+        /// Function to save the world data via the SaveSystem static class
+        /// </summary>
         public void SaveWorldData()
         {
             if(player != null)
@@ -108,6 +129,9 @@ namespace TSGameDev.Managers
             SaveSystem.SaveWorldData(worldData);
         }
        
+        /// <summary>
+        /// Function to class the load scene function to recreate the preivouse bubble
+        /// </summary>
         public void LoadWorldData()
         {
             LoadScene(worldData);
@@ -122,7 +146,7 @@ namespace TSGameDev.Managers
             SceneManager.SetActiveScene(SceneManager.GetSceneByName("TestSceneCreation"));
             RenderSettings.skybox = createBubble.currentSkybox;
 
-            uiManager.OpenCloseBubbleSettingsMenu(false, false);
+            tweenHandler.OpenCloseBubbleSettingsMenu(false, false);
 
             TerrainData newTerrainData = new TerrainData();
             newTerrainData.size = new Vector3(createBubble.currentTerrainWidth, 0, createBubble.currentTerrainLength);
@@ -150,6 +174,10 @@ namespace TSGameDev.Managers
             worldData.worldTerrainWidth = createBubble.currentTerrainWidth;
         }
 
+        /// <summary>
+        /// Function that recreates the previously active bubble from save data
+        /// </summary>
+        /// <param name="bubbleData"></param>
         void LoadScene(BubbleData bubbleData)
         {
             createBubble.currentSkybox = Skyboxes[bubbleData.worldSkybox];
@@ -157,11 +185,14 @@ namespace TSGameDev.Managers
             createBubble.currentTerrainLength = bubbleData.worldTerrainLength;
             createBubble.currentTerrainWidth = bubbleData.worldTerrainWidth;
 
-            uiManager.OpenCloseMainMenu(false);
+            tweenHandler.OpenCloseMainMenu(false);
 
             CreateScene();
         }
 
+        /// <summary>
+        /// Function that saves the objects in the preivously active bubble via the SaveSystem static class
+        /// </summary>
         public void SaveWorldObjectData()
         {
             List<ObjectData> allWorldObjectData = new List<ObjectData>();

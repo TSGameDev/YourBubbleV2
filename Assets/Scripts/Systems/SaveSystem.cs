@@ -23,7 +23,7 @@ public static class SaveSystem
         File.WriteAllText(PlayerDataSavePath, JsonPlayerData);
     }
 
-    public static PlayerSettingsData LoadPlayerSettingsData(UIManager uiManager)
+    public static PlayerSettingsData LoadPlayerSettingsData(RebindHandler rebindHandler)
     {
         if (File.Exists(PlayerDataSavePath))
         {
@@ -33,7 +33,7 @@ public static class SaveSystem
         }
         else
         {
-            return new PlayerSettingsData(uiManager.mainMenu, uiManager.assetMenu, uiManager.run, uiManager.quickExit, uiManager.interaction);
+            return new PlayerSettingsData(rebindHandler.mainMenu, rebindHandler.assetMenu, rebindHandler.run, rebindHandler.quickExit, rebindHandler.interaction);
         }
     }
 

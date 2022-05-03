@@ -821,13 +821,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 255931470}
     - target: {fileID: 468556474636501405, guid: 60679f0970b039540b41f6c782221a89, type: 3}
+      propertyPath: playerRaycastTxt
+      value: 
+      objectReference: {fileID: 1699092776}
+    - target: {fileID: 468556474636501405, guid: 60679f0970b039540b41f6c782221a89, type: 3}
       propertyPath: soundVolumeRight
       value: 
       objectReference: {fileID: 1600474434}
     - target: {fileID: 468556474636501405, guid: 60679f0970b039540b41f6c782221a89, type: 3}
       propertyPath: waitingForBindTxt
       value: 
-      objectReference: {fileID: 1444986798}
+      objectReference: {fileID: 1444986800}
     - target: {fileID: 468556474636501405, guid: 60679f0970b039540b41f6c782221a89, type: 3}
       propertyPath: assetSettingsTween
       value: 
@@ -921,11 +925,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cd63e50477d4f344a5a4f083e37b977, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1444986798 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7965679475992392652, guid: 9dac89b8432ddc64f84b27c2ab446ea3, type: 3}
+--- !u!114 &1444986800 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4166255127492859722, guid: 9dac89b8432ddc64f84b27c2ab446ea3, type: 3}
   m_PrefabInstance: {fileID: 4738055624412663905}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1520676862 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1531430886695728178, guid: dcb86d900a7dbd84b930c1bdf639b6f7, type: 3}

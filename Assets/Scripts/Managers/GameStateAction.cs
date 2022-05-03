@@ -9,6 +9,7 @@ public abstract class GameStateAction
     protected GameManager gameManager;
     protected Player player;
     protected InputManager inputManager;
+    protected TweenHandler tweenHandler;
 
     #endregion
 
@@ -22,6 +23,7 @@ public abstract class GameStateAction
 
         player = gameManager.player;
         inputManager = gameManager.inputManager;
+        tweenHandler = gameManager.TweenHandler;
     }
 
     /// <summary>
@@ -63,7 +65,7 @@ public class ApplicationStateAction : GameStateAction
                 player.LockUnlockCursor(false);
                 inputManager.ActiveUIInputs();
                 player.LockUnlockCamera(true);
-                UIManager.instance.OpenCloseMainMenu(true);
+                tweenHandler.OpenCloseMainMenu(true);
                 gameManager.gameState = GameState.UI;
                 gameManager.gameStateActions = new UIStateAction(gameManager);
                 break;
@@ -71,7 +73,7 @@ public class ApplicationStateAction : GameStateAction
                 player.LockUnlockCursor(false);
                 inputManager.ActiveUIInputs();
                 player.LockUnlockCamera(true);
-                UIManager.instance.OpenCloseAssetMenu(true);
+                tweenHandler.OpenCloseAssetMenu(true);
                 gameManager.gameState = GameState.AssetMenu;
                 gameManager.gameStateActions = new AssetMenuStateAction(gameManager);
                 break;
@@ -79,7 +81,7 @@ public class ApplicationStateAction : GameStateAction
                 player.LockUnlockCursor(false);
                 inputManager.ActiveUIInputs();
                 player.LockUnlockCamera(true);
-                UIManager.instance.OpenCloseAssetSettingsMenu(true);
+                tweenHandler.OpenCloseAssetSettingsMenu(true);
                 gameManager.gameState = GameState.AssetSettings;
                 gameManager.gameStateActions = new AssetSettingsAction(gameManager);
                 break;
@@ -104,7 +106,7 @@ public class AssetMenuStateAction : GameStateAction
                 player.LockUnlockCursor(true);
                 inputManager.ActiveGameInputs();
                 player.LockUnlockCamera(false);
-                UIManager.instance.OpenCloseAssetMenu(false);
+                tweenHandler.OpenCloseAssetMenu(false);
                 gameManager.gameState = GameState.Application;
                 gameManager.gameStateActions = new ApplicationStateAction(gameManager);
                 break;
@@ -113,6 +115,7 @@ public class AssetMenuStateAction : GameStateAction
     }
 }
 
+//Asset Settings State for when the user enters the asset setting ui.
 public class AssetSettingsAction : GameStateAction
 {
     public AssetSettingsAction(GameManager gameManager) : base(gameManager) { }
@@ -129,7 +132,7 @@ public class AssetSettingsAction : GameStateAction
                 player.LockUnlockCursor(true);
                 inputManager.ActiveGameInputs();
                 player.LockUnlockCamera(false);
-                UIManager.instance.OpenCloseAssetSettingsMenu(false);
+                tweenHandler.OpenCloseAssetSettingsMenu(false);
                 gameManager.gameState = GameState.Application;
                 gameManager.gameStateActions = new ApplicationStateAction(gameManager);
                 break;
@@ -156,7 +159,7 @@ public class UIStateAction : GameStateAction
                 player.LockUnlockCamera(false);
                 gameManager.gameState = GameState.Application;
                 gameManager.gameStateActions = new ApplicationStateAction(gameManager);
-                UIManager.instance.OpenCloseMainMenu(false);
+                tweenHandler.OpenCloseMainMenu(false);
                 break;
         }
     }

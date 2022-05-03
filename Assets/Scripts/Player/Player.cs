@@ -19,6 +19,7 @@ namespace TSGameDev.Interactables
 
         [Header("Interaction Settings")]
         [SerializeField] TextMeshProUGUI interactionTxt;
+        [SerializeField] RebindHandler rebindHandler;
         [SerializeField] float raycastMaxDis = 10;
         [SerializeField] float objectPositionLerpTime = 0.5f;
 
@@ -83,7 +84,7 @@ namespace TSGameDev.Interactables
             audioSource = GetComponent<AudioSource>();
             cameraa = FindObjectOfType<Camera>();
             uiManager = FindObjectOfType<UIManager>();
-            interactionTxt = uiManager.InteractionTxt;
+            interactionTxt = rebindHandler.PlayerRaycastText;
         }
 
         private void Start()

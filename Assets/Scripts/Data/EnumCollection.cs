@@ -22,3 +22,14 @@ public enum GameState
     AssetSettings,
     UI,
 }
+
+//An enum containing all the possible UI states to make the code more readable when changing and using states.
+public enum UIState
+{
+    Mainmenu,
+    PlayerSettings,
+    BubbleSettings,
+    AssetMenu,
+    AssetSettings,
+    Quit,
+}

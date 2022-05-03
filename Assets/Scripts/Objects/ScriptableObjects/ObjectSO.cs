@@ -4,7 +4,7 @@ using UnityEngine.Audio;
 
 namespace TSGameDev.Object
 {
-    [CreateAssetMenu(fileName = "New Object", menuName = "Assets/New Object")]
+    [CreateAssetMenu(fileName = "New Item", menuName = "Scriptable Objects/Assets/New Object")]
     public class ObjectSO : ScriptableObject
     {
         [Header("ObjectData")]
