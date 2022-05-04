@@ -30,4 +30,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f52c72a76596ef949a98c9559d80fb9f, type: 2}
   - {fileID: 11400000, guid: 6a5500877a7149d449628233726de732, type: 2}
   - {fileID: 11400000, guid: e4777567573174d43984accf4720ed0c, type: 2}
+  - {fileID: 11400000, guid: 6f1bf4db30e016049ae5c7c6f759c410, type: 2}
   effectDatabase: []

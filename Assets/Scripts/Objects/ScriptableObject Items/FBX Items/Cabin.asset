@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96ac597c151570345b1b6465e55a168e, type: 3}
+  m_Name: Cabin
+  m_EditorClassIdentifier: 
+  spawnDisFromPlayer: 10
+  soundClip: {fileID: 0}
+  indoorVariant: {fileID: 0}
+  model:
+  - {fileID: 5673029927645632455, guid: 9603e02b1307b5f4cb4628ac6e2f5d9a, type: 3}
+  effect: {fileID: 0}
+  objectData:
+    ID: FBX013
+    objectPosition: {x: 0, y: 0, z: 0}
+    objectRotation: {x: 0, y: 0, z: 0, w: 0}
+    objectType: 1
+    currentActiveModel: 0
+    audioType: 0
+    volume: 0
+    minDistance: 0
+    maxDistance: 0
+    colour: {r: 0, g: 0, b: 0, a: 0}
+  objectSprite: {fileID: 0}
+  objectName: Log Cabin
+  itemSoundsAudioGroup: {fileID: 0}
