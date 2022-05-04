@@ -2783,6 +2783,7 @@ MonoBehaviour:
   assetMenuSoundSection: {fileID: 97907658}
   assetMenuModelSection: {fileID: 346392396}
   assetMenuEffectSection: {fileID: 993410540}
+  gameManager: {fileID: 1387676436}
 --- !u!1 &6830280373676813430
 GameObject:
   m_ObjectHideFlags: 0

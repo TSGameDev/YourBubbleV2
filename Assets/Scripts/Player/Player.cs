@@ -19,8 +19,8 @@ namespace TSGameDev.Interactables
 
         [Header("Interaction Settings")]
         [SerializeField] float raycastMaxDis = 10;
-        [SerializeField] float objectPositionLerpTime = 0.5f;
 
+        [SerializeField] const string rightMouseClickRef = "MouseRightClick";
         [SerializeField] const string leftMouseClickRef = "MouseLeftClick";
         [SerializeField] const string rotateObjectLeftRef = "ObjectRotationLeft";
         [SerializeField] const string rotateObjectRightRef = "ObjectRotationRight";
@@ -30,8 +30,11 @@ namespace TSGameDev.Interactables
         int environemtBitMask = 1 << 7;
         TextMeshProUGUI interactionTxt;
         RebindHandler rebindHandler;
-        GameObject connectedObject = null;
-        bool objectConnected = false;
+        public GameObject connectedObject
+        {
+            get; set; 
+        }
+        
 
         #endregion
 
@@ -104,7 +107,7 @@ namespace TSGameDev.Interactables
         private void FixedUpdate()
         {
             Gravity();
-            if (objectConnected) ObjectRepositionRaycast();
+            if (connectedObject != null) ObjectRepositionRaycast();
             else ObjectSettingsRaycast();
         }
 
@@ -148,7 +151,6 @@ namespace TSGameDev.Interactables
                 Interaction = hit.collider.GetComponent<Object.Object>().OpenAssetSettingsMenu;
                 if(context.performed)
                 {
-                    objectConnected = true;
                     connectedObject = hit.collider.gameObject;
                     callBackDelegate = ObjectRepositionRaycast;
                 }
@@ -166,9 +168,10 @@ namespace TSGameDev.Interactables
         /// <param name="context">The action context from the performed aaction that called this fucntion in the input manager</param>
         public void ObjectRepositionRaycast(InputAction.CallbackContext context = new InputAction.CallbackContext())
         {
+            Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.5f));
             RaycastHit hit;
-            if (Physics.Raycast(cameraa.transform.position, cameraa.transform.forward, out hit, raycastMaxDis, environemtBitMask))
-                connectedObject.transform.position = Vector3.LerpUnclamped(connectedObject.transform.position, hit.point, objectPositionLerpTime);
+            if (Physics.Raycast(ray, out hit, raycastMaxDis, environemtBitMask))
+                connectedObject.transform.position = hit.point;
             else
                 connectedObject.transform.position = GetObjectSpawnPosition(raycastMaxDis);
 
@@ -181,7 +184,11 @@ namespace TSGameDev.Interactables
                 switch (context.action.name)
                 {
                     case leftMouseClickRef:
-                        objectConnected = false;
+                        Instantiate(connectedObject, connectedObject.transform.position, connectedObject.transform.rotation);
+                        break;
+                    case rightMouseClickRef:
+                        Destroy(connectedObject);
+                        connectedObject = null;
                         callBackDelegate = ObjectSettingsRaycast;
                         break;
                     case rotateObjectLeftRef:

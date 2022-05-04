@@ -83,6 +83,14 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""MouseRightClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""920c5ddd-0df8-4966-b28d-c2d86b959e1c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""ObjectRotationLeft"",
                     ""type"": ""Button"",
                     ""id"": ""66b4e6e0-170f-468c-8a9e-35bbd0747e7a"",
@@ -253,6 +261,17 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                     ""action"": ""ObjectRotationRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e9ad1288-b19a-4467-8c82-e4473e35022d"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseRightClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -334,6 +353,7 @@ public class @PlayerActions : IInputActionCollection, IDisposable
         m_Game_AssetMenu = m_Game.FindAction("Asset Menu", throwIfNotFound: true);
         m_Game_MouseDelta = m_Game.FindAction("MouseDelta", throwIfNotFound: true);
         m_Game_MouseLeftClick = m_Game.FindAction("MouseLeftClick", throwIfNotFound: true);
+        m_Game_MouseRightClick = m_Game.FindAction("MouseRightClick", throwIfNotFound: true);
         m_Game_ObjectRotationLeft = m_Game.FindAction("ObjectRotationLeft", throwIfNotFound: true);
         m_Game_ObjectRotationRight = m_Game.FindAction("ObjectRotationRight", throwIfNotFound: true);
         // UI
@@ -398,6 +418,7 @@ public class @PlayerActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Game_AssetMenu;
     private readonly InputAction m_Game_MouseDelta;
     private readonly InputAction m_Game_MouseLeftClick;
+    private readonly InputAction m_Game_MouseRightClick;
     private readonly InputAction m_Game_ObjectRotationLeft;
     private readonly InputAction m_Game_ObjectRotationRight;
     public struct GameActions
@@ -412,6 +433,7 @@ public class @PlayerActions : IInputActionCollection, IDisposable
         public InputAction @AssetMenu => m_Wrapper.m_Game_AssetMenu;
         public InputAction @MouseDelta => m_Wrapper.m_Game_MouseDelta;
         public InputAction @MouseLeftClick => m_Wrapper.m_Game_MouseLeftClick;
+        public InputAction @MouseRightClick => m_Wrapper.m_Game_MouseRightClick;
         public InputAction @ObjectRotationLeft => m_Wrapper.m_Game_ObjectRotationLeft;
         public InputAction @ObjectRotationRight => m_Wrapper.m_Game_ObjectRotationRight;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
@@ -447,6 +469,9 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                 @MouseLeftClick.started -= m_Wrapper.m_GameActionsCallbackInterface.OnMouseLeftClick;
                 @MouseLeftClick.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnMouseLeftClick;
                 @MouseLeftClick.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnMouseLeftClick;
+                @MouseRightClick.started -= m_Wrapper.m_GameActionsCallbackInterface.OnMouseRightClick;
+                @MouseRightClick.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnMouseRightClick;
+                @MouseRightClick.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnMouseRightClick;
                 @ObjectRotationLeft.started -= m_Wrapper.m_GameActionsCallbackInterface.OnObjectRotationLeft;
                 @ObjectRotationLeft.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnObjectRotationLeft;
                 @ObjectRotationLeft.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnObjectRotationLeft;
@@ -481,6 +506,9 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                 @MouseLeftClick.started += instance.OnMouseLeftClick;
                 @MouseLeftClick.performed += instance.OnMouseLeftClick;
                 @MouseLeftClick.canceled += instance.OnMouseLeftClick;
+                @MouseRightClick.started += instance.OnMouseRightClick;
+                @MouseRightClick.performed += instance.OnMouseRightClick;
+                @MouseRightClick.canceled += instance.OnMouseRightClick;
                 @ObjectRotationLeft.started += instance.OnObjectRotationLeft;
                 @ObjectRotationLeft.performed += instance.OnObjectRotationLeft;
                 @ObjectRotationLeft.canceled += instance.OnObjectRotationLeft;
@@ -550,6 +578,7 @@ public class @PlayerActions : IInputActionCollection, IDisposable
         void OnAssetMenu(InputAction.CallbackContext context);
         void OnMouseDelta(InputAction.CallbackContext context);
         void OnMouseLeftClick(InputAction.CallbackContext context);
+        void OnMouseRightClick(InputAction.CallbackContext context);
         void OnObjectRotationLeft(InputAction.CallbackContext context);
         void OnObjectRotationRight(InputAction.CallbackContext context);
     }

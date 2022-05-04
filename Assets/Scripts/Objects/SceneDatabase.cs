@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using TSGameDev.Interactables;
-using TSGameDev.Object;
+using TSGameDev.Managers;
 
 namespace TSGameDev.Object
 {
@@ -20,6 +20,7 @@ namespace TSGameDev.Object
         [SerializeField] GameObject assetMenuEffectSection;
 
         private Player player;
+        [SerializeField] GameManager gameManager;
 
         /// <summary>
         /// Function to popular the asset menu with all items stored in the respective databases
@@ -111,6 +112,8 @@ namespace TSGameDev.Object
             Object obj = newAsset.GetComponent<Object>();
             obj.audioMixerGroup = Item.itemSoundsAudioGroup;
             obj.objectItem = Item;
+            player.connectedObject = newAsset;
+            gameManager.gameStateActions.ChangeToState(GameState.Application);
         }
 
         private void SpawnItemWithoutModel(ObjectSO Item)

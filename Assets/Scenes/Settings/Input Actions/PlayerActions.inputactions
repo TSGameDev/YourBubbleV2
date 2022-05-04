@@ -70,6 +70,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "MouseRightClick",
+                    "type": "Button",
+                    "id": "920c5ddd-0df8-4966-b28d-c2d86b959e1c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "ObjectRotationLeft",
                     "type": "Button",
                     "id": "66b4e6e0-170f-468c-8a9e-35bbd0747e7a",
@@ -238,6 +246,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ObjectRotationRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e9ad1288-b19a-4467-8c82-e4473e35022d",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseRightClick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
