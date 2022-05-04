@@ -203,5 +203,10 @@ namespace TSGameDev.Managers
             }
             SaveSystem.SaveWorldObjects(allWorldObjectData);
         }
+    
+        public void BeginRebinding(string BindKey)
+        {
+            rebindHandler.StartRebinding(BindKey, playerSettingsData);
+        }
     }
 }

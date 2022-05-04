@@ -15,23 +15,45 @@ public class TweenHandler : MonoBehaviour
     [SerializeField] UITween assetMenuTween;
     [SerializeField] UITween assetSettingsTween;
 
+    UIState state = UIState.Mainmenu;
     #endregion
+
+    private void Start()
+    {
+        OpenCloseMainMenu(true);
+    }
 
     /// <summary>
     /// The user selects a UI state from the main menu buttons, this function is then called when the Main Menu is tweened out, tweening in the correct UI menu using the change UI state with correct tweening times.
     /// </summary>
-    public void MainMenuChange(string StateToChange)
+    public void MainMenuChange()
     {
-        switch (StateToChange)
+        switch (state)
         {
-            case "Player Settings":
+            case UIState.PlayerSettings:
                 playerSettingsTween.BeginTween();
                 break;
-            case "Bubble Settings":
+            case UIState.BubbleSettings:
                 bubbleSettingsTween.BeginTween();
                 break;
-            case "Quit":
+            case UIState.Quit:
                 quitPromptTween.BeginTween();
+                break;
+        }
+    }
+
+    public void ChangeState(string StateToChange)
+    {
+        switch(StateToChange)
+        {
+            case "Player Settings":
+                state = UIState.PlayerSettings;
+                break;
+            case "Bubble Settings":
+                state = UIState.BubbleSettings;
+                break;
+            case "Quit":
+                state = UIState.Quit;
                 break;
         }
     }

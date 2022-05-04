@@ -18,8 +18,6 @@ namespace TSGameDev.Interactables
         public CallBackDelegate callBackDelegate;
 
         [Header("Interaction Settings")]
-        [SerializeField] TextMeshProUGUI interactionTxt;
-        [SerializeField] RebindHandler rebindHandler;
         [SerializeField] float raycastMaxDis = 10;
         [SerializeField] float objectPositionLerpTime = 0.5f;
 
@@ -30,6 +28,8 @@ namespace TSGameDev.Interactables
 
         int objectBitMask = 1 << 6;
         int environemtBitMask = 1 << 7;
+        TextMeshProUGUI interactionTxt;
+        RebindHandler rebindHandler;
         GameObject connectedObject = null;
         bool objectConnected = false;
 
@@ -84,6 +84,7 @@ namespace TSGameDev.Interactables
             audioSource = GetComponent<AudioSource>();
             cameraa = FindObjectOfType<Camera>();
             uiManager = FindObjectOfType<UIManager>();
+            rebindHandler = FindObjectOfType<RebindHandler>();
             interactionTxt = rebindHandler.PlayerRaycastText;
         }
 

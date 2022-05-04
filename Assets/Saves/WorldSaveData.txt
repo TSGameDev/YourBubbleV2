@@ -1,1 +1,1 @@
-{"worldSkybox":4,"worldTerrainTexture":4,"worldTerrainWidth":300,"worldTerrainLength":300}
+{"worldSkybox":4,"worldTerrainTexture":4,"worldTerrainWidth":300,"worldTerrainLength":300,"playerPosition":{"x":0.0,"y":0.0,"z":0.0}}
