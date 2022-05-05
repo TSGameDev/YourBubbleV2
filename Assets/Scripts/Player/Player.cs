@@ -24,12 +24,15 @@ namespace TSGameDev.Interactables
         [SerializeField] const string leftMouseClickRef = "MouseLeftClick";
         [SerializeField] const string rotateObjectLeftRef = "ObjectRotationLeft";
         [SerializeField] const string rotateObjectRightRef = "ObjectRotationRight";
+        [SerializeField] const string cycleItemModelLeft = "CycleItemModelLeft";
+        [SerializeField] const string cycleItemModelRight = "CycleItemModelRight";
         [Space(10)]
 
         int objectBitMask = 1 << 6;
         int environemtBitMask = 1 << 7;
         TextMeshProUGUI interactionTxt;
         RebindHandler rebindHandler;
+        SceneDatabase sceneDatabase;
         public GameObject connectedObject
         {
             get; set; 
@@ -88,6 +91,7 @@ namespace TSGameDev.Interactables
             cameraa = FindObjectOfType<Camera>();
             uiManager = FindObjectOfType<UIManager>();
             rebindHandler = FindObjectOfType<RebindHandler>();
+            sceneDatabase = FindObjectOfType<SceneDatabase>();
             interactionTxt = rebindHandler.PlayerRaycastText;
         }
 
@@ -107,7 +111,11 @@ namespace TSGameDev.Interactables
         private void FixedUpdate()
         {
             Gravity();
-            if (connectedObject != null) ObjectRepositionRaycast();
+            if (connectedObject != null)
+            {
+                ObjectRepositionRaycast();
+                callBackDelegate = ObjectRepositionInteraction;
+            }
             else ObjectSettingsRaycast();
         }
 
@@ -149,10 +157,10 @@ namespace TSGameDev.Interactables
             {
                 interactionTxt.gameObject.SetActive(true);
                 Interaction = hit.collider.GetComponent<Object.Object>().OpenAssetSettingsMenu;
-                if(context.performed)
+                if(context.performed && context.action.name == leftMouseClickRef)
                 {
                     connectedObject = hit.collider.gameObject;
-                    callBackDelegate = ObjectRepositionRaycast;
+                    callBackDelegate = ObjectRepositionInteraction;
                 }
             }
             else
@@ -165,8 +173,7 @@ namespace TSGameDev.Interactables
         /// <summary>
         /// The function controlling the reposition of a selected object spawned into the world
         /// </summary>
-        /// <param name="context">The action context from the performed aaction that called this fucntion in the input manager</param>
-        public void ObjectRepositionRaycast(InputAction.CallbackContext context = new InputAction.CallbackContext())
+        public void ObjectRepositionRaycast()
         {
             Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.5f));
             RaycastHit hit;
@@ -178,7 +185,14 @@ namespace TSGameDev.Interactables
             Object.Object ConnectedObjectScript = connectedObject.GetComponent<Object.Object>();
             ConnectedObjectScript.data.objectPosition = connectedObject.transform.position;
             ConnectedObjectScript.data.objectRotation = connectedObject.transform.rotation;
-
+        }
+        
+        /// <summary>
+        /// Function Handleing the inputs when repositioning an object
+        /// </summary>
+        /// <param name="context">The performed inputs context</param>
+        void ObjectRepositionInteraction(InputAction.CallbackContext context = new InputAction.CallbackContext())
+        {
             if (context.performed)
             {
                 switch (context.action.name)
@@ -196,6 +210,12 @@ namespace TSGameDev.Interactables
                         break;
                     case rotateObjectRightRef:
                         connectedObject.transform.eulerAngles -= new Vector3(0, 15, 0);
+                        break;
+                    case cycleItemModelLeft:
+                        sceneDatabase.CycleItemModelLeft(connectedObject);
+                        break;
+                    case cycleItemModelRight:
+                        sceneDatabase.CycleItemModelRight(connectedObject);
                         break;
                     default:
                         Debug.Log(context.action.name);

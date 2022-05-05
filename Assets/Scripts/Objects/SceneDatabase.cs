@@ -39,7 +39,7 @@ namespace TSGameDev.Object
                 asset.GetComponent<Button>().onClick.AddListener(() =>
                 {
                     if(sound.model != null)
-                        SpawnItemWithModel(sound);
+                        SpawnItemWithModel(sound, 0);
 
                 });
             }
@@ -52,7 +52,7 @@ namespace TSGameDev.Object
                 asset.GetComponent<Button>().onClick.AddListener(() =>
                 {
                     if (model.model != null)
-                        SpawnItemWithModel(model);
+                        SpawnItemWithModel(model, 0);
 
                 });
             }
@@ -65,7 +65,7 @@ namespace TSGameDev.Object
                 asset.GetComponent<Button>().onClick.AddListener(() =>
                 {
                     if (effect.model != null)
-                        SpawnItemWithModel(effect);
+                        SpawnItemWithModel(effect, 0);
                     else
                         SpawnItemWithoutModel(effect);
 
@@ -104,14 +104,15 @@ namespace TSGameDev.Object
             }
         }
 
-        private void SpawnItemWithModel(ObjectSO Item)
+        private void SpawnItemWithModel(ObjectSO Item, int modelNum)
         {
             GameObject newAsset = null;
-            newAsset = Instantiate(Item.model[0], player.GetObjectSpawnPosition(Item.spawnDisFromPlayer), Quaternion.identity);
+            newAsset = Instantiate(Item.model[modelNum], player.GetObjectSpawnPosition(Item.spawnDisFromPlayer), Quaternion.identity);
             newAsset.AddComponent<Object>().data = Item.objectData;
             Object obj = newAsset.GetComponent<Object>();
             obj.audioMixerGroup = Item.itemSoundsAudioGroup;
             obj.objectItem = Item;
+            obj.data.currentActiveModel = modelNum;
             player.connectedObject = newAsset;
             gameManager.gameStateActions.ChangeToState(GameState.Application);
         }
@@ -150,6 +151,34 @@ namespace TSGameDev.Object
             obj.data = objData;
             obj.audioMixerGroup = Item.itemSoundsAudioGroup;
             obj.objectItem = Item;
+        }
+
+        public void CycleItemModelLeft(GameObject ItemGameObject)
+        {
+            Object itemObject = ItemGameObject.GetComponent<Object>();
+            ObjectSO itemObjectSO = itemObject.objectItem;
+            ObjectData itemObjectData = itemObject.data;
+
+            if(itemObjectData.currentActiveModel == 0)
+                SpawnItemWithModel(itemObjectSO, itemObjectSO.model.Count - 1);
+            else
+                SpawnItemWithModel(itemObjectSO, itemObjectData.currentActiveModel - 1);
+
+            Destroy(ItemGameObject);
+        }
+
+        public void CycleItemModelRight(GameObject ItemGameObject)
+        {
+            Object itemObject = ItemGameObject.GetComponent<Object>();
+            ObjectSO itemObjectSO = itemObject.objectItem;
+            ObjectData itemObjectData = itemObject.data;
+
+            if (itemObjectData.currentActiveModel == itemObjectSO.model.Count - 1)
+                SpawnItemWithModel(itemObjectSO, 0);
+            else
+                SpawnItemWithModel(itemObjectSO, itemObjectData.currentActiveModel + 1);
+
+            Destroy(ItemGameObject);
         }
     }
 }

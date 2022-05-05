@@ -105,6 +105,22 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""CycleItemModelLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""32bb9272-04be-4cf7-8a05-f2c859be863b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""CycleItemModelRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""7ec35f14-17e9-417c-8638-cf0d147759d8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -272,6 +288,28 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                     ""action"": ""MouseRightClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e35b340d-888a-4f8c-b6b5-462aa35ddc3f"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CycleItemModelLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""39f46060-10c6-42cf-8b5a-e4d14597ba93"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CycleItemModelRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -356,6 +394,8 @@ public class @PlayerActions : IInputActionCollection, IDisposable
         m_Game_MouseRightClick = m_Game.FindAction("MouseRightClick", throwIfNotFound: true);
         m_Game_ObjectRotationLeft = m_Game.FindAction("ObjectRotationLeft", throwIfNotFound: true);
         m_Game_ObjectRotationRight = m_Game.FindAction("ObjectRotationRight", throwIfNotFound: true);
+        m_Game_CycleItemModelLeft = m_Game.FindAction("CycleItemModelLeft", throwIfNotFound: true);
+        m_Game_CycleItemModelRight = m_Game.FindAction("CycleItemModelRight", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_MousePosition = m_UI.FindAction("Mouse Position", throwIfNotFound: true);
@@ -421,6 +461,8 @@ public class @PlayerActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Game_MouseRightClick;
     private readonly InputAction m_Game_ObjectRotationLeft;
     private readonly InputAction m_Game_ObjectRotationRight;
+    private readonly InputAction m_Game_CycleItemModelLeft;
+    private readonly InputAction m_Game_CycleItemModelRight;
     public struct GameActions
     {
         private @PlayerActions m_Wrapper;
@@ -436,6 +478,8 @@ public class @PlayerActions : IInputActionCollection, IDisposable
         public InputAction @MouseRightClick => m_Wrapper.m_Game_MouseRightClick;
         public InputAction @ObjectRotationLeft => m_Wrapper.m_Game_ObjectRotationLeft;
         public InputAction @ObjectRotationRight => m_Wrapper.m_Game_ObjectRotationRight;
+        public InputAction @CycleItemModelLeft => m_Wrapper.m_Game_CycleItemModelLeft;
+        public InputAction @CycleItemModelRight => m_Wrapper.m_Game_CycleItemModelRight;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -478,6 +522,12 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                 @ObjectRotationRight.started -= m_Wrapper.m_GameActionsCallbackInterface.OnObjectRotationRight;
                 @ObjectRotationRight.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnObjectRotationRight;
                 @ObjectRotationRight.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnObjectRotationRight;
+                @CycleItemModelLeft.started -= m_Wrapper.m_GameActionsCallbackInterface.OnCycleItemModelLeft;
+                @CycleItemModelLeft.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnCycleItemModelLeft;
+                @CycleItemModelLeft.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnCycleItemModelLeft;
+                @CycleItemModelRight.started -= m_Wrapper.m_GameActionsCallbackInterface.OnCycleItemModelRight;
+                @CycleItemModelRight.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnCycleItemModelRight;
+                @CycleItemModelRight.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnCycleItemModelRight;
             }
             m_Wrapper.m_GameActionsCallbackInterface = instance;
             if (instance != null)
@@ -515,6 +565,12 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                 @ObjectRotationRight.started += instance.OnObjectRotationRight;
                 @ObjectRotationRight.performed += instance.OnObjectRotationRight;
                 @ObjectRotationRight.canceled += instance.OnObjectRotationRight;
+                @CycleItemModelLeft.started += instance.OnCycleItemModelLeft;
+                @CycleItemModelLeft.performed += instance.OnCycleItemModelLeft;
+                @CycleItemModelLeft.canceled += instance.OnCycleItemModelLeft;
+                @CycleItemModelRight.started += instance.OnCycleItemModelRight;
+                @CycleItemModelRight.performed += instance.OnCycleItemModelRight;
+                @CycleItemModelRight.canceled += instance.OnCycleItemModelRight;
             }
         }
     }
@@ -581,6 +637,8 @@ public class @PlayerActions : IInputActionCollection, IDisposable
         void OnMouseRightClick(InputAction.CallbackContext context);
         void OnObjectRotationLeft(InputAction.CallbackContext context);
         void OnObjectRotationRight(InputAction.CallbackContext context);
+        void OnCycleItemModelLeft(InputAction.CallbackContext context);
+        void OnCycleItemModelRight(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

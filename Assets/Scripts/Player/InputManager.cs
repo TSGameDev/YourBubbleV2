@@ -49,6 +49,8 @@ namespace TSGameDev.Interactables
             playerInputs.Game.MouseRightClick.performed += ctx => player.callBackDelegate(ctx);
             playerInputs.Game.ObjectRotationLeft.performed += ctx => player.callBackDelegate(ctx);
             playerInputs.Game.ObjectRotationRight.performed += ctx => player.callBackDelegate(ctx);
+            playerInputs.Game.CycleItemModelLeft.performed += ctx => player.callBackDelegate(ctx);
+            playerInputs.Game.CycleItemModelRight.performed += ctx => player.callBackDelegate(ctx);
             player.running = playerInputs.Game.Running;
 
             //assgins player controls for the UI action map
